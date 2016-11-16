@@ -1,0 +1,20 @@
+\BOOKMARK [0][-]{chapter*.2}{List of Figures}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Glossary}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 4
+\BOOKMARK [0][-]{chapter.3}{Previous Work}{}% 5
+\BOOKMARK [0][-]{chapter.4}{Student Flow Simulation Design}{}% 6
+\BOOKMARK [1][-]{section.4.1}{Discrete Event Simulations}{chapter.4}% 7
+\BOOKMARK [1][-]{section.4.2}{Defining A Curricula}{chapter.4}% 8
+\BOOKMARK [1][-]{section.4.3}{Assumptions}{chapter.4}% 9
+\BOOKMARK [1][-]{section.4.4}{Student Flow Simulation Model Logic}{chapter.4}% 10
+\BOOKMARK [2][-]{subsection.4.4.1}{Control Flow}{section.4.4}% 11
+\BOOKMARK [0][-]{chapter.5}{Simulation Framework Implementation}{}% 12
+\BOOKMARK [1][-]{section.5.1}{Julia}{chapter.5}% 13
+\BOOKMARK [1][-]{section.5.2}{Architecture and Implementation Details}{chapter.5}% 14
+\BOOKMARK [2][-]{subsection.5.2.1}{Data Types}{section.5.2}% 15
+\BOOKMARK [2][-]{subsection.5.2.2}{Performance Modules}{section.5.2}% 16
+\BOOKMARK [2][-]{subsection.5.2.3}{Simulation Method}{section.5.2}% 17
+\BOOKMARK [0][-]{chapter.6}{Application in Curricular Analytics}{}% 18
+\BOOKMARK [1][-]{section.6.1}{Curricular Complexity}{chapter.6}% 19
+\BOOKMARK [1][-]{section.6.2}{Correlating Complexity with Completion Rates}{chapter.6}% 20

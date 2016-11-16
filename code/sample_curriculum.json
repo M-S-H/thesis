@@ -1,0 +1,29 @@
+{
+  "terms": 2,
+  "courses": [
+    {
+      "name": "Calculus I",
+      "credits": 4,
+      "passrate": 0.7,
+      "term": 1,
+      "corequisites": [],
+      "prerequisites": []
+    },
+    {
+      "name": "Physics II",
+      "credits": 3,
+      "passrate": 0.8,
+      "term": 2,
+      "corequisites": [],
+      "prerequisites": ["Calculus I"]
+    },
+    {
+      "name": "Physics II Lab",
+      "credits": 1,
+      "passrate": 0.9,
+      "term": 2,
+      "corequisites": ["Physics II"],
+      "prerequisites": []
+    }
+  ]
+}
