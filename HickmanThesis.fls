@@ -221,6 +221,12 @@ INPUT ./figures/Simple9-2.png
 INPUT ./figures/Simple10.png
 INPUT ./figures/Simple10.png
 INPUT ./figures/Simple10.png
+INPUT ./figures/monteCarloEight.png
+INPUT ./figures/monteCarloEight.png
+INPUT ./figures/monteCarloEight.png
+INPUT ./figures/instructional.png
+INPUT ./figures/instructional.png
+INPUT ./figures/instructional.png
 INPUT HickmanThesis.aux
 INPUT ./HickmanThesis.out
 INPUT ./HickmanThesis.out

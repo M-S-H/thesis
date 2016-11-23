@@ -585,6 +585,30 @@ Each simulation carried out over the five curricula using the following configur
   \label{tab:simpleResults}
 \end{table}
 
-These tables show the percentage of students that have passed each course at the end of each semester. For example in Table \ref{tab:simple4}, 75.2\% of students had passed Course A after the second semester. The row at the bottom then shows the percetage of students that had completed all courses at the end of each term. As expected, the least complex curricula resulted in the hight completion rates after four terms with the completion rates dropping as complexity increased. Its also important to note that the two curricula with the same complexity had very similar completion rates despite their structures being slightly different.
+These tables show the percentage of students that have passed each course at the end of each semester. For example in Table \ref{tab:simple4}, 75.2\% of students had passed Course A after the second semester. The row at the bottom then shows the percetage of students that had completed all courses at the end of each term. As expected, the least complex curricula resulted in the highest completion rates after four terms with completion rates dropping as complexity increased. Its also important to note that the two curricula with the same complexity had very similar completion rates despite their structures being slightly different.
+
+This inverse relationship continues for larger curricula as well. A similar test was conducted over thirty five curricula from Universities around the country. These curricula were pulled from \href{http://curricula.academicdashboards.org}{curricula.academicdashboards.org}, a web service that stores, visualizes, and computes the complexity of curricula. Each curriculum used in the experament contain eight terms and at least one hundred credit hours. Each curriculum was simulated for a duration of ten terms one hundred times with every course having a passrate of \%80. The results of which can be seen in Figure \ref{fig:monte_web}.
+
+\begin{figure}[h!]
+\centerline{\includegraphics[scale=0.2]{./figures/monteCarloEight.png}}
+\caption{Simulation results of thirty five real-world curricula} 
+\label{fig:monte_web}
+\end{figure}
+
+The line seen in the figure above is the result of a linear regression over the data. It clearly shows that completion rates decrease as complexity increases. More specifically, it shows that for every point of complexity, a curriculum's completion rate after ten terms will decrease by 0.1\%. This may not seem like much, but as seen in \ref{fig:monte_web}, curriculum can varry widely in complexity. Even curriculum with the same number of terms and similar credit hours can easily differ one hundred points in complexity which would equate to a 10\% completion rate difference, which is significant.
+
+\section{Sensitivity Analysis of Instructional Complexity}
+
+Another metric that is useful when working with curricula is the instructional complexity of a curriculum. This can be thought of as the difficuluty of the curriculum, which in term will be defined by the difficululty of the courses that make it up. Defining how difficuluty a course is not straightforward and can be done in many ways, but in the experiments described here, the naive definition of the course's passrate is used. Another use of the curriculum flow simulation framework is to observe the effects that instructional complexity has, as it is intuitive to believe that the difficuluty of a curriculum's courses would greatly affect student performance. Although not a realistic scenario, Figure \ref{fig:instructional} illustrates this point.
+
+\begin{figure}[h!]
+\centerline{\includegraphics[scale=0.2]{./figures/instructional.png}}
+\caption{Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with repect to course passrates.} 
+\label{fig:instructional}
+\end{figure}
+
+This figure shows the completion rate of the Computer Engineering for a given passrate assigned to every course. As expected, the completion rates increase as course passrates increase.
+
+\section{Probit Performance Model}
 
 \end{document}
