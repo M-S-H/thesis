@@ -607,7 +607,71 @@ Another metric that is useful when working with curricula is the instructional c
 \label{fig:instructional}
 \end{figure}
 
-This figure shows the completion rate of the Computer Engineering for a given passrate assigned to every course. As expected, the completion rates increase as course passrates increase.
+This figure shows the completion rate of the Computer Engineering curriculum for a given passrate assigned to every course. As expected, the completion rates increase as course passrates increase and shows how the instructional complexity of a curriculum affects student success. One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the passrate of critical courses can increase student graduation rates. So then the question becomes which courses should receieve the most attention?
+
+This question can be answered by performing sensitivity analysis over course passrates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's passrate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where passrates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's passrate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in passrate had the greatest affect on eigth-term completion rates.
+
+\begin{table}[!h]
+\tiny
+\begin{tabular}{l*{4}{c}}
+Course & Original Passrate & Increased Passrate & Cruciality & Increase in Completion Rate \\
+\hline
+Elective & 0.9 & 1 & 1 & 0.0836 \\
+MATH 180 & 0.7397 & 0.9616 & 4 & 0.0282 \\
+MGMT 202 & 0.8038 & 1 & 12 & 0.028 \\
+MATH 121 & 0.7389 & 0.9606 & 10 & 0.0274 \\
+ECON 105 & 0.7904 & 1 & 1 & 0.0227 \\
+ECON 106 & 0.7984 & 1 & 8 & 0.0224 \\
+MGMT 340 & 0.8943 & 1 & 6 & 0.0154 \\
+MGMT 326 & 0.8605 & 1 & 3 & 0.0147 \\
+Foreign Language & 0.9 & 1 & 1 & 0.0142 \\
+Physical \& Natural Science & 0.9 & 1 & 1 & 0.0139 \\
+\end{tabular}
+\caption{Accounting Sensitivity Analysis} 
+\label{tab:accounting_sensitivity}
+\end{table}
+
+\begin{table}[!h]
+\tiny
+\begin{tabular}{l*{4}{c}}
+Course & Original Passrate & Increased Passrate & Cruciality & Increase in Completion Rate \\
+\hline
+MATH 162 & 0.7585 & 0.9861 & 29 & 0.0407 \\
+MATH 163 & 0.7502 & 0.9753 & 26 & 0.0404 \\
+MATH 264 & 0.8399 & 1 & 16 & 0.0265 \\
+PHYC 160 & 0.7926 & 1 & 25 & 0.0212 \\
+ECON 105 & 0.7904 & 1 & 1 & 0.0206 \\
+Tech Elective & 0.9 & 1 & 1 & 0.0195 \\
+Tech Elective & 0.9 & 1 & 1 & 0.0163 \\
+CHEM 121 & 0.8049 & 1 & 13 & 0.0158 \\
+Tech Elective & 0.9 & 1 & 1 & 0.0143 \\
+MATH 316 & 0.8633 & 1 & 18 & 0.0108 \\
+\end{tabular}
+\caption{Mechanical Engineering Sensitivity Analysis}
+\label{tab:me_sensitivity}
+\end{table}
+
+\begin{table}[!h]
+\tiny
+\begin{tabular}{l*{4}{c}}
+Course & Original Passrate & Increased Passrate & Cruciality & Increase in Completion Rate \\
+\hline
+Humanities & 0.9 & 1 & 1 & 0.0661 \\
+MATH 162 & 0.7585 & 0.9861 & 19 & 0.0609 \\
+MATH 163 & 0.7502 & 0.9753 & 18 & 0.0554 \\
+Fine Arts & 0.9 & 1 & 1 & 0.0474 \\
+Tech Elective & 0.9 & 1 & 1 & 0.0396 \\
+PHYC 160 & 0.7926 & 1 & 14 & 0.0287 \\
+MATH 264 & 0.8399 & 1 & 5 & 0.0251 \\
+ECON 105 & 0.7904 & 1 & 1 & 0.0239 \\
+ECE 344L & 0.9026 & 1 & 6 & 0.0237 \\
+ECE 131 & 0.8571 & 1 & 13 & 0.0218 \\
+\end{tabular}
+\caption{Computer Engineering Sensitivity Analysis}
+\label{tab:cpe_sensitivity}
+\end{table}
+
+In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their passrates. This makes sense as these are courses are on long-paths and block other crucial courses. This analysis also 
 
 \section{Probit Performance Model}
 

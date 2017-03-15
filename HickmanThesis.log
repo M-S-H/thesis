@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  18 NOV 2016 02:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  6 JAN 2017 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -599,22 +599,25 @@ File: ./figures/instructional.png Graphic file (type png)
 <use ./figures/instructional.png>
 Package pdftex.def Info: ./figures/instructional.png used on input line 605.
 (pdftex.def)             Requested size: 385.43318pt x 216.80615pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 612.
  [34 <./figures/instructional.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 612.
 
-(./HickmanThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 612.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 612.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 678.
+[35] [36]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 678.
+ (./HickmanThesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 678.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 678.
 Package rerunfilecheck Info: File `HickmanThesis.out' has not changed.
-(rerunfilecheck)             Checksum: 604C6E95FE300F4F621FDFDB4628FEB8;1470.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 612.
+(rerunfilecheck)             Checksum: 1FE5A29D9E1F8A56742C021184BD0AC2;1456.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 678.
  ) 
 Here is how much of TeX's memory you used:
- 9622 strings out of 493014
- 144461 string characters out of 6133351
+ 9630 strings out of 493014
+ 144572 string characters out of 6133351
  313984 words of memory out of 5000000
- 12694 multiletter control sequences out of 15000+600000
+ 12697 multiletter control sequences out of 15000+600000
  18541 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,10n,40p,1615b,1689s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -639,10 +642,10 @@ public/cm-super/sfrm1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pu
 blic/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/publ
 ic/cm-super/sfsl1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
 /cm-super/sfti1200.pfb>
-Output written on HickmanThesis.pdf (43 pages, 1210030 bytes).
+Output written on HickmanThesis.pdf (45 pages, 1214003 bytes).
 PDF statistics:
- 705 PDF objects out of 1000 (max. 8388607)
- 617 compressed objects within 7 object streams
- 289 named destinations out of 1000 (max. 500000)
+ 719 PDF objects out of 1000 (max. 8388607)
+ 629 compressed objects within 7 object streams
+ 294 named destinations out of 1000 (max. 500000)
  227 words of extra memory for PDF output out of 10000 (max. 10000000)
 
