@@ -6,7 +6,7 @@
 \BOOKMARK [1][-]{section.3.1}{Discrete Event Simulations}{chapter.3}% 6
 \BOOKMARK [1][-]{section.3.2}{Defining A Curricula}{chapter.3}% 7
 \BOOKMARK [1][-]{section.3.3}{Assumptions}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.4}{Student Flow Simulation Model Logic}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.4}{Simulation Model Logic}{chapter.3}% 9
 \BOOKMARK [2][-]{subsection.3.4.1}{Control Flow}{section.3.4}% 10
 \BOOKMARK [0][-]{chapter.4}{Curricula Simulation Framework Design \046 Implementation}{}% 11
 \BOOKMARK [1][-]{section.4.1}{Julia}{chapter.4}% 12
@@ -17,8 +17,6 @@
 \BOOKMARK [0][-]{chapter.5}{Application in Curricular Analytics}{}% 17
 \BOOKMARK [1][-]{section.5.1}{Curricular Complexity}{chapter.5}% 18
 \BOOKMARK [1][-]{section.5.2}{Correlating Complexity with Completion Rates}{chapter.5}% 19
-\BOOKMARK [1][-]{section.5.3}{Sensitivity Analysis of Instructional Complexity}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.4}{Probit Performance Model}{chapter.5}% 21
-\BOOKMARK [0][-]{chapter.6}{Discussion}{}% 22
-\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 23
-\BOOKMARK [0][-]{chapter*.13}{References}{}% 24
+\BOOKMARK [0][-]{chapter.6}{Discussion}{}% 20
+\BOOKMARK [0][-]{chapter.7}{Future Work}{}% 21
+\BOOKMARK [0][-]{chapter*.11}{References}{}% 22

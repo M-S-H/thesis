@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  17 MAR 2017 01:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  21 MAR 2017 17:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -477,13 +477,13 @@ Underfull \vbox (badness 6157) has occurred while \output is active []
 
 
 ]
-<./figures/UH.jpg, id=200, 2448.14626pt x 1307.88625pt>
+<./figures/UH.jpg, id=184, 2448.14626pt x 1307.88625pt>
 File: ./figures/UH.jpg Graphic file (type jpg)
  <use ./figures/UH.jpg>
 Package pdftex.def Info: ./figures/UH.jpg used on input line 188.
 (pdftex.def)             Requested size: 258.00262pt x 137.82104pt.
 
-<./figures/MU.jpg, id=201, 2448.14626pt x 1307.88625pt>
+<./figures/MU.jpg, id=185, 2448.14626pt x 1307.88625pt>
 File: ./figures/MU.jpg Graphic file (type jpg)
  <use ./figures/MU.jpg>
 Package pdftex.def Info: ./figures/MU.jpg used on input line 195.
@@ -500,7 +500,7 @@ Chapter 2.
 Chapter 3.
 [5
 
-] [6] <./figures/curriculum_example.jpg, id=239, 1225.57875pt x 653.44125pt>
+] [6] <./figures/curriculum_example.jpg, id=223, 1225.57875pt x 653.44125pt>
 File: ./figures/curriculum_example.jpg Graphic file (type jpg)
 
 <use ./figures/curriculum_example.jpg>
@@ -560,139 +560,114 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
 Chapter 5.
 [29
 
-] <./figures/delay_factor.png, id=548, 352.6776pt x 248.127pt>
-File: ./figures/delay_factor.png Graphic file (type png)
-
-<use ./figures/delay_factor.png>
-Package pdftex.def Info: ./figures/delay_factor.png used on input line 479.
-(pdftex.def)             Requested size: 141.06853pt x 99.24902pt.
-
-<./figures/blocking_factor.png, id=551, 352.6776pt x 248.127pt>
-File: ./figures/blocking_factor.png Graphic file (type png)
-
-<use ./figures/blocking_factor.png>
-Package pdftex.def Info: ./figures/blocking_factor.png used on input line 493.
-(pdftex.def)             Requested size: 141.06853pt x 99.24902pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[30 <./figures/delay_factor.png>] [31 <./figures/blocking_factor.png>]
-<./figures/Simple4.png, id=570, 327.624pt x 326.1786pt>
+] <./figures/Simple4.png, id=531, 327.624pt x 326.1786pt>
 File: ./figures/Simple4.png Graphic file (type png)
 
 <use ./figures/Simple4.png>
-Package pdftex.def Info: ./figures/Simple4.png used on input line 519.
+Package pdftex.def Info: ./figures/Simple4.png used on input line 482.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple7.png, id=571, 327.624pt x 326.1786pt>
+<./figures/Simple7.png, id=533, 327.624pt x 326.1786pt>
 File: ./figures/Simple7.png Graphic file (type png)
 
 <use ./figures/Simple7.png>
-Package pdftex.def Info: ./figures/Simple7.png used on input line 523.
+Package pdftex.def Info: ./figures/Simple7.png used on input line 486.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple9-1.png, id=572, 327.624pt x 326.1786pt>
+<./figures/Simple9-1.png, id=534, 327.624pt x 326.1786pt>
 File: ./figures/Simple9-1.png Graphic file (type png)
 
 <use ./figures/Simple9-1.png>
-Package pdftex.def Info: ./figures/Simple9-1.png used on input line 527.
+Package pdftex.def Info: ./figures/Simple9-1.png used on input line 490.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple9-2.png, id=573, 327.624pt x 326.1786pt>
+<./figures/Simple9-2.png, id=535, 327.624pt x 326.1786pt>
 File: ./figures/Simple9-2.png Graphic file (type png)
 
 <use ./figures/Simple9-2.png>
-Package pdftex.def Info: ./figures/Simple9-2.png used on input line 532.
+Package pdftex.def Info: ./figures/Simple9-2.png used on input line 495.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple10.png, id=574, 327.624pt x 326.1786pt>
+<./figures/Simple10.png, id=536, 327.624pt x 326.1786pt>
 File: ./figures/Simple10.png Graphic file (type png)
 
 <use ./figures/Simple10.png>
-Package pdftex.def Info: ./figures/Simple10.png used on input line 536.
+Package pdftex.def Info: ./figures/Simple10.png used on input line 499.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[32 <./figures/Simple4.png> <./figures/Simple7.png> <./figures/Simple9-1.png> <
-./figures/Simple9-2.png> <./figures/Simple10.png>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30 <./figures/Simple4.png> <./figures/Simple7.png> <./figures/Simple9-1.png> 
+<./figures/Simple9-2.png> <./figures/Simple10.png>]
 Underfull \vbox (badness 1496) has occurred while \output is active []
 
- [33]
-<./figures/monteCarloEight.png, id=598, 1927.2pt x 1084.05pt>
-File: ./figures/monteCarloEight.png Graphic file (type png)
+ [31]
+<./figures/gradRate5_v_Complexity.png, id=559, 1927.2pt x 1084.05pt>
+File: ./figures/gradRate5_v_Complexity.png Graphic file (type png)
 
-<use ./figures/monteCarloEight.png>
-Package pdftex.def Info: ./figures/monteCarloEight.png used on input line 637.
-(pdftex.def)             Requested size: 385.43318pt x 216.80615pt.
- [34 <./figures/monteCarloEight.png>]
-<./figures/instructional.png, id=605, 1927.2pt x 1084.05pt>
-File: ./figures/instructional.png Graphic file (type png)
+<use ./figures/gradRate5_v_Complexity.png>
+Package pdftex.def Info: ./figures/gradRate5_v_Complexity.png used on input lin
+e 602.
+(pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
 
-<use ./figures/instructional.png>
-Package pdftex.def Info: ./figures/instructional.png used on input line 649.
-(pdftex.def)             Requested size: 385.43318pt x 216.80615pt.
- [35 <./figures/instructional.png>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[36] [37]
+[32 <./figures/gradRate5_v_Complexity.png>] [33]
 Chapter 6.
-[38
+[34
 
 ]
 Chapter 7.
-(./HickmanThesis.bbl [39
+(./HickmanThesis.bbl [35
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 743.
- [40
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 641.
+ [36
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 743.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 641.
  (./HickmanThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 743.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 743.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 641.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 641.
 Package rerunfilecheck Info: File `HickmanThesis.out' has not changed.
-(rerunfilecheck)             Checksum: 7935BB6A6A75F7E478733429B2C92BF9;1588.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 743.
+(rerunfilecheck)             Checksum: 52139F69DDBC824965B780FBFD704D4C;1409.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 641.
  ) 
 Here is how much of TeX's memory you used:
- 9677 strings out of 493014
- 145264 string characters out of 6133351
+ 9641 strings out of 493014
+ 144554 string characters out of 6133351
  319984 words of memory out of 5000000
- 12721 multiletter control sequences out of 15000+600000
+ 12702 multiletter control sequences out of 15000+600000
  19850 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,10n,40p,1616b,1687s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,10n,40p,1618b,1687s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texli
-ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive
-/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2
-016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-16/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016
-/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2016/texmf-d
-ist/fonts/type1/public/cm-super/sfbx0600.pfb></usr/local/texlive/2016/texmf-dis
-t/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2016/texmf-dist/
-fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2016/texmf-dist/fo
-nts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2016/texmf-dist/font
-s/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2016/texmf-dist/fonts/
-type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
-pe1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2016/texmf-dist/fonts/type
-1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
-public/cm-super/sfrm1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pu
-blic/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/publ
-ic/cm-super/sfsl1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
-/cm-super/sfti1095.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/c
-m-super/sfti1200.pfb>
-Output written on HickmanThesis.pdf (48 pages, 2186637 bytes).
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texliv
+e/2016/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2016/t
+exmf-dist/fonts/type1/public/cm-super/sfbx0600.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2016/texmf
+-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2016/texmf-d
+ist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2016/texmf-dist/
+fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2016/texmf-dist/fo
+nts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2016/texmf-dist/font
+s/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2016/texmf-dist/fonts/
+type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
+pe1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type
+1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
+public/cm-super/sfti1095.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pu
+blic/cm-super/sfti1200.pfb>
+Output written on HickmanThesis.pdf (44 pages, 2039442 bytes).
 PDF statistics:
- 773 PDF objects out of 1000 (max. 8388607)
- 677 compressed objects within 7 object streams
- 309 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 706 PDF objects out of 1000 (max. 8388607)
+ 623 compressed objects within 7 object streams
+ 295 named destinations out of 1000 (max. 500000)
+ 222 words of extra memory for PDF output out of 10000 (max. 10000000)
 

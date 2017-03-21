@@ -176,33 +176,33 @@ JSON
 % INTRODUCTION
 %----------------------------------------------------------------------------------------
 \chapter{Introduction}
-The goal of every higher-education institution is to successfully educate students with skills and knowledge needed to enter, and be successful in the workforce. This is done by offering courses with desired learning outcomes required for success in a given field of work. These courses are then structured into a curriculum in which knowledge can be acquired and built upon. Moving students through these curricula is means in which universities and institutions achieve the goal of producing a student body well equipped for success in their chosen careers. Even more, universities are not merely just interested in students completing a program, but doing so in a timely manner. Most students wish to complete a degree as quick as possible and part of their success is determined by efficiency of their time at a university. Likewise, universities are incentivized to produce high four, five, and six year graduation rates.
+  The goal of every higher-education institution is to successfully educate students with skills and knowledge needed to enter, and be successful in the workforce. This is done by offering courses with desired learning outcomes required for success in a given field of work. These courses are then structured into a curriculum in which knowledge can be acquired and built upon. Moving students through these curricula is means in which universities and institutions achieve the goal of producing a student body well equipped for success in their chosen careers. Even more, universities are not merely just interested in students completing a program, but doing so in a timely manner. Most students wish to complete a degree as quick as possible and part of their success is determined by efficiency of their time at a university. Likewise, universities are incentivized to produce high four, five, and six year graduation rates.
 
-It is no surprise then that much time, money, and research are spent in attempts to improve timely student success and the efficiency of their offered programs. Examples include tutoring programs, better advisement, intervention programs, financial support, improving instruction quality, experimenting with classroom structures (hybrid courses, flipped classrooms etc.) and many more \cite{o2015use,topping1996effectiveness,hunter2004could,king2002identifying,lewallen1993early}. While these are all worthy pursuits that address many aspects of a student's academic career, there is one area that many universities often overlook when it comes to improving a student's journey through a curriculum: the structure of the curriculum itself.
+  It is no surprise then that much time, money, and research are spent in attempts to improve timely student success and the efficiency of their offered programs. Examples include tutoring programs, better advisement, intervention programs, financial support, improving instruction quality, experimenting with classroom structures (hybrid courses, flipped classrooms etc.) and many more \cite{o2015use,topping1996effectiveness,hunter2004could,king2002identifying,lewallen1993early}. While these are all worthy pursuits that address many aspects of a student's academic career, there is one area that many universities often overlook when it comes to improving a student's journey through a curriculum: the structure of the curriculum itself.
 
-Every university's curricula are carefully designed and structured in such a way that students can achieve the learning outcomes defined for a given field of study. In most cases these learning outcomes are shared among most universities. The knowledge provided by a Mathematics at one university will most likely be the same as that at any other university. However, despite these shared learning outcomes every university's curricula is quite different. This is evident when viewing a curriculum as data - or more specifically, a graph, and by doing so the way in which it's structure can influence the efficiency of a student moving through it becomes apparent. For example see figure \ref{fig:comparison}.
+  Every university's curricula are carefully designed and structured in such a way that students can achieve the learning outcomes defined for a given field of study. In most cases these learning outcomes are shared among most universities. The knowledge provided by a Mathematics at one university will most likely be the same as that at any other university. However, despite these shared learning outcomes every university's curricula is quite different. This is evident when viewing a curriculum as data - or more specifically, a graph, and by doing so the way in which it's structure can influence the efficiency of a student moving through it becomes apparent. For example see figure \ref{fig:comparison}.
 
-\begin{figure}
-  \centering
-  \begin{subfigure}[h!]{.6\linewidth}
-    \includegraphics[width=\linewidth]{./figures/UH.jpg}
-    \caption{University of Houston}\label{fig:UH}
-  \end{subfigure}
+  \begin{figure}
+    \centering
+    \begin{subfigure}[h!]{.6\linewidth}
+      \includegraphics[width=\linewidth]{./figures/UH.jpg}
+      \caption{University of Houston}\label{fig:UH}
+    \end{subfigure}
 
-  \vspace{1cm}
+    \vspace{1cm}
 
-  \begin{subfigure}[h!]{.6\linewidth}
-    \includegraphics[width=\linewidth]{./figures/MU.jpg}
-    \caption{Michigan University}\label{fig:MU}
-  \end{subfigure}
+    \begin{subfigure}[h!]{.6\linewidth}
+      \includegraphics[width=\linewidth]{./figures/MU.jpg}
+      \caption{Michigan University}\label{fig:MU}
+    \end{subfigure}
 
-  \caption{Comparison of two Electrical Engineering Curricula}
-  \label{fig:comparison}
-\end{figure}
+    \caption{Comparison of two Electrical Engineering Curricula}
+    \label{fig:comparison}
+  \end{figure}
 
-In this figure you can see a comparison of two Electrical Engineering curricula from two different institutions. Figure \ref{fig:UH} shows University of Houston's while \ref{fig:MU} shows Michigan University's. Both curricula are four year programs within four credit hours of one another and even without knowing the specific courses in each it obvious that they are both structurally different from one another. This begs the question is one, based merely on structure alone, more conducive to timely graduation than the other?
+  In this figure you can see a comparison of two Electrical Engineering curricula from two different institutions. Figure \ref{fig:UH} shows University of Houston's while \ref{fig:MU} shows Michigan University's. Both curricula are four year programs within four credit hours of one another and even without knowing the specific courses in each it obvious that they are both structurally different from one another. This begs the question is one, based merely on structure alone, more conducive to timely graduation than the other?
 
-This thesis describes a software framework, the Curricular Analysis and Simulation (CAS) framework that allows for formal analytics over curricula to be done to help answer questions like the one previously posed. The framework described is an open-source Julia package that allows curricula to be represented in a programming, provides metrics for quantifying the complexity of a curriculum, both instructional and structural and, as it's name implies, simulates of students moving through curricula via discrete-event simulations. Though there are many statistical and machine-learning models for predicting the rate at which students might graduate, they fail to meaningfully represent the process from enrollment to graduation. This is where simulations can be a powerful tool for understanding not just how fast, but how students move through curricula and how curriculum characteristics play a role. This, rather than accurately predicting completion rates is the main focus of the CAS framework.
+  This thesis describes a software framework, the Curricular Analysis and Simulation (CAS) framework that allows for formal analytics over curricula to be done to help answer questions like the one previously posed. The framework described is an open-source Julia package that allows curricula to be represented in a programming, provides metrics for quantifying the complexity of a curriculum, both instructional and structural and, as it's name implies, simulates of students moving through curricula via discrete-event simulations. Though there are many statistical and machine-learning models for predicting the rate at which students might graduate, they fail to meaningfully represent the process from enrollment to graduation. This is where simulations can be a powerful tool for understanding not just how fast, but how students move through curricula and how curriculum characteristics play a role. This, rather than accurately predicting completion rates is the main focus of the CAS framework.
 
 
 %----------------------------------------------------------------------------------------
@@ -216,89 +216,89 @@ This thesis describes a software framework, the Curricular Analysis and Simulati
 %----------------------------------------------------------------------------------------
 \chapter{Simulating Students in a Curriculum}
 
-\section{Discrete Event Simulations}
-Students moving through a curriculum can be viewed as a fixed, chronological sequence of events. Students will enter the university, enroll in classes, complete or withdraw from classes, then graduate if all requirements have been met. This process repeats every semester. Discrete-event simulation models a system by emulating a sequence of events, where every event occurs independently of the others at a particular instance in time and are characterized by having the following components:
+  \section{Discrete Event Simulations}
+  Students moving through a curriculum can be viewed as a fixed, chronological sequence of events. Students will enter the university, enroll in classes, complete or withdraw from classes, then graduate if all requirements have been met. This process repeats every semester. Discrete-event simulation models a system by emulating a sequence of events, where every event occurs independently of the others at a particular instance in time and are characterized by having the following components:
 
-\begin{itemize}
-\item \textbf{Starting and Ending States} - The simulation will begin in a given state and will continue until it reaches another state that represents some pre-defined ending-condition or a point in time.
-\item \textbf{Clock} - The simulation must keep track of the time that has ellapsed after it begins in any time unit relevant to the domain of the simulation. The clock does not run continuously as events occur instantaneously, but it does jump to certain times as events occur.
-\item \textbf{List of Events} - The system maintains a list of events that can occur during the simulation. These events are placed in a que and are usually executed based on simulation time rather than the time they were queued.
-\item \textbf{Statistics} - As the ending state is not the only result of interest when running simulations, the system keeps track of various statitics based on the events that have occured.
-\end{itemize}
+  \begin{itemize}
+  \item \textbf{Starting and Ending States} - The simulation will begin in a given state and will continue until it reaches another state that represents some pre-defined ending-condition or a point in time.
+  \item \textbf{Clock} - The simulation must keep track of the time that has ellapsed after it begins in any time unit relevant to the domain of the simulation. The clock does not run continuously as events occur instantaneously, but it does jump to certain times as events occur.
+  \item \textbf{List of Events} - The system maintains a list of events that can occur during the simulation. These events are placed in a que and are usually executed based on simulation time rather than the time they were queued.
+  \item \textbf{Statistics} - As the ending state is not the only result of interest when running simulations, the system keeps track of various statitics based on the events that have occured.
+  \end{itemize}
 
-Using these components, a simulation is constructed using the basic following logic:
+  Using these components, a simulation is constructed using the basic following logic:
 
-\begin{algorithmic}[1]
-\STATE Initialize the system
-\STATE Initialize the system clock
-\STATE Schedule the initial event
-\WHILE{ending condition is false} 
-  \STATE{Increment clock}
-  \STATE{Perform next event}
-  \STATE{Update system statistics}
-\ENDWHILE
-\STATE Output simulation results
-\end{algorithmic}
+  \begin{algorithmic}[1]
+  \STATE Initialize the system
+  \STATE Initialize the system clock
+  \STATE Schedule the initial event
+  \WHILE{ending condition is false} 
+    \STATE{Increment clock}
+    \STATE{Perform next event}
+    \STATE{Update system statistics}
+  \ENDWHILE
+  \STATE Output simulation results
+  \end{algorithmic}
 
-Given these characteristics and basic logic flow, this type of simulation lends itself well to the process of students flowing through a curriculum within an institution, much more so than continuous-time simulations and other analytical models; therefore, the student-flow simulation is modeled as a discrete-event simulation.
+  Given these characteristics and basic logic flow, this type of simulation lends itself well to the process of students flowing through a curriculum within an institution, much more so than continuous-time simulations and other analytical models; therefore, the student-flow simulation is modeled as a discrete-event simulation.
 
-\section{Defining A Curricula}
-A curriculum is the backbone of the simulation. As the goal of the simulation is to model students moving through a curriculum, the events of the simulation depend on the curriculum that is being simulated; therefore it is important to understand how they are defined. In order for a student to obtain a degree within a given academic program, a set of requirements must be met. The requirements, in most cases, are simply courses that must be passed. However a curriculum is more than a set of courses, but rather an arrangement of courses with constraints as to when they can be taken. This arrangement begins by placing courses within terms where, ideally, student would take and pass the entire set of courses in one semester. Next, relationships are created between courses in the form of prerequisite and co-requisite relationships. This structure of courses grouped in terms with defined relationships make up a curriculum. A visual, graph representation of a curriculum can be seen in Figure \ref{fig:curriculum_example}.
+  \section{Defining A Curricula}
+  A curriculum is the backbone of the simulation. As the goal of the simulation is to model students moving through a curriculum, the events of the simulation depend on the curriculum that is being simulated; therefore it is important to understand how they are defined. In order for a student to obtain a degree within a given academic program, a set of requirements must be met. The requirements, in most cases, are simply courses that must be passed. However a curriculum is more than a set of courses, but rather an arrangement of courses with constraints as to when they can be taken. This arrangement begins by placing courses within terms where, ideally, student would take and pass the entire set of courses in one semester. Next, relationships are created between courses in the form of prerequisite and co-requisite relationships. This structure of courses grouped in terms with defined relationships make up a curriculum. A visual, graph representation of a curriculum can be seen in Figure \ref{fig:curriculum_example}.
 
-\begin{figure}[h!]
-\centerline{\includegraphics[scale=0.4]{./figures/curriculum_example.jpg}}
-\caption{Visual representation of the electrical engineering curriculum at UNM.} 
-\label{fig:curriculum_example}
-\end{figure}
+  \begin{figure}[h!]
+  \centerline{\includegraphics[scale=0.4]{./figures/curriculum_example.jpg}}
+  \caption{Visual representation of the electrical engineering curriculum at UNM.} 
+  \label{fig:curriculum_example}
+  \end{figure}
 
 
-\section{Assumptions}
-A student's academic career within an institution can potentially be a very difficult thing to model. This is primarily because student behavior can be erratic and unpredictable even given a structured curriculum. Students might not register for the courses they should, take courses that don't count, drop classes, take a semester off, get an override to take a course that they normally wouldn't have been able to, and various other actions that would otherwise not be considered \'typical' behavior. There are a vast amount of factors that can influence student behavior, many of which are not academic and would therefore be very difficult to account for. Furthermore universities can impose various policies that would also have an effect on how students register for classes and affect other academic decisions. 
+  \section{Assumptions}
+  A student's academic career within an institution can potentially be a very difficult thing to model. This is primarily because student behavior can be erratic and unpredictable even given a structured curriculum. Students might not register for the courses they should, take courses that don't count, drop classes, take a semester off, get an override to take a course that they normally wouldn't have been able to, and various other actions that would otherwise not be considered \'typical' behavior. There are a vast amount of factors that can influence student behavior, many of which are not academic and would therefore be very difficult to account for. Furthermore universities can impose various policies that would also have an effect on how students register for classes and affect other academic decisions. 
 
-Trying to realistically simulate all possible actions that a student can take would be impossible, therefore several assumptions and decisions are made to simplify student behavior down to the basics, making meaningful simulation feasible without needless complexity. The most influential decisions made, was to design the student flow simulation with the primary goal of performing analytics over curricula and observing the effects their properties have on students moving through it. This is in contrast to developing a system to provide realistic simulations of student behavior with the goal of predicting graduation rates and other statistics. The simulation is potentially capable of this; however it was not the goal. Thus the other decisions made were done so to put emphasis on how curricula influence outcomes relative to one another instead of how student behavior does so. Below is a list of the other assumptions and decisions:
+  Trying to realistically simulate all possible actions that a student can take would be impossible, therefore several assumptions and decisions are made to simplify student behavior down to the basics, making meaningful simulation feasible without needless complexity. The most influential decisions made, was to design the student flow simulation with the primary goal of performing analytics over curricula and observing the effects their properties have on students moving through it. This is in contrast to developing a system to provide realistic simulations of student behavior with the goal of predicting graduation rates and other statistics. The simulation is potentially capable of this; however it was not the goal. Thus the other decisions made were done so to put emphasis on how curricula influence outcomes relative to one another instead of how student behavior does so. Below is a list of the other assumptions and decisions:
 
-\begin{itemize}
-  \item All students at the beginning of the simulation are treated as first-time, full-time students. Although in many cases actual freshman might have some college credit, either through AP-tests, taking college-classes while in high-school, or transfers, students in the simulation begin with a clean slate. They are also treated as full-time students with no notion of \'part-time' built in.
-  \item Given that all students are full-time, each semester all students will register for as many credits as they can. In reality, most students do not hit their institutions max credit-hour limit, but the simulation will register students in as many courses as they are allowed - which is set by the user.
-  \item The simulation only deals with a single class of admitted students. There is no continuous influx of freshman or transfer students each semester within the simulation.
-  \item Students who stop-out are dis-enrolled permanently. They do not re-enroll.
-  \item Students will only register for courses within the specified curriculum. The simulation is only aware of the courses specified in the curriculum, so while it is common for students to register for courses that might not count towards their major, this behavior is not part of the simulation.
-  \item The order of courses in which students enroll in depends on their ordering within the curriculum. Students will enroll is the earliest listed course within the curriculum and will roll in each course they can as until they hit the credit-hour limit. This process is described in greater detail later.
-  \item The minimum passing grade is universal among all courses. This grade can be set by the user, and defaults to a C-.
-  \item All course enrollment requirements are strictly enforced. While it is common for students to obtain permission and subsequent overrides to enroll in a class they have not met the requirements for, the system does not allow for this.
-  \item All courses within a curriculum are offered every semester.
-  \item Courses have no notion of capacity. Any number of students can be enrolled in any course in a given term.
-\end{itemize}
+  \begin{itemize}
+    \item All students at the beginning of the simulation are treated as first-time, full-time students. Although in many cases actual freshman might have some college credit, either through AP-tests, taking college-classes while in high-school, or transfers, students in the simulation begin with a clean slate. They are also treated as full-time students with no notion of \'part-time' built in.
+    \item Given that all students are full-time, each semester all students will register for as many credits as they can. In reality, most students do not hit their institutions max credit-hour limit, but the simulation will register students in as many courses as they are allowed - which is set by the user.
+    \item The simulation only deals with a single class of admitted students. There is no continuous influx of freshman or transfer students each semester within the simulation.
+    \item Students who stop-out are dis-enrolled permanently. They do not re-enroll.
+    \item Students will only register for courses within the specified curriculum. The simulation is only aware of the courses specified in the curriculum, so while it is common for students to register for courses that might not count towards their major, this behavior is not part of the simulation.
+    \item The order of courses in which students enroll in depends on their ordering within the curriculum. Students will enroll is the earliest listed course within the curriculum and will roll in each course they can as until they hit the credit-hour limit. This process is described in greater detail later.
+    \item The minimum passing grade is universal among all courses. This grade can be set by the user, and defaults to a C-.
+    \item All course enrollment requirements are strictly enforced. While it is common for students to obtain permission and subsequent overrides to enroll in a class they have not met the requirements for, the system does not allow for this.
+    \item All courses within a curriculum are offered every semester.
+    \item Courses have no notion of capacity. Any number of students can be enrolled in any course in a given term.
+  \end{itemize}
 
-These decisions might seem very restrictive, and in many ways that is intentional. The idea wasn't to simplify the simulation for the sake of simplicity, but rather to put more emphasis on the curriculum and its structural properties. By standardizing the way students behave, it is possible to compare curricula and how changes to their structure or difficulty effect outcomes which provides insight into how they might be improved.
+  These decisions might seem very restrictive, and in many ways that is intentional. The idea wasn't to simplify the simulation for the sake of simplicity, but rather to put more emphasis on the curriculum and its structural properties. By standardizing the way students behave, it is possible to compare curricula and how changes to their structure or difficulty effect outcomes which provides insight into how they might be improved.
 
-\section{Simulation Model Logic}
-The student flow simulation uses the components and basic logic of DES previously described and adapts them to fit within the domain of students flowing through a curriculum. The components are defined as follows:
+  \section{Simulation Model Logic}
+  The student flow simulation uses the components and basic logic of DES previously described and adapts them to fit within the domain of students flowing through a curriculum. The components are defined as follows:
 
-\textit{Clock}. The unit of time in which the simulation uses is a semester. All events occur within one semester, therefore the clock will on increment time by one semester.
+  \textit{Clock}. The unit of time in which the simulation uses is a semester. All events occur within one semester, therefore the clock will on increment time by one semester.
 
-\textit{Starting State}. The simulation begins with a set of students which represent first-time full-time students just enrolled in a university. The clock is set to the first semester.
+  \textit{Starting State}. The simulation begins with a set of students which represent first-time full-time students just enrolled in a university. The clock is set to the first semester.
 
-\textit{Events}. The primary events in the simulation emulate basic student behavior during their academic career:
-\begin{itemize}
-  \item Students enroll in the university.
-  \item Student enrolls in the courses that they are able to take.
-  \item Student takes the classes they enrolled in and are assigned a grade, either passing or failing.
-  \item Student stopouts.
-  \item Student graduates.
-  \item Student remains enrolled.
-\end{itemize}
+  \textit{Events}. The primary events in the simulation emulate basic student behavior during their academic career:
+  \begin{itemize}
+    \item Students enroll in the university.
+    \item Student enrolls in the courses that they are able to take.
+    \item Student takes the classes they enrolled in and are assigned a grade, either passing or failing.
+    \item Student stopouts.
+    \item Student graduates.
+    \item Student remains enrolled.
+  \end{itemize}
 
-\textit{Ending Condition}. The simulation ends when there are no students enrolled. Therefore all students have either graduated or stopped out. The simulation could end before this however as it can also be run for a set amount of semesters.
+  \textit{Ending Condition}. The simulation ends when there are no students enrolled. Therefore all students have either graduated or stopped out. The simulation could end before this however as it can also be run for a set amount of semesters.
 
-\textit{Statistics}.
+  \textit{Statistics}.
 
-\subsection{Control Flow}
-The simulation begins at its starting state - a set of students with no previous academic experience and a clock set to semester one. Each student is initiated with defined attributes. All enrolled students then begin registering for classes using a systematic approach governed by the way the curriculum is defined. The order of the courses in the curricula governs the order in which students register. Students will always register for the earliest courses listed within the curricula and continue registering for courses until there are no more courses that they can take or they cannot register for more courses due to the given term credit hour restriction. For example, if the first term within a curriculum consists of courses A, B, and C, the student will register for those courses in that order. If the students fails course B, then the following term, this will be the first course the student enrolls in. In order for a student to register for a course, they must meet the course's enrollment requirements. These requirements can be prerequisites, co-requisites, a term restriction meaning that the course cannot be taken until the clock reaches a specified term, and that the student has not already taken and passed the course. In addition to these requirements, a student can only register for so many courses in a given term based on a given maximum credit hour limit which is set by the user. If a student can register for a course then they are added to that course's list of enrolled students and their term credit hour count is incremented by that courses credit hour value. 
+  \subsection{Control Flow}
+  The simulation begins at its starting state - a set of students with no previous academic experience and a clock set to semester one. Each student is initiated with defined attributes. All enrolled students then begin registering for classes using a systematic approach governed by the way the curriculum is defined. The order of the courses in the curricula governs the order in which students register. Students will always register for the earliest courses listed within the curricula and continue registering for courses until there are no more courses that they can take or they cannot register for more courses due to the given term credit hour restriction. For example, if the first term within a curriculum consists of courses A, B, and C, the student will register for those courses in that order. If the students fails course B, then the following term, this will be the first course the student enrolls in. In order for a student to register for a course, they must meet the course's enrollment requirements. These requirements can be prerequisites, co-requisites, a term restriction meaning that the course cannot be taken until the clock reaches a specified term, and that the student has not already taken and passed the course. In addition to these requirements, a student can only register for so many courses in a given term based on a given maximum credit hour limit which is set by the user. If a student can register for a course then they are added to that course's list of enrolled students and their term credit hour count is incremented by that courses credit hour value. 
 
-Once all students have completed the registration process, every student is assigned a grade for the courses they are enrolled in. The method for doing so depends on the user and will be covered later. The simulation uses the following grades: A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F, and W. The system also assigns numeric values to each grade which are 4.33, 4.0, 3.77, 3.33, 3.0, 2.77, 2.33, 2.0, 1.77, 1.33, 1.0, 0.77, 0 and 0, respectively. These values are used for GPA computations, point calculations, and can possibly be used to determine grades in other courses. The passing grade can be set by the user, but defaults to a C (2.33). If a student obtains this grade then their completion of the course is recorded.
+  Once all students have completed the registration process, every student is assigned a grade for the courses they are enrolled in. The method for doing so depends on the user and will be covered later. The simulation uses the following grades: A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F, and W. The system also assigns numeric values to each grade which are 4.33, 4.0, 3.77, 3.33, 3.0, 2.77, 2.33, 2.0, 1.77, 1.33, 1.0, 0.77, 0 and 0, respectively. These values are used for GPA computations, point calculations, and can possibly be used to determine grades in other courses. The passing grade can be set by the user, but defaults to a C (2.33). If a student obtains this grade then their completion of the course is recorded.
 
-Once all students have received their grades for all courses, the students GPA's are computed and then the simulation will check to see if each student has completed all requirements in the curriculum. If they have, then they are removed from the pool of enrolled students and added to the list of graduated students. They system will then simulate students stopping out. Again, the user can determine the method used for doing this which will be explained later. If the student is chosen as a stopout, then they are removed from the pool of enrolled students and added to a list of stopped out students. The clock is then incremented by one semester and the registration process begins for the next semester. These events are then repeated until there are no students enrolled, or the simulation clock reaches a time set by the user.
+  Once all students have received their grades for all courses, the students GPA's are computed and then the simulation will check to see if each student has completed all requirements in the curriculum. If they have, then they are removed from the pool of enrolled students and added to the list of graduated students. They system will then simulate students stopping out. Again, the user can determine the method used for doing this which will be explained later. If the student is chosen as a stopout, then they are removed from the pool of enrolled students and added to a list of stopped out students. The clock is then incremented by one semester and the registration process begins for the next semester. These events are then repeated until there are no students enrolled, or the simulation clock reaches a time set by the user.
 
 
 %----------------------------------------------------------------------------------------
@@ -469,255 +469,155 @@ Once all students have received their grades for all courses, the students GPA's
 %----------------------------------------------------------------------------------------
 \chapter{Application in Curricular Analytics}
 
-\section{Curricular Complexity}
+  \section{Curricular Complexity}
 
-Before using simulation to evaluate and analyze curricula, it would be useful if there was a metric that describes how complex a curriculum is. Luckily, such as metric has been devised by researches at UNM. This metric is called the \textit{structural complexity} of a curriculum. As previously seen in Figure \ref{fig:curriculum_example}, a curriculum can be viewed as a graph, with nodes represented courses and edges representing the relationships between them. As its name implies, a curriculum's structural complexity quantifies the complexity of its graph structure using a combination of complex network analysis and graph theory. 
+  \section{Correlating Complexity with Completion Rates}
+    One of the primary motivations for the development of the CAS framework was to attempt to demonstrate a correlation between the structure of a curriculum and the ease in which students can move through it. Given a formal metric to characterize the structural complexity of curricula and the means to simulate students this assumed correlation can be tested. Simulating students using the CAS framework's default simulation module (students are randomly determined to pass a course based on it's pass-rate) provides 'best-case' completion rates which can be compared against a curriculum's computed structural complexity using UNM's definition to determine if such a correlation exists.
 
-Computing this metric begins by assigning each course a value named its \textit{course cruciality}. This value indicates its importance in the curriculum based on its relationship to other courses. This value in turn is comprised of two other features: the course's \textit{blocking factor} and it's \textit{delay factor}. A course's delay factor is defined as the number of nodes on the longest path that passes through the given course. That is the longest path, An example can be seen in Figure \ref{fig:delay_factor_example}. In this figure, course A has a delay factor of three because the longest path that passes through it has three courses: A, B, and D as opposed to the shorter path with length two which is made up of courses A and C. Courses B and D share course A's delay factor of three while course C has a delay factor of two.
+    As a start, the correlation between student complention rates and structural complexity is examined in very simple curricula which can be seen in figrure \ref{fig:simple}. These curricula, consisting of two terms with two courses each make up common patterns that can be found in actual curricula and span of range of complexities making them good candiates to begin to understand how structure affects students moving through a curriculum.
 
-\begin{figure}[h!]
-\centerline{\includegraphics[scale=0.4]{./figures/delay_factor.png}}
-\caption{Delay factors are given for courses A, B, C, and D.} 
-\label{fig:delay_factor_example}
-\end{figure}
+    \begin{figure}
+      \centering
+      \begin{subfigure}[h!]{.3\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple4.png}
+        \caption{Curriculum One}\label{fig:simple4}
+      \end{subfigure}
+      \begin{subfigure}[h!]{.3\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple7.png}
+        \caption{Curriculum Two}\label{fig:simple7}
+      \end{subfigure}
+      \begin{subfigure}[h!]{.3\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple9-1.png}
+        \caption{Curriculum Three}\label{fig:simple91}
+      \end{subfigure}
 
-A course's blocking factor is defined as the number of courses that are blocked from being taken if the given courses is not passed. This is essentially the connectivity of the course. If there is a path from \(i\) to \(j\) then \(n_{ij}\) is 1 and 0 otherwise. Then, the blocking factor of course i would be given by
+      \begin{subfigure}[h!]{.3\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple9-2.png}
+        \caption{Curriculum Four}\label{fig:simple92}
+      \end{subfigure}
+      \begin{subfigure}[h!]{.3\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple10.png}
+        \caption{Curriculum Five}\label{fig:simple10}
+      \end{subfigure}
 
-\begin{equation}
-  V_{i} = \sum_{j} n_{ij}
-\end{equation}
+      \caption{Basic Curricula}
+      \label{fig:simple}
+    \end{figure}
 
-An example of blocking factors can be seen in Figure \ref{fig:blocking_factor_example}. Here, course A has a blocking factor of three because it is connected (blocks) three other courses: B, C and D. Coure B blocks one course, D and courses C and D have a blocking factor of zero because no course succeed them.
+    For each of these curricula, a series of one hundred simulations were run with one hundred students each where each simulation had the following parameters: 
+    (1) Every courses had a 50\% passrate, giving each student a one in two chance of passing the course. (2) Each student could take up to three courses a term. (3) A duration of four terms.
+    The results of each set of simulations were averaged together and can be seen in table \ref{tab:simpleResults}
 
-\begin{figure}[h!]
-\centerline{\includegraphics[scale=0.4]{./figures/blocking_factor.png}}
-\caption{Blocking Factors are given for courses A, B, C, and D.} 
-\label{fig:blocking_factor_example}
-\end{figure}
+    \begin{table}[!h]
+      \tiny
+      \caption{}
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum One}
+          \label{tab:simple4}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A       & 49.62 & 75.2  & 87.33 & 93.73 \\
+            B       & 50.64 & 75.48 & 87.64 & 93.97 \\
+            C       & 49.98 & 75.62 & 87.98 & 94.14 \\
+            D       & 0.0 & 44.1 & 71.89 & 85.77 \\
+            \hline
+            Completion \\ Rate & 0.0 & 20.72 & 49.5 & 71.63
+          \end{tabular}
+      \end{subtable}\hfill
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum Two}
+          \label{tab:simple7}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A       & 51.19 & 75.31 & 87.23 & 93.48 \\
+            B       & 49.94 & 74.71 & 87.31 & 93.45 \\
+            C       & 0.0   & 25.5  & 51.27 & 69.39 \\
+            D       & 49.3  & 75.2  & 87.31 & 93.59 \\
+            \hline
+            Completion \\ Rate & 0.0 & 14.35 & 39.21 & 60.41 \\
+          \end{tabular}
+      \end{subtable}
 
-Given a courses delay factor path, \(L_i\), and blocking factor, \(V_i\), then it's cruciality, \(C_i\) is simply given by the sum of the two:
+      \vspace*{1cm}
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum Three}
+          \label{tab:simple91}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A & 49.96 & 74.78 & 87.43 & 93.38 \\
+            B & 49.68 & 74.57 & 87.28 & 93.95 \\
+            C & 0.0   & 25.59 & 50.51 & 69.2  \\
+            D & 0.0   & 24.61 & 49.64 & 68.83 \\
+            \hline
+            Completion \\ Rate & 0.0   & 8.88  & 30.01 & 52.57 \\
+          \end{tabular}
+      \end{subtable} 
+      \hfill
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum Four}
+          \label{tab:simple92}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A & 49.98 & 75.12 & 87.93 & 93.92 \\
+            B & 49.76 & 75.44 & 87.37 & 93.73 \\
+            C & 0.0   & 12.35 & 34.7  & 55.21 \\
+            D & 49.98 & 75.4  & 87.79 & 94.33 \\
+            \hline
+            Completion \\ Rate & 0.0   & 9.31  & 30.44 & 52.3  \\
+          \end{tabular}
+      \end{subtable}
 
-\begin{equation}
-  C_{i} = V_{i} + L_{i}
-\end{equation}
+      \vspace*{1cm}
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum Five}
+          \label{tab:simple10}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A & 49.9  & 74.99 & 87.75 & 93.6  \\
+            B & 49.93 & 75.1  & 88.0  & 94.05 \\
+            C & 0.0   & 25.21 & 50.07 & 68.75 \\
+            D & 0.0   & 24.61 & 49.47 & 68.61 \\
+            \hline
+            Completion \\ Rate & 0.0   & 6.07  & 24.5  & 46.93 \\
+          \end{tabular}
+      \end{subtable} 
+      \label{tab:simpleResults}
+    \end{table}
 
-A curriculum's complexity, \(S\) is then given by the sum over all course crucialities:
+    These tables give insights into how students progress through a curriculum by showing the percentage of students that have passed each course at the end of each semester. For example, looking at table \ref{tab:simple4}, 75.2\% of students have passed Course A after the second term. The row at the bottom shows the percentage of students that have completed all courses (ie graduated) at the end of each term. As expected, the least complex curriculum had the highest completion rate after four terms, while the most complexity curricula had the lowest completion rate. It is also interesting, though not surprising, that the two curricula with the same complexity had roughly the same fourth term completion rate even though their structures were different.
 
-\begin{equation}
-  S = \sum_{i}^n C_{i}
-\end{equation}
+    To expand upon the previous experiment similar simulations were conducted over slightly more complex curricula with an additional term consisting of two courses for a total of 6 courses. Even with the addition of only two courses, the number of structures greatly increases providing a much larger curricula set with a wider range of complexities. In total 256 curricula systematically generated with the three terms, six courses specification. For each generated curricula, simulations similar to those done with the simple curricula were carried with slighly different parameters: (1) Every courses had a 80\% passrate. (2) Each student can take up to three courses a term. (3) A duration of five terms. The results of these simulation can be seen in figure \ref{fig:gen6results}.
 
-While it is far from the only factor for student success, it is intuitive to see that a curriculum's structural complexity can impact the time in which it takes students to move through a program. Students that fail a course with a high blocking factor will be unable to take needed courses the following semester potentially delaying them and curricula with high blocking factors present many opportunities for being delayed. Curricula with long paths, and therefore high delay factors, can also delay students and even impose minimum term completion limits. For example, a curricula with a long path of eight requires at least four years to complete and if a course on that path is failed, the student will be delayed at least one semester.
+    \begin{figure}[h!]
+      \centerline{\includegraphics[scale=0.25]{./figures/gradRate5_v_Complexity.png}}
+      \caption{A plot of complexity vs 5th term graduation rates for six course curricula.} 
+      \label{fig:gen6results}
+    \end{figure}
 
-\section{Correlating Complexity with Completion Rates}
+    Again, the results imply a correlation between structure and completion rates. To more formally characterize this correlation, linear regression was performed over the data, the details of which can be seen in table \ref{tab:gen6reg} and is visualized by the red line in figure \ref{fig:gen6results}.
 
-One of the motivations for the development of the curriculum flow simulation is to show that there is a correlation between structural complexity and the rates at which students complete the curricula. As a start, several tests were carried out over extremely simple curricula seen in \ref{fig:simple}. These curricula, consisting of two terms with two courses each make up common patterns that can be found in actual curricula and span a range of complexity values making them good candidates to observe how structure affects the way students flow through curricula.
-
-\begin{figure}
-\centering
-\begin{subfigure}[h!]{.3\linewidth}
-\includegraphics[width=\linewidth]{./figures/Simple4.png}
-\caption{Curriculum One}\label{fig:simple4}
-\end{subfigure}
-\begin{subfigure}[h!]{.3\linewidth}
-\includegraphics[width=\linewidth]{./figures/Simple7.png}
-\caption{Curriculum Two}\label{fig:simple7}
-\end{subfigure}
-\begin{subfigure}[h!]{.3\linewidth}
-\includegraphics[width=\linewidth]{./figures/Simple9-1.png}
-\caption{Curriculum Three}\label{fig:simple91}
-\end{subfigure}
-
-\begin{subfigure}[h!]{.3\linewidth}
-\includegraphics[width=\linewidth]{./figures/Simple9-2.png}
-\caption{Curriculum Four}\label{fig:simple92}
-\end{subfigure}
-\begin{subfigure}[h!]{.3\linewidth}
-\includegraphics[width=\linewidth]{./figures/Simple10.png}
-\caption{Curriculum Five}\label{fig:simple10}
-\end{subfigure}
-
-\caption{Basic Curricula}
-\label{fig:simple}
-\end{figure}
-
-Each simulation carried out over the five curricula using the following configuration. The simulation's default performance module is used meaning that a student is determined to either pass or fail based on the course's pass-rate. Every course has a pass-rate of 50\%, therefore each student has a one in two chance of passing the course. The simulation's duration is four semesters, and a student is allowed to take up to nine credit hours a semester with each course counting for three. Each curriculum is simulated one hundred times with one hundred students each and the results from each are then averaged. The results can be seen in Table \ref{tab:simpleResults}.
-
-\begin{table}[!h]
-  \tiny
-  \caption{}
-  \begin{subtable}{0.45\linewidth}
-    \centering
-      \caption{Curriculum One}
-      \label{tab:simple4}
+    \begin{table}[!h]
+      \centering
+      \caption{Six-Course Curricula Linear Regression Results}
+      \label{tab:gen6reg}
       \begin{tabular}{l*{4}{c}}
-        Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+        Coefficient & Estimate  & Std Error & Z Value & Pr(>|z|) \\
         \hline
-        A       & 49.62 & 75.2  & 87.33 & 93.73 \\
-        B       & 50.64 & 75.48 & 87.64 & 93.97 \\
-        C       & 49.98 & 75.62 & 87.98 & 94.14 \\
-        D       & 0.0 & 44.1 & 71.89 & 85.77 \\
-        \hline
-        Completion \\ Rate & 0.0 & 20.72 & 49.5 & 71.63
+        (Intercept) & 77.66     & 0.57      & 137.04  & <1e-99 \\
+        Complexity  & -2.09     & 0.027     & -76.73  & <1e-99 \\
       \end{tabular}
-  \end{subtable}\hfill
-  \begin{subtable}{0.45\linewidth}
-    \centering
-      \caption{Curriculum Two}
-      \label{tab:simple7}
-      \begin{tabular}{l*{4}{c}}
-        Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
-        \hline
-        A       & 51.19 & 75.31 & 87.23 & 93.48 \\
-        B       & 49.94 & 74.71 & 87.31 & 93.45 \\
-        C       & 0.0   & 25.5  & 51.27 & 69.39 \\
-        D       & 49.3  & 75.2  & 87.31 & 93.59 \\
-        \hline
-        Completion \\ Rate & 0.0 & 14.35 & 39.21 & 60.41 \\
-      \end{tabular}
-  \end{subtable}
+    \end{table}
 
-  \vspace*{1cm}
-  \begin{subtable}{0.45\linewidth}
-    \centering
-      \caption{Curriculum Three}
-      \label{tab:simple91}
-      \begin{tabular}{l*{4}{c}}
-        Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
-        \hline
-        A & 49.96 & 74.78 & 87.43 & 93.38 \\
-        B & 49.68 & 74.57 & 87.28 & 93.95 \\
-        C & 0.0   & 25.59 & 50.51 & 69.2  \\
-        D & 0.0   & 24.61 & 49.64 & 68.83 \\
-        \hline
-        Completion \\ Rate & 0.0   & 8.88  & 30.01 & 52.57 \\
-      \end{tabular}
-  \end{subtable} 
-  \hfill
-  \begin{subtable}{0.45\linewidth}
-    \centering
-      \caption{Curriculum Four}
-      \label{tab:simple92}
-      \begin{tabular}{l*{4}{c}}
-        Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
-        \hline
-        A & 49.98 & 75.12 & 87.93 & 93.92 \\
-        B & 49.76 & 75.44 & 87.37 & 93.73 \\
-        C & 0.0   & 12.35 & 34.7  & 55.21 \\
-        D & 49.98 & 75.4  & 87.79 & 94.33 \\
-        \hline
-        Completion \\ Rate & 0.0   & 9.31  & 30.44 & 52.3  \\
-      \end{tabular}
-  \end{subtable}
-
-  \vspace*{1cm}
-  \begin{subtable}{0.45\linewidth}
-    \centering
-      \caption{Curriculum Five}
-      \label{tab:simple10}
-      \begin{tabular}{l*{4}{c}}
-        Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
-        \hline
-        A & 49.9  & 74.99 & 87.75 & 93.6  \\
-        B & 49.93 & 75.1  & 88.0  & 94.05 \\
-        C & 0.0   & 25.21 & 50.07 & 68.75 \\
-        D & 0.0   & 24.61 & 49.47 & 68.61 \\
-        \hline
-        Completion \\ Rate & 0.0   & 6.07  & 24.5  & 46.93 \\
-      \end{tabular}
-  \end{subtable} 
-  \label{tab:simpleResults}
-\end{table}
-
-These tables show the percentage of students that have passed each course at the end of each semester. For example in Table \ref{tab:simple4}, 75.2\% of students had passed Course A after the second semester. The row at the bottom then shows the percentage of students that had completed all courses at the end of each term. As expected, the least complex curricula resulted in the highest completion rates after four terms with completion rates dropping as complexity increased. Its also important to note that the two curricula with the same complexity had very similar completion rates despite their structures being slightly different.
-
-This inverse relationship continues for larger curricula as well. A similar test was conducted over thirty five curricula from Universities around the country. These curricula were pulled from \href{http://curricula.academicdashboards.org}{curricula.academicdashboards.org}, a web service that stores, visualizes, and computes the complexity of curricula. Each curriculum used in the experiment contain eight terms and at least one hundred credit hours. Each curriculum was simulated for a duration of ten terms one hundred times with every course having a pass-rate of \%80. The results of which can be seen in Figure \ref{fig:monte_web}.
-
-\begin{figure}[h!]
-\centerline{\includegraphics[scale=0.2]{./figures/monteCarloEight.png}}
-\caption{Simulation results of thirty five real-world curricula} 
-\label{fig:monte_web}
-\end{figure}
-
-The line seen in the figure above is the result of a linear regression over the data. It clearly shows that completion rates decrease as complexity increases. More specifically, it shows that for every point of complexity, a curriculum's completion rate after ten terms will decrease by 0.1\%. This may not seem like much, but as seen in \ref{fig:monte_web}, curriculum can vary widely in complexity. Even curriculum with the same number of terms and similar credit hours can easily differ one hundred points in complexity which would equate to a 10\% completion rate difference, which is significant.
-
-\section{Sensitivity Analysis of Instructional Complexity}
-
-Another metric that is useful when working with curricula is the instructional complexity of a curriculum. This can be thought of as the difficulty of the curriculum, which in term will be defined by the difficulty of the courses that make it up. Defining how difficulty a course is not straightforward and can be done in many ways, but in the experiments described here, the naive definition of the course's pass-rate is used. Another use of the curriculum flow simulation framework is to observe the effects that instructional complexity has, as it is intuitive to believe that the difficulty of a curriculum's courses would greatly affect student performance. Although not a realistic scenario, Figure \ref{fig:instructional} illustrates this point.
-
-\begin{figure}[h!]
-\centerline{\includegraphics[scale=0.2]{./figures/instructional.png}}
-\caption{Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with respect to course pass-rates.} 
-\label{fig:instructional}
-\end{figure}
-
-This figure shows the completion rate of the Computer Engineering curriculum for a given pass-rate assigned to every course. As expected, the completion rates increase as course pass-rates increase and shows how the instructional complexity of a curriculum affects student success. One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the pass-rate of critical courses can increase student graduation rates. So then the question becomes which courses should receive the most attention?
-
-This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates.
-
-\begin{table}[!h]
-\tiny
-\begin{tabular}{l*{4}{c}}
-Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
-\hline
-Elective & 0.9 & 1 & 1 & 0.0836 \\
-MATH 180 & 0.7397 & 0.9616 & 4 & 0.0282 \\
-MGMT 202 & 0.8038 & 1 & 12 & 0.028 \\
-MATH 121 & 0.7389 & 0.9606 & 10 & 0.0274 \\
-ECON 105 & 0.7904 & 1 & 1 & 0.0227 \\
-ECON 106 & 0.7984 & 1 & 8 & 0.0224 \\
-MGMT 340 & 0.8943 & 1 & 6 & 0.0154 \\
-MGMT 326 & 0.8605 & 1 & 3 & 0.0147 \\
-Foreign Language & 0.9 & 1 & 1 & 0.0142 \\
-Physical \& Natural Science & 0.9 & 1 & 1 & 0.0139 \\
-\end{tabular}
-\caption{Accounting Sensitivity Analysis} 
-\label{tab:accounting_sensitivity}
-\end{table}
-
-\begin{table}[!h]
-\tiny
-\begin{tabular}{l*{4}{c}}
-Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
-\hline
-MATH 162 & 0.7585 & 0.9861 & 29 & 0.0407 \\
-MATH 163 & 0.7502 & 0.9753 & 26 & 0.0404 \\
-MATH 264 & 0.8399 & 1 & 16 & 0.0265 \\
-PHYC 160 & 0.7926 & 1 & 25 & 0.0212 \\
-ECON 105 & 0.7904 & 1 & 1 & 0.0206 \\
-Tech Elective & 0.9 & 1 & 1 & 0.0195 \\
-Tech Elective & 0.9 & 1 & 1 & 0.0163 \\
-CHEM 121 & 0.8049 & 1 & 13 & 0.0158 \\
-Tech Elective & 0.9 & 1 & 1 & 0.0143 \\
-MATH 316 & 0.8633 & 1 & 18 & 0.0108 \\
-\end{tabular}
-\caption{Mechanical Engineering Sensitivity Analysis}
-\label{tab:me_sensitivity}
-\end{table}
-
-\begin{table}[!h]
-\tiny
-\begin{tabular}{l*{4}{c}}
-Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
-\hline
-Humanities & 0.9 & 1 & 1 & 0.0661 \\
-MATH 162 & 0.7585 & 0.9861 & 19 & 0.0609 \\
-MATH 163 & 0.7502 & 0.9753 & 18 & 0.0554 \\
-Fine Arts & 0.9 & 1 & 1 & 0.0474 \\
-Tech Elective & 0.9 & 1 & 1 & 0.0396 \\
-PHYC 160 & 0.7926 & 1 & 14 & 0.0287 \\
-MATH 264 & 0.8399 & 1 & 5 & 0.0251 \\
-ECON 105 & 0.7904 & 1 & 1 & 0.0239 \\
-ECE 344L & 0.9026 & 1 & 6 & 0.0237 \\
-ECE 131 & 0.8571 & 1 & 13 & 0.0218 \\
-\end{tabular}
-\caption{Computer Engineering Sensitivity Analysis}
-\label{tab:cpe_sensitivity}
-\end{table}
-
-In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses. This analysis also 
-
-\section{Probit Performance Model}
 
 
 %----------------------------------------------------------------------------------------
