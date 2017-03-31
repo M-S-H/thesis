@@ -7,12 +7,15 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Visual representation of the electrical engineering curriculum at UNM.\relax }}{9}{figure.3.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces A component diagram of the CAS framework.\relax }}{17}{figure.4.1}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A component diagram of the CAS framework.\relax }}{16}{figure.4.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Basic Curricula\relax }}{32}{figure.5.1}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces A plot of complexity vs 5th term graduation rates for six course curricula.\relax }}{34}{figure.5.2}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Simulation results of thirty eight real-world curricula.\relax }}{35}{figure.5.3}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Real-World curricula regression analysis using complexity and credit hours as variables.\relax }}{37}{figure.5.4}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with respect to course pass-rates.\relax }}{38}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Example of course reachability.\relax }}{40}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Example of course centrality.\relax }}{40}{figure.5.7}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Regression analysis plot using complexity, reachability, centrality, credit hours, and free courses as independent variables.\relax }}{42}{figure.5.8}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

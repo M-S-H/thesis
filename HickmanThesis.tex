@@ -343,12 +343,13 @@ JSON
 %----------------------------------------------------------------------------------------
 % Curricula Simulation Framework Design
 %----------------------------------------------------------------------------------------
-\chapter{Curricula Simulation Framework Design \& Implementation}
+\chapter{Framework Design \& Implementation}
 
   \section{Julia}
     The CAS framework is implemented in the open-source Julia programming language and made available as an open-source Julia package. Julia is described as a high-level, high-performance dynamic programming language for technical computing that "has the performance of a statically compiled language while providing interactive dynamic behavior and productivity like Python, LISP or Ruby" \cite{Julia}. It is built upon an LLVM-based just-in-time (JIT) compiler which allows it to reach performance close to that of C and, in many cases, speeds faster than that of R or MATLAB \cite{Julia}. Julia's defining feature is multiple dispatch but some other notable features are module support, a type system, parallelism and a built-in package manager. It also has a thriving community of developers contributing high-quality open source libraries spanning a range of applications such as machine-learning, statistical analysis, graph analysis, plotting, and data-handling.
 
     Each of these features contributed to choosing Julia as the language of implementation. Julia's type system, ease of use and dynamic nature made it simple to implement the framework's various components, methods logic. Working with data formats such as JSON and CSV were especially easier that a computation language such as MATLAB. However this ease of development did not come at the expense of performance as Julia is incredibly fast and it's support for parallelism allowed running many simulations much faster as they could be carried out in parallel. Topping it all off is it's built in package manager with a plethora of packages that will enable uses extend the framework and simulation capabilities with powerful machine learning and statistical models.
+
 
   \section{Architecture and Implementation Details}
     The framework is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the framework is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component of the framework are.\ modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The framework comes with one out of the box, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections describe each component in greater detail.
@@ -687,10 +688,6 @@ JSON
     \end{figure}
 
 
-  \section{Evaluating Complexity Measures}  
-    TODO: Include evaluation of centrality and reachability with regression results.
-
-
   \section{Sensitivity Analysis of Instructional Complexity}
     Another metric that is useful when working with curricula is the instructional complexity of a curriculum. This can be thought of as the difficulty of the curriculum, which in term will be defined by the difficulty of the courses that make it up. Defining how difficulty a course is not straightforward and can be done in many ways, but in the experiments described here, the naive definition of the course's pass-rate is used. Another use of the curriculum flow simulation framework is to observe the effects that instructional complexity has, as it is intuitive to believe that the difficulty of a curriculum's courses would greatly affect student performance. Although not a realistic scenario, Figure \ref{fig:instructional} illustrates this point.
 
@@ -702,7 +699,7 @@ JSON
 
     This figure shows the completion rate of the Computer Engineering curriculum for a given pass-rate assigned to every course. As expected, the completion rates increase as course pass-rates increase and shows how the instructional complexity of a curriculum affects student success. One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the pass-rate of critical courses can increase student graduation rates. So then the question becomes which courses should receive the most attention?
 
-    This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates.
+    This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates. In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses.
 
     \begin{table}[!h]
     \tiny
@@ -764,13 +761,57 @@ JSON
     \label{tab:cpe_sensitivity}
     \end{table}
 
-    In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses. 
+
+  \section{Evaluating Additional Complexity Measures}  
+    While it has been shown that both delay and blocking factors can affect students moving through a curriculum, they are far from the only way to describe the structural complexity of a curriculum. Any number of metrics for quantifying the complexity of a curriculum could be devised yet demonstrating that the underlying structural properties influence students could be difficult. Again, simulation provides a solution. Using linear regression methods like those previously described to fit proposed metrics with simulated completion rates could aid in determining what structural properties aid or hinder students. This method was used to conduct an experiment to evaluate three new proposed metrics and curriculum properties: course centrality, course reachability, and free courses.
+
+    When a student fails to pass a course, they are probably hindered from taking other courses. In cases like this students might be able to take a course that has no prerequisite (such as an elective) so that they can still make progress while retaking their failed course. Therefore the number of courses without any prerequisites in a curriculum might influence student progress. A course's reachability describes how difficult it is to get to. It is defined similarly to that of a course's blocking factor but instead of counting the number of courses that can be taken after completing the given course, it counts the number of courses that must be completed to reach the given course. A course's centrality attempted to measure how central a course is within a curriculum by counting the number of unique paths that a course appears on. Examples of these two measures can be seen in figures \ref{fig:Reachability} and \ref{fig:Centrality}.
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.5\linewidth]{./figures/Reachability.png}
+      \caption{Example of course reachability.}
+      \label{fig:Reachability}
+    \end{figure}
+    \vspace{0.5in}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.5\linewidth]{./figures/Centrality.png}
+      \caption{Example of course centrality.}
+      \label{fig:Centrality}
+    \end{figure}
+
+    Instead of evaluating these new metrics individually, it makes more sense to do in addition to the delay and blocking factors already defined.  As seen in figure \ref{fig:web10} complexity alone does not explain why curricula with similar or the same complexity measures and perhaps structural properties explained by course centrality and reachability could explain why. These metrics don't attempt to replace delay and blocking, but rather compliment them in capturing structural qualities that they don't. Using the same simulation results as those seen in \ref{fig:web10}, linear regression was performed using complexity, reachability, centrality, credit hours, and free courses as independent variables. The results of the regression produced a R-squared value of 0.825 and can be seen in table \ref{tab:webAll} and \ref{fig:webAll}.
+
+    \begin{table}[!h]
+      \centering
+      \caption{Real-World curricula regression results using complexity, reachability, centrality, credit hours, and free courses as independent variables.}
+      \label{tab:webAll}
+      \begin{tabular}{l*{4}{c}}
+        Coefficient       & Estimate      & Std Error   & Z Value     & Pr(>|z|)  \\
+        \hline
+        (Intercept)       &     231.806   &   27.6088   &  8.39609    &   <1e-16  \\
+        complexity        &    0.175771   &  0.104419   &  1.68332    &   0.0923  \\
+        inverseBlocking   &   -0.375347   &  0.325843   & -1.15193    &   0.2494  \\
+        centrality        &  -0.0577261   & 0.0332347   & -1.73692    &   0.0824  \\
+        creditHours       &    -1.27575   &  0.214141   & -5.95753    &    <1e-8  \\
+        free              &   -0.082392   &  0.207935   & -0.39624    &   0.6919  \\
+      \end{tabular}
+    \end{table}
+
+    \begin{figure}[h!]
+      \centerline{\includegraphics[scale=0.25]{./figures/webAll.png}}
+      \caption{Regression analysis plot using complexity, reachability, centrality, credit hours, and free courses as independent variables.} 
+      \label{fig:webAll}
+    \end{figure}
+
 
 %----------------------------------------------------------------------------------------
 %  Discussion
 %----------------------------------------------------------------------------------------
 \chapter{Discussion}
 TODO
+
 
 %----------------------------------------------------------------------------------------
 %  Future Work

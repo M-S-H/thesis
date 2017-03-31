@@ -1,5 +1,5 @@
 \contentsline {chapter}{List of Figures}{viii}{chapter*.2}
-\contentsline {chapter}{Glossary}{ix}{chapter*.3}
+\contentsline {chapter}{Glossary}{x}{chapter*.3}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Previous Work}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Defining Structural Complexity}{4}{section.2.1}
@@ -10,7 +10,7 @@
 \contentsline {section}{\numberline {3.3}Assumptions}{10}{section.3.3}
 \contentsline {section}{\numberline {3.4}Simulation Model Logic}{12}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Control Flow}{13}{subsection.3.4.1}
-\contentsline {chapter}{\numberline {4}Curricula Simulation Framework Design \& Implementation}{15}{chapter.4}
+\contentsline {chapter}{\numberline {4}Framework Design \& Implementation}{15}{chapter.4}
 \contentsline {section}{\numberline {4.1}Julia}{15}{section.4.1}
 \contentsline {section}{\numberline {4.2}Architecture and Implementation Details}{16}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Framework Data Types}{17}{subsection.4.2.1}
@@ -19,12 +19,12 @@
 \contentsline {subsubsection}{Curriculum Type}{20}{section*.6}
 \contentsline {subsubsection}{Student Type}{22}{section*.7}
 \contentsline {subsubsection}{Simulation Type}{24}{section*.8}
-\contentsline {subsection}{\numberline {4.2.2}Performance Modules}{26}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.2}Performance Modules}{25}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Simulation Method}{29}{subsection.4.2.3}
 \contentsline {chapter}{\numberline {5}Application in Curricular Analytics}{31}{chapter.5}
 \contentsline {section}{\numberline {5.1}Correlating Complexity with Completion Rates}{31}{section.5.1}
-\contentsline {section}{\numberline {5.2}Evaluating Complexity Measures}{36}{section.5.2}
-\contentsline {section}{\numberline {5.3}Sensitivity Analysis of Instructional Complexity}{37}{section.5.3}
-\contentsline {chapter}{\numberline {6}Discussion}{40}{chapter.6}
-\contentsline {chapter}{\numberline {7}Future Work}{41}{chapter.7}
-\contentsline {chapter}{References}{42}{chapter*.15}
+\contentsline {section}{\numberline {5.2}Sensitivity Analysis of Instructional Complexity}{36}{section.5.2}
+\contentsline {section}{\numberline {5.3}Evaluating Additional Complexity Measures}{39}{section.5.3}
+\contentsline {chapter}{\numberline {6}Discussion}{43}{chapter.6}
+\contentsline {chapter}{\numberline {7}Future Work}{44}{chapter.7}
+\contentsline {chapter}{References}{45}{chapter*.16}

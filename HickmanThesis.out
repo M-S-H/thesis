@@ -10,7 +10,7 @@
 \BOOKMARK [1][-]{section.3.3}{Assumptions}{chapter.3}% 10
 \BOOKMARK [1][-]{section.3.4}{Simulation Model Logic}{chapter.3}% 11
 \BOOKMARK [2][-]{subsection.3.4.1}{Control Flow}{section.3.4}% 12
-\BOOKMARK [0][-]{chapter.4}{Curricula Simulation Framework Design \046 Implementation}{}% 13
+\BOOKMARK [0][-]{chapter.4}{Framework Design \046 Implementation}{}% 13
 \BOOKMARK [1][-]{section.4.1}{Julia}{chapter.4}% 14
 \BOOKMARK [1][-]{section.4.2}{Architecture and Implementation Details}{chapter.4}% 15
 \BOOKMARK [2][-]{subsection.4.2.1}{Framework Data Types}{section.4.2}% 16
@@ -18,8 +18,8 @@
 \BOOKMARK [2][-]{subsection.4.2.3}{Simulation Method}{section.4.2}% 18
 \BOOKMARK [0][-]{chapter.5}{Application in Curricular Analytics}{}% 19
 \BOOKMARK [1][-]{section.5.1}{Correlating Complexity with Completion Rates}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.2}{Evaluating Complexity Measures}{chapter.5}% 21
-\BOOKMARK [1][-]{section.5.3}{Sensitivity Analysis of Instructional Complexity}{chapter.5}% 22
+\BOOKMARK [1][-]{section.5.2}{Sensitivity Analysis of Instructional Complexity}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.3}{Evaluating Additional Complexity Measures}{chapter.5}% 22
 \BOOKMARK [0][-]{chapter.6}{Discussion}{}% 23
 \BOOKMARK [0][-]{chapter.7}{Future Work}{}% 24
-\BOOKMARK [0][-]{chapter*.15}{References}{}% 25
+\BOOKMARK [0][-]{chapter*.16}{References}{}% 25
