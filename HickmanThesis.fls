@@ -239,9 +239,6 @@ INPUT ./figures/gradRate10_v_complexity.png
 INPUT ./figures/comp_ch_plot.png
 INPUT ./figures/comp_ch_plot.png
 INPUT ./figures/comp_ch_plot.png
-INPUT ./figures/instructional.png
-INPUT ./figures/instructional.png
-INPUT ./figures/instructional.png
 INPUT ./figures/Reachability.png
 INPUT ./figures/Reachability.png
 INPUT ./figures/Reachability.png
@@ -251,6 +248,9 @@ INPUT ./figures/Centrality.png
 INPUT ./figures/webAll.png
 INPUT ./figures/webAll.png
 INPUT ./figures/webAll.png
+INPUT ./figures/instructional.png
+INPUT ./figures/instructional.png
+INPUT ./figures/instructional.png
 INPUT HickmanThesis.bbl
 INPUT HickmanThesis.bbl
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/jknappen/ec/ecti1095.tfm

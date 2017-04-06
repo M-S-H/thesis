@@ -23,8 +23,8 @@
 \contentsline {subsection}{\numberline {4.2.3}Simulation Method}{29}{subsection.4.2.3}
 \contentsline {chapter}{\numberline {5}Application in Curricular Analytics}{31}{chapter.5}
 \contentsline {section}{\numberline {5.1}Correlating Complexity with Completion Rates}{31}{section.5.1}
-\contentsline {section}{\numberline {5.2}Sensitivity Analysis of Instructional Complexity}{36}{section.5.2}
-\contentsline {section}{\numberline {5.3}Evaluating Additional Complexity Measures}{39}{section.5.3}
+\contentsline {subsection}{\numberline {5.1.1}Evaluating Additional Complexity Measures}{36}{subsection.5.1.1}
+\contentsline {section}{\numberline {5.2}Sensitivity Analysis of Instructional Complexity}{39}{section.5.2}
 \contentsline {chapter}{\numberline {6}Discussion}{43}{chapter.6}
-\contentsline {chapter}{\numberline {7}Future Work}{44}{chapter.7}
-\contentsline {chapter}{References}{45}{chapter*.16}
+\contentsline {chapter}{\numberline {7}Conclusion/Future Work}{44}{chapter.7}
+\contentsline {chapter}{References}{46}{chapter*.16}
