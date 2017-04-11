@@ -4,45 +4,45 @@ The top-level auxiliary file: HickmanThesis.aux
 The style file: abbrv.bst
 Database file #1: thesis.bib
 Warning--empty journal in lewallen1993early
-You've used 7 entries,
+You've used 14 entries,
             2118 wiz_defined-function locations,
-            543 strings with 4833 characters,
-and the built_in function-call counts, 2289 in all, are:
-= -- 224
-> -- 93
-< -- 1
-+ -- 40
-- -- 30
-* -- 157
-:= -- 380
-add.period$ -- 21
-call.type$ -- 7
-change.case$ -- 36
+            590 strings with 6497 characters,
+and the built_in function-call counts, 4904 in all, are:
+= -- 482
+> -- 203
+< -- 3
++ -- 83
+- -- 66
+* -- 350
+:= -- 795
+add.period$ -- 42
+call.type$ -- 14
+change.case$ -- 75
 chr.to.int$ -- 0
-cite$ -- 8
-duplicate$ -- 91
-empty$ -- 190
-format.name$ -- 30
-if$ -- 475
+cite$ -- 15
+duplicate$ -- 192
+empty$ -- 404
+format.name$ -- 66
+if$ -- 1039
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 7
-newline$ -- 38
-num.names$ -- 14
-pop$ -- 37
+int.to.str$ -- 14
+missing$ -- 14
+newline$ -- 73
+num.names$ -- 28
+pop$ -- 72
 preamble$ -- 1
-purify$ -- 29
+purify$ -- 61
 quote$ -- 0
-skip$ -- 64
+skip$ -- 141
 stack$ -- 0
-substring$ -- 154
-swap$ -- 17
-text.length$ -- 1
+substring$ -- 349
+swap$ -- 44
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 28
+type$ -- 56
 warning$ -- 1
-while$ -- 24
-width$ -- 8
-write$ -- 76
+while$ -- 49
+width$ -- 16
+write$ -- 153
 (There was 1 warning)

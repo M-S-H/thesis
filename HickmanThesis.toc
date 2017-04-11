@@ -4,27 +4,26 @@
 \contentsline {chapter}{\numberline {2}Previous Work}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Defining Structural Complexity}{4}{section.2.1}
 \contentsline {section}{\numberline {2.2}Student Simulations}{6}{section.2.2}
-\contentsline {chapter}{\numberline {3}Simulating Students in a Curriculum}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Discrete Event Simulations}{7}{section.3.1}
-\contentsline {section}{\numberline {3.2}Defining A Curricula}{8}{section.3.2}
-\contentsline {section}{\numberline {3.3}Assumptions}{10}{section.3.3}
-\contentsline {section}{\numberline {3.4}Simulation Model Logic}{12}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Control Flow}{13}{subsection.3.4.1}
-\contentsline {chapter}{\numberline {4}Framework Design \& Implementation}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}Julia}{15}{section.4.1}
-\contentsline {section}{\numberline {4.2}Architecture and Implementation Details}{16}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Framework Data Types}{17}{subsection.4.2.1}
-\contentsline {subsubsection}{Course Type}{17}{section*.4}
-\contentsline {subsubsection}{Term Type}{19}{section*.5}
-\contentsline {subsubsection}{Curriculum Type}{20}{section*.6}
-\contentsline {subsubsection}{Student Type}{22}{section*.7}
-\contentsline {subsubsection}{Simulation Type}{24}{section*.8}
-\contentsline {subsection}{\numberline {4.2.2}Performance Modules}{25}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Simulation Method}{29}{subsection.4.2.3}
-\contentsline {chapter}{\numberline {5}Application in Curricular Analytics}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Correlating Complexity with Completion Rates}{31}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Evaluating Additional Complexity Measures}{36}{subsection.5.1.1}
-\contentsline {section}{\numberline {5.2}Sensitivity Analysis of Instructional Complexity}{39}{section.5.2}
-\contentsline {chapter}{\numberline {6}Discussion}{43}{chapter.6}
-\contentsline {chapter}{\numberline {7}Conclusion/Future Work}{44}{chapter.7}
+\contentsline {chapter}{\numberline {3}Simulating Students in a Curriculum}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}Discrete Event Simulations}{8}{section.3.1}
+\contentsline {section}{\numberline {3.2}Defining A Curricula}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Assumptions}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}Simulation Model Logic}{13}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Control Flow}{14}{subsection.3.4.1}
+\contentsline {chapter}{\numberline {4}Framework Design \& Implementation}{16}{chapter.4}
+\contentsline {section}{\numberline {4.1}Julia}{16}{section.4.1}
+\contentsline {section}{\numberline {4.2}Architecture and Implementation Details}{17}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Framework Data Types}{18}{subsection.4.2.1}
+\contentsline {subsubsection}{Course Type}{18}{section*.4}
+\contentsline {subsubsection}{Term Type}{20}{section*.5}
+\contentsline {subsubsection}{Curriculum Type}{21}{section*.6}
+\contentsline {subsubsection}{Student Type}{23}{section*.7}
+\contentsline {subsubsection}{Simulation Type}{25}{section*.8}
+\contentsline {subsection}{\numberline {4.2.2}Performance Modules}{27}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Simulation Method}{30}{subsection.4.2.3}
+\contentsline {chapter}{\numberline {5}Application in Curricular Analytics}{32}{chapter.5}
+\contentsline {section}{\numberline {5.1}Correlating Complexity with Completion Rates}{32}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Evaluating Additional Complexity Measures}{37}{subsection.5.1.1}
+\contentsline {section}{\numberline {5.2}Sensitivity Analysis of Instructional Complexity}{40}{section.5.2}
+\contentsline {chapter}{\numberline {6}Conclusion/Future Work}{44}{chapter.6}
 \contentsline {chapter}{References}{46}{chapter*.16}

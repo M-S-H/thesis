@@ -249,8 +249,11 @@ JSON
 
 
   \section{Student Simulations}
-  
+    There has been much research done predicting and analyzing student performance, the majority of which use statistical analysis or machine learning models \cite{7008697,6826206,goenner2004predicting}. However there has been work done in this area using simulations with a variety of motivations. For example, Webster \cite{10.2307/3444955} describes a simulation model that takes into account student enrollment, teaching resources, and financial data to run simulation to aid financial decisions. Plotnicki and Garfinke \cite{RePEc:eee:soceps:v:20:y:1986:i:4:p:193-199} use simulations to determine the best possible schedule of courses that allow the greatest number of students to easily move through the curriculum and similar work by Schellekens et al \cite{10.2307/40540244} observed the effects of giving students more flexibility within a program via simulation.
 
+    While all of this work shares some similarity with the CAS framework, the work that it relates to the most was conducted at San Fransisco State University using simulations to observe how changes made to a curriculum affect student performance \cite{saltzman2012simulating}. Saltzman and Roeder modeled students flowing through SFSU's College of Business as a discrete event simulation using historical data to drive course-enrollment behavior and course pass-rates to determine whether or not students pass courses they're enrolled in. Using this model, they determined the effects of curriculum changes such as removing courses or prerequisites. This method influenced the design of the CAS framework, however there are some major differences. For example the CAS framework makes different assumptions made that influence how students are enrolled, lacks a new incoming class each term, tracks more student data (such as GPA) and can be extend to make pass/fail determinations based on more than just pass-rate data.
+
+    The largest is difference however, is implementation - note just in method, but philosophy. This difference is also true in relation to all previously described work. Saltzman and Roeder's and the other's simulations were implemented using commercial software, while the CAS framework is free and open source and does not build the curriculum into the simulation logic, but rather is flexible enough to perform simulations over any curriculum through a standard format. More than that the CAS framework extends beyond just simulation and provides a way to represent curriculum-related data in a programming environment that could be useful apart from simulations.
 
 %----------------------------------------------------------------------------------------
 % Simulation
@@ -357,7 +360,7 @@ JSON
     The framework is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the framework is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component of the framework are.\ modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The framework comes with one out of the box, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections describe each component in greater detail.
 
     \begin{figure}[h!]
-      \centerline{\includegraphics[scale=0.4]{./figures/component_diagram.jpg}}
+      \centerline{\includegraphics[scale=0.4]{./figures/components.png}}
       \caption{A component diagram of the CAS framework.} 
       \label{fig:component_diagram}
     \end{figure}
@@ -812,8 +815,8 @@ JSON
 %----------------------------------------------------------------------------------------
 %  Discussion
 %----------------------------------------------------------------------------------------
-\chapter{Discussion}
-TODO
+% \chapter{Discussion}
+% TODO
 
 
 %----------------------------------------------------------------------------------------

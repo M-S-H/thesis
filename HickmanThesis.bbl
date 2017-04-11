@@ -1,9 +1,23 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{6826206}
+P.~M. Arsad, N.~Buniyamin, and J.~l.~Ab~Manan.
+\newblock Neural network and linear regression methods for prediction of
+  students' academic achievement.
+\newblock In {\em 2014 IEEE Global Engineering Education Conference (EDUCON)},
+  pages 916--921, April 2014.
 
 \bibitem{Julia}
 J.~Bezanzon, S.~Karpinski, V.~Shah, and A.~Edelman.
 \newblock Julia: A fast dynamic language for technical computing.
 \newblock In {\em Lang.{NEXT}}, Apr. 2012.
+
+\bibitem{goenner2004predicting}
+C.~F. Goenner and S.~M. Snaith.
+\newblock Predicting graduation rates: An analysis of student and institutional
+  factors at doctoral universities.
+\newblock {\em Journal of College Student Retention: Research, Theory \&
+  Practice}, 5(4):409--420, 2004.
 
 \bibitem{hunter2004could}
 M.~S. Hunter and E.~R. White.
@@ -27,6 +41,32 @@ J.~O'Flaherty and C.~Phillips.
 \newblock The use of flipped classrooms in higher education: A scoping review.
 \newblock {\em The Internet and Higher Education}, 25:85--95, 2015.
 
+\bibitem{RePEc:eee:soceps:v:20:y:1986:i:4:p:193-199}
+W.~J. Plotnicki and R.~S. Garfinkel.
+\newblock Scheduling academic courses to maximize student flow: A simulation
+  approach.
+\newblock {\em Socio-Economic Planning Sciences}, 20(4):193--199, 1986.
+
+\bibitem{saltzman2012simulating}
+R.~M. Saltzman and T.~M. Roeder.
+\newblock Simulating student flow through a college of business for policy and
+  structural change analysis.
+\newblock {\em Journal of the Operational Research Society}, 63(4):511--523,
+  2012.
+
+\bibitem{10.2307/40540244}
+A.~Schellekens, F.~Paas, A.~Verbraeck, and J.~J.~G. van Merriënboer.
+\newblock Designing a flexible approach for higher professional education by
+  means of simulation modelling.
+\newblock {\em The Journal of the Operational Research Society},
+  61(2):202--210, 2010.
+
+\bibitem{7008697}
+A.~Slim, G.~L. Heileman, J.~Kozlick, and C.~T. Abdallah.
+\newblock Predicting student success based on prior performance.
+\newblock In {\em 2014 IEEE Symposium on Computational Intelligence and Data
+  Mining (CIDM)}, pages 410--415, Dec 2014.
+
 \bibitem{complexity}
 A.~Slim, J.~Kozlick, G.~L. Heileman, and C.~T. Abdallah.
 \newblock The complexity of university curricula according to course
@@ -39,5 +79,13 @@ K.~J. Topping.
 \newblock The effectiveness of peer tutoring in further and higher education: A
   typology and review of the literature.
 \newblock {\em Higher education}, 32(3):321--345, 1996.
+
+\bibitem{10.2307/3444955}
+T.~Webster.
+\newblock Cost analysis and its use in simulation of policy options: The papua
+  new guinea education finance model.
+\newblock {\em International Review of Education / Internationale Zeitschrift
+  für Erziehungswissenschaft / Revue Internationale de l'Education},
+  43(1):5--23, 1997.
 
 \end{thebibliography}
