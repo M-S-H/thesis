@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  11 APR 2017 00:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  9 MAY 2017 23:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -460,13 +460,18 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write5
 \openout5 = `HickmanThesis.toc'.
 
- [7] (./HickmanThesis.lof [8
-
-])
+ [7] (./HickmanThesis.lof)
 \tf@lof=\write6
 \openout6 = `HickmanThesis.lof'.
 
- [9] [10
+ [8
+
+] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 170--178
+
+ []
+
+[10
 
 ]
 Chapter 1.
@@ -477,37 +482,37 @@ Underfull \vbox (badness 6157) has occurred while \output is active []
 
 
 ]
-<./figures/UH.jpg, id=217, 2448.14626pt x 1307.88625pt>
+<./figures/UH.jpg, id=211, 2448.14626pt x 1307.88625pt>
 File: ./figures/UH.jpg Graphic file (type jpg)
  <use ./figures/UH.jpg>
-Package pdftex.def Info: ./figures/UH.jpg used on input line 188.
+Package pdftex.def Info: ./figures/UH.jpg used on input line 196.
 (pdftex.def)             Requested size: 258.00262pt x 137.82104pt.
 
-<./figures/MU.jpg, id=218, 2448.14626pt x 1307.88625pt>
+<./figures/MU.jpg, id=212, 2448.14626pt x 1307.88625pt>
 File: ./figures/MU.jpg Graphic file (type jpg)
  <use ./figures/MU.jpg>
-Package pdftex.def Info: ./figures/MU.jpg used on input line 195.
+Package pdftex.def Info: ./figures/MU.jpg used on input line 203.
 (pdftex.def)             Requested size: 258.00262pt x 137.82104pt.
 
-Underfull \vbox (badness 1406) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
 [3 <./figures/UH.jpg> <./figures/MU.jpg>]
 Chapter 2.
 [4
 
-] <./figures/delay_factor.png, id=243, 352.6776pt x 248.127pt>
+] <./figures/delay_factor.png, id=240, 352.6776pt x 248.127pt>
 File: ./figures/delay_factor.png Graphic file (type png)
 
 <use ./figures/delay_factor.png>
-Package pdftex.def Info: ./figures/delay_factor.png used on input line 219.
+Package pdftex.def Info: ./figures/delay_factor.png used on input line 225.
 (pdftex.def)             Requested size: 141.06853pt x 99.24902pt.
 
-<./figures/blocking_factor.png, id=246, 352.6776pt x 248.127pt>
+<./figures/blocking_factor.png, id=243, 352.6776pt x 248.127pt>
 File: ./figures/blocking_factor.png Graphic file (type png)
 
 <use ./figures/blocking_factor.png>
-Package pdftex.def Info: ./figures/blocking_factor.png used on input line 233.
+Package pdftex.def Info: ./figures/blocking_factor.png used on input line 239.
 (pdftex.def)             Requested size: 141.06853pt x 99.24902pt.
 
 
@@ -517,26 +522,12 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Chapter 3.
 [8
 
-] [9] <./figures/curriculum_example.jpg, id=300, 1225.57875pt x 653.44125pt>
-File: ./figures/curriculum_example.jpg Graphic file (type jpg)
-
-<use ./figures/curriculum_example.jpg>
-Package pdftex.def Info: ./figures/curriculum_example.jpg used on input line 29
-3.
-(pdftex.def)             Requested size: 490.22282pt x 261.37187pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10 <./figures/curriculum_example.jpg>] [11] [12] [13] [14] [15]
-Chapter 4.
-[16
-
-] <./figures/components.png, id=336, 760.2804pt x 320.8788pt>
+] <./figures/components.png, id=287, 761.244pt x 342.5598pt>
 File: ./figures/components.png Graphic file (type png)
 
 <use ./figures/components.png>
-Package pdftex.def Info: ./figures/components.png used on input line 363.
-(pdftex.def)             Requested size: 304.10677pt x 128.34924pt.
+Package pdftex.def Info: ./figures/components.png used on input line 279.
+(pdftex.def)             Requested size: 304.4922pt x 137.02148pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -544,59 +535,67 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]
-[18 <./figures/components.png>] [19] (./code/course_constructors.jl) [20]
-(./code/term_constructors.jl) [21] (./code/sample_curriculum.json [22]
+ [9]
+[10 <./figures/components.png>] (./code/course_constructors.jl)
+(./code/term_constructors.jl [11]) [12] (./code/sample_curriculum.json
 LaTeX Font Info:    Try loading font information for T1+fvm on input line 2.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 ))
-(./code/curriculum_constructor.jl) [23] [24] (./code/student_constructor.jl)
-[25] (./code/simulation_constructor.jl [26]) [27] (./code/train.jl)
-(./code/predict_grade.jl) [28] (./code/predict_stopout.jl
+(./code/curriculum_constructor.jl [13]) (./code/student_constructor.jl)
+[14] [15] (./code/train.jl) (./code/predict_grade.jl [16])
+(./code/predict_stopout.jl
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 5.
+(Font)              <5> on input line 4.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
-) (./code/PassRate.jl
-[29]) [30] (./code/sample_simulation.jl) [31]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 4.
+) (./code/PassRate.jl [17]) [18]
+(./code/sample_simulation.jl) [19]
+Chapter 4.
+[20
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+[22] [23] [24] [25] [26]
 Chapter 5.
-<./figures/Simple4.png, id=605, 327.624pt x 326.1786pt>
+<./figures/Simple4.png, id=575, 327.624pt x 326.1786pt>
 File: ./figures/Simple4.png Graphic file (type png)
 
 <use ./figures/Simple4.png>
-Package pdftex.def Info: ./figures/Simple4.png used on input line 527.
+Package pdftex.def Info: ./figures/Simple4.png used on input line 539.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple7.png, id=606, 327.624pt x 326.1786pt>
+<./figures/Simple7.png, id=576, 327.624pt x 326.1786pt>
 File: ./figures/Simple7.png Graphic file (type png)
 
 <use ./figures/Simple7.png>
-Package pdftex.def Info: ./figures/Simple7.png used on input line 531.
+Package pdftex.def Info: ./figures/Simple7.png used on input line 543.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple9-1.png, id=607, 327.624pt x 326.1786pt>
+<./figures/Simple9-1.png, id=577, 327.624pt x 326.1786pt>
 File: ./figures/Simple9-1.png Graphic file (type png)
 
 <use ./figures/Simple9-1.png>
-Package pdftex.def Info: ./figures/Simple9-1.png used on input line 535.
+Package pdftex.def Info: ./figures/Simple9-1.png used on input line 547.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple9-2.png, id=608, 327.624pt x 326.1786pt>
+<./figures/Simple9-2.png, id=578, 327.624pt x 326.1786pt>
 File: ./figures/Simple9-2.png Graphic file (type png)
 
 <use ./figures/Simple9-2.png>
-Package pdftex.def Info: ./figures/Simple9-2.png used on input line 540.
+Package pdftex.def Info: ./figures/Simple9-2.png used on input line 552.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
 
-<./figures/Simple10.png, id=609, 327.624pt x 326.1786pt>
+<./figures/Simple10.png, id=579, 327.624pt x 326.1786pt>
 File: ./figures/Simple10.png Graphic file (type png)
 
 <use ./figures/Simple10.png>
-Package pdftex.def Info: ./figures/Simple10.png used on input line 544.
+Package pdftex.def Info: ./figures/Simple10.png used on input line 556.
 (pdftex.def)             Requested size: 129.00131pt x 128.4335pt.
- [32
+ [27
 
 ]
 
@@ -605,17 +604,17 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 3460) has occurred while \output is active []
 
- [33 <./figures/Simple4.png> <./figures/Simple7.png> <./figures/Simple9-1.png> 
+ [28 <./figures/Simple4.png> <./figures/Simple7.png> <./figures/Simple9-1.png> 
 <./figures/Simple9-2.png> <./figures/Simple10.png>]
 Underfull \vbox (badness 1496) has occurred while \output is active []
 
- [34]
-<./figures/gradRate5_v_Complexity.png, id=637, 1927.2pt x 1084.05pt>
+ [29]
+<./figures/gradRate5_v_Complexity.png, id=607, 1927.2pt x 1084.05pt>
 File: ./figures/gradRate5_v_Complexity.png Graphic file (type png)
 
 <use ./figures/gradRate5_v_Complexity.png>
 Package pdftex.def Info: ./figures/gradRate5_v_Complexity.png used on input lin
-e 647.
+e 659.
 (pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
 
 
@@ -624,51 +623,51 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 1270) has occurred while \output is active []
 
- [35 <./figures/gradRate5_v_Complexity.png>]
-<./figures/gradRate10_v_complexity.png, id=647, 1927.2pt x 1084.05pt>
+ [30 <./figures/gradRate5_v_Complexity.png>]
+<./figures/gradRate10_v_complexity.png, id=617, 1927.2pt x 1084.05pt>
 File: ./figures/gradRate10_v_complexity.png Graphic file (type png)
 
 <use ./figures/gradRate10_v_complexity.png>
 Package pdftex.def Info: ./figures/gradRate10_v_complexity.png used on input li
-ne 669.
+ne 681.
 (pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
- [36 <./figures/gradRate10_v_complexity.png>] <./figures/comp_ch_plot.png, id=6
-55, 1927.2pt x 1084.05pt>
+ [31 <./figures/gradRate10_v_complexity.png>] <./figures/comp_ch_plot.png, id=6
+24, 1927.2pt x 1084.05pt>
 File: ./figures/comp_ch_plot.png Graphic file (type png)
 
 <use ./figures/comp_ch_plot.png>
-Package pdftex.def Info: ./figures/comp_ch_plot.png used on input line 690.
+Package pdftex.def Info: ./figures/comp_ch_plot.png used on input line 702.
 (pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[37]
+[32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38 <./figures/comp_ch_plot.png>]
-<./figures/Reachability.png, id=667, 488.0634pt x 172.0026pt>
+ [33 <./figures/comp_ch_plot.png>]
+<./figures/Reachability.png, id=636, 488.0634pt x 172.0026pt>
 File: ./figures/Reachability.png Graphic file (type png)
 
 <use ./figures/Reachability.png>
-Package pdftex.def Info: ./figures/Reachability.png used on input line 702.
+Package pdftex.def Info: ./figures/Reachability.png used on input line 714.
 (pdftex.def)             Requested size: 215.0pt x 75.7706pt.
 
-<./figures/Centrality.png, id=668, 488.0634pt x 172.0026pt>
+<./figures/Centrality.png, id=637, 488.0634pt x 172.0026pt>
 File: ./figures/Centrality.png Graphic file (type png)
 
 <use ./figures/Centrality.png>
-Package pdftex.def Info: ./figures/Centrality.png used on input line 709.
+Package pdftex.def Info: ./figures/Centrality.png used on input line 721.
 (pdftex.def)             Requested size: 215.0pt x 75.7706pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<./figures/webAll.png, id=673, 1927.2pt x 1084.05pt>
+<./figures/webAll.png, id=642, 1927.2pt x 1084.05pt>
 File: ./figures/webAll.png Graphic file (type png)
 
 <use ./figures/webAll.png>
-Package pdftex.def Info: ./figures/webAll.png used on input line 733.
+Package pdftex.def Info: ./figures/webAll.png used on input line 745.
 (pdftex.def)             Requested size: 481.79883pt x 271.01184pt.
 
 
@@ -677,47 +676,56 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39 <./figures/Reachability.png> <./figures/Centrality.png>] [40 <./figures/we
+ [34 <./figures/Reachability.png> <./figures/Centrality.png>] [35 <./figures/we
 bAll.png>]
-<./figures/instructional.png, id=687, 1927.2pt x 1084.05pt>
+<./figures/instructional.png, id=657, 1927.2pt x 1084.05pt>
 File: ./figures/instructional.png Graphic file (type png)
 
 <use ./figures/instructional.png>
-Package pdftex.def Info: ./figures/instructional.png used on input line 743.
+Package pdftex.def Info: ./figures/instructional.png used on input line 755.
 (pdftex.def)             Requested size: 385.43318pt x 216.80615pt.
- [41 <./figures/instructional.png>]
+ [36 <./figures/instructional.png>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[42] [43]
+
+Overfull \hbox (13.53607pt too wide) in paragraph at lines 824--824
+[]\T1/cmr/bx/n/17.28 Proof of Con-cept: Sim-u-la-tion With Stu-dent Char-|
+ []
+
+
+Underfull \vbox (badness 6608) has occurred while \output is active []
+
+ [37]
+[38]
 Chapter 6.
 
 Underfull \vbox (badness 6157) has occurred while \output is active []
 
- [44
+ [39
 
 ]
-(./HickmanThesis.bbl [45] [46
+(./HickmanThesis.bbl [40] [41
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 840.
- [47]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 840.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 852.
+ [42]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 852.
  (./HickmanThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 840.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 840.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 852.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 852.
 Package rerunfilecheck Info: File `HickmanThesis.out' has not changed.
-(rerunfilecheck)             Checksum: 794098E9FCFCB598FB99CFDD6FDC9512;1618.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 840.
+(rerunfilecheck)             Checksum: 1E3932048DFCAD6A7A0CAF7058A7D0F5;1679.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 852.
  ) 
 Here is how much of TeX's memory you used:
- 9744 strings out of 493014
- 146714 string characters out of 6133351
+ 9724 strings out of 493014
+ 146272 string characters out of 6133351
  329984 words of memory out of 5000000
- 12760 multiletter control sequences out of 15000+600000
+ 12754 multiletter control sequences out of 15000+600000
  19230 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,10n,40p,1618b,1685s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,10n,40p,1620b,1687s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
@@ -740,10 +748,10 @@ blic/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/publ
 ic/cm-super/sfsl1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
 /cm-super/sfti1095.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/c
 m-super/sfti1200.pfb>
-Output written on HickmanThesis.pdf (56 pages, 2377387 bytes).
+Output written on HickmanThesis.pdf (51 pages, 1767055 bytes).
 PDF statistics:
- 864 PDF objects out of 1000 (max. 8388607)
- 750 compressed objects within 8 object streams
- 333 named destinations out of 1000 (max. 500000)
- 283 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 831 PDF objects out of 1000 (max. 8388607)
+ 723 compressed objects within 8 object streams
+ 323 named destinations out of 1000 (max. 500000)
+ 278 words of extra memory for PDF output out of 10000 (max. 10000000)
 

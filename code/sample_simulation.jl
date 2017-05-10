@@ -1,9 +1,9 @@
-# Import the framework
-using CurriculumFlow
+using CASL
 
 # Load the user defined performance module
 # in this case called 'ProbitModel'
-require("./path/to/ProbitModel.jl")
+require("./path/to/CustomPerformanceModel.jl")
+# => CustomModel
 
 # Load the Curriculum
 curriculum = Curriculum("./path/to/curriculum.json")
@@ -20,15 +20,12 @@ for i=1:1000
     push!(students, student)
 end
 
-# Create the simulation object
-simulation = Simulation(curriculum; model=ProbitModel)
-
-# Now a simulation can be run
-simulate(simulation, students)
-println(simulation.gradRate)
+# Now a simulation can be run using the coures passrate model
+sim1 = simulate(curriculum, students)
+println(sim1.gradRate)
 # => 0.73
 
-# Tweak the parameters
-simulate(simulation, students; duration=10, max_credis=19, stopouts=false)
-println(simulation.gradRate)
+# Tweak the parameters and use the custom performance model
+sim2 = simulate(curriculum, students; duration=10, max_credis=19, performance_model=CustomModel, stopouts=false)
+println(sim2.gradRate)
 # => 0.85

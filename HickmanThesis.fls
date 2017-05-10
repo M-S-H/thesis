@@ -169,9 +169,6 @@ INPUT ./figures/delay_factor.png
 INPUT ./figures/blocking_factor.png
 INPUT ./figures/blocking_factor.png
 INPUT ./figures/blocking_factor.png
-INPUT ./figures/curriculum_example.jpg
-INPUT ./figures/curriculum_example.jpg
-INPUT ./figures/curriculum_example.jpg
 INPUT ./figures/components.png
 INPUT ./figures/components.png
 INPUT ./figures/components.png
@@ -179,6 +176,7 @@ INPUT code/course_constructors.jl
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/jknappen/ec/ecrm0600.tfm
 INPUT code/course_constructors.jl
 INPUT code/course_constructors.jl
+INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/jknappen/ec/ecbx0600.tfm
 INPUT code/term_constructors.jl
 INPUT code/term_constructors.jl
 INPUT code/term_constructors.jl
@@ -196,13 +194,9 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/bera/fvmr8r.tfm
 INPUT code/student_constructor.jl
 INPUT code/student_constructor.jl
 INPUT code/student_constructor.jl
-INPUT code/simulation_constructor.jl
-INPUT code/simulation_constructor.jl
-INPUT code/simulation_constructor.jl
 INPUT code/train.jl
 INPUT code/train.jl
 INPUT code/train.jl
-INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/jknappen/ec/ecbx0600.tfm
 INPUT code/predict_grade.jl
 INPUT code/predict_grade.jl
 INPUT code/predict_grade.jl

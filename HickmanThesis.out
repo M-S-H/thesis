@@ -2,23 +2,23 @@
 \BOOKMARK [0][-]{chapter*.3}{Glossary}{}% 2
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
 \BOOKMARK [0][-]{chapter.2}{Previous Work}{}% 4
-\BOOKMARK [1][-]{section.2.1}{Defining Structural Complexity}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.1}{Defining A Curriculum's Structural Complexity}{chapter.2}% 5
 \BOOKMARK [1][-]{section.2.2}{Student Simulations}{chapter.2}% 6
-\BOOKMARK [0][-]{chapter.3}{Simulating Students in a Curriculum}{}% 7
-\BOOKMARK [1][-]{section.3.1}{Discrete Event Simulations}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.2}{Defining A Curricula}{chapter.3}% 9
-\BOOKMARK [1][-]{section.3.3}{Assumptions}{chapter.3}% 10
-\BOOKMARK [1][-]{section.3.4}{Simulation Model Logic}{chapter.3}% 11
-\BOOKMARK [2][-]{subsection.3.4.1}{Control Flow}{section.3.4}% 12
-\BOOKMARK [0][-]{chapter.4}{Framework Design \046 Implementation}{}% 13
-\BOOKMARK [1][-]{section.4.1}{Julia}{chapter.4}% 14
-\BOOKMARK [1][-]{section.4.2}{Architecture and Implementation Details}{chapter.4}% 15
-\BOOKMARK [2][-]{subsection.4.2.1}{Framework Data Types}{section.4.2}% 16
-\BOOKMARK [2][-]{subsection.4.2.2}{Performance Modules}{section.4.2}% 17
-\BOOKMARK [2][-]{subsection.4.2.3}{Simulation Method}{section.4.2}% 18
-\BOOKMARK [0][-]{chapter.5}{Application in Curricular Analytics}{}% 19
-\BOOKMARK [1][-]{section.5.1}{Correlating Complexity with Completion Rates}{chapter.5}% 20
-\BOOKMARK [2][-]{subsection.5.1.1}{Evaluating Additional Complexity Measures}{section.5.1}% 21
-\BOOKMARK [1][-]{section.5.2}{Sensitivity Analysis of Instructional Complexity}{chapter.5}% 22
+\BOOKMARK [0][-]{chapter.3}{Library Design \046 Implementation}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Julia}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.2}{Architecture and Implementation Details}{chapter.3}% 9
+\BOOKMARK [2][-]{subsection.3.2.1}{Library Data Types}{section.3.2}% 10
+\BOOKMARK [2][-]{subsection.3.2.2}{Performance Modules}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.3}{Simulation Method}{section.3.2}% 12
+\BOOKMARK [0][-]{chapter.4}{Simulation Details}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Discrete Event Simulations}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.2}{Simulation Assumptions}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.3}{Simulation Model Logic}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.3.1}{Control Flow}{section.4.3}% 17
+\BOOKMARK [0][-]{chapter.5}{Application in Curricular Analytics}{}% 18
+\BOOKMARK [1][-]{section.5.1}{Correlating Complexity with Completion Rates}{chapter.5}% 19
+\BOOKMARK [2][-]{subsection.5.1.1}{Evaluating Additional Complexity Measures}{section.5.1}% 20
+\BOOKMARK [1][-]{section.5.2}{Sensitivity Analysis of Instructional Complexity}{chapter.5}% 21
+\BOOKMARK [1][-]{section.5.3}{Proof of Concept: Simulation With Student Characteristics using Probit Model}{chapter.5}% 22
 \BOOKMARK [0][-]{chapter.6}{Conclusion/Future Work}{}% 23
 \BOOKMARK [0][-]{chapter*.16}{References}{}% 24

@@ -1,5 +1,4 @@
 # SampleModule
-
 function predict_grade(course, student)
   # Get the parameters from course
   params = course.model[:params]

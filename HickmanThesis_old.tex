@@ -155,7 +155,7 @@ stringstyle=\color{orange}}
 \maketitleabstract
 
 \begin{abstract}
-  Abstract goes here
+  Higher Education Institutions spend much of their resources in attempts to improve student success by adressing areas such as instruction quality, tutoring programs, and more. However, one area that tends to be overlooked is the structure of the curricula that are offered. One reason for this is that curricula are not seen as data and therefore there are no tools to analysize and evaluate how their structures can influence student success. This thesis describes a software library that was developed to address this issue by provinding the ability to represesent curricula in a programming environment as well as a set of tools to evalute the complexity of curricula and simulate students moving through them. Furthermore, the application of these tools are detailed, correlating a curriculum's structural properties to student success.
   \clearpage
 \end{abstract}
 
@@ -176,11 +176,11 @@ JSON
 % INTRODUCTION
 %----------------------------------------------------------------------------------------
 \chapter{Introduction}
-  The goal of every higher-education institution is to successfully educate students with skills and knowledge needed to enter, and be successful in the workforce. This is done by offering courses with desired learning outcomes required for success in a given field of work. These courses are then structured into a curriculum in which knowledge can be acquired and built upon. Moving students through these curricula is means in which universities and institutions achieve the goal of producing a student body well equipped for success in their chosen careers. Even more, universities are not merely just interested in students completing a program, but doing so in a timely manner. Most students wish to complete a degree as quick as possible and part of their success is determined by efficiency of their time at a university. Likewise, universities are incentivized to produce high four, five, and six year graduation rates.
+  The goal of every higher-education institution is to successfully educate students with the skills and knowledge needed to enter, and succeed in the workforce. This is done by offering courses with desired learning outcomes required for success in a given field of work. These courses are then structured into a curriculum in which knowledge can be acquired and built upon. Moving students through these curricula is means in which universities and institutions achieve the goal of producing a student body well equipped for success in their chosen fields. Even more, universities are not only interested in students completing a program, but doing so in a timely manner. Most students wish to complete a degree as quick as possible and part of their success is determined by efficiency of their time at a university. Likewise, universities are incentivized to produce high four, five, and six year graduation rates.
 
-  It is no surprise then that much time, money, and research are spent in attempts to improve timely student success and the efficiency of their offered programs. Examples include tutoring programs, better advisement, intervention programs, financial support, improving instruction quality, experimenting with classroom structures (hybrid courses, flipped classrooms etc.) and many more \cite{o2015use,topping1996effectiveness,hunter2004could,king2002identifying,lewallen1993early}. While these are all worthy pursuits that address many aspects of a student's academic career, there is one area that many universities often overlook when it comes to improving a student's journey through a curriculum: the structure of the curriculum itself.
+  It is no surprise then, that universities spend much time, money, and research with the goal of improving timely student success and the efficiency of their offered programs. Examples include tutoring programs, better advisement, intervention programs, financial support, improving instruction quality, experimenting with classroom structures (hybrid courses, flipped classrooms etc.) and many more \cite{o2015use,topping1996effectiveness,hunter2004could,king2002identifying,lewallen1993early}. While these are all worthy pursuits that address many aspects of a student's academic career, there is one area that many universities often overlook when it comes to improving a student's journey through a curriculum: the structure of the curriculum itself.
 
-  Every university's curricula are carefully designed and structured in such a way that students can achieve the learning outcomes defined for a given field of study. In most cases these learning outcomes are shared among most universities. The knowledge provided by a Mathematics at one university will most likely be the same as that at any other university. However, despite these shared learning outcomes every university's curricula is quite different. This is evident when viewing a curriculum as data - or more specifically, a graph, and by doing so the way in which it's structure can influence the efficiency of a student moving through it becomes apparent. For example see figure \ref{fig:comparison}.
+  Every university's curricula are carefully designed and structured in such a way that students can achieve the learning outcomes defined for a given field of study. In most cases these learning outcomes are shared among most universities. The knowledge provided by a mathematics program at one university will most likely be the same as that of any other university. However, despite these shared learning outcomes every university's curricula is quite different. This is evident when viewing a curriculum as data - or more specifically, a graph. By doing so, it becomes apparent that the way in which a curriculum is structured can influence the way in which students can move through it and therefore effects the efficiency of a student. For example, consider figure \ref{fig:comparison}. Here, you can see a comparison of two Electrical Engineering curricula from two different institutions. Both curricula are four year programs within four credit hours of one another and even without knowing the specific courses in each it obvious that they are both structurally different from one another. This begs the question is one, based merely on structure alone, more conducive to timely graduation than the other?
 
   \begin{figure}
     \centering
@@ -200,9 +200,7 @@ JSON
     \label{fig:comparison}
   \end{figure}
 
-  In this figure you can see a comparison of two Electrical Engineering curricula from two different institutions. Figure \ref{fig:UH} shows University of Houston's while \ref{fig:MU} shows Michigan University's. Both curricula are four year programs within four credit hours of one another and even without knowing the specific courses in each it obvious that they are both structurally different from one another. This begs the question is one, based merely on structure alone, more conducive to timely graduation than the other?
-
-  This thesis describes a software framework, the Curricular Analysis and Simulation (CAS) framework that allows for formal analytics over curricula to be done to help answer questions like the one previously posed. The framework described is an open-source Julia package that allows curricula to be represented in a programming, provides metrics for quantifying the complexity of a curriculum, both instructional and structural and, as it's name implies, simulates of students moving through curricula via discrete-event simulations. Though there are many statistical and machine-learning models for predicting the rate at which students might graduate, they fail to meaningfully represent the process from enrollment to graduation. This is where simulations can be a powerful tool for understanding not just how fast, but how students move through curricula and how curriculum characteristics play a role. This, rather than accurately predicting completion rates is the main focus of the CAS framework.
+  This thesis describes a software framework, the Curricular Analysis and Simulation (CAS) framework that allows for formal analytics over curricula to be done to help answer questions like the one previously posed. The framework described is an open-source Julia package that allows curricula to be represented in a programming environment, provides metrics for quantifying the complexity of a curriculum and, as it's name implies, simulates of students moving through curricula via discrete-event simulations. Though there are many statistical and machine-learning models for predicting the rate at which students might graduate, they fail to meaningfully represent the process from enrollment to graduation. This is where simulations can be a powerful tool for understanding not just how fast, but how students move through curricula and how curriculum characteristics play a role.
 
 
 %----------------------------------------------------------------------------------------
@@ -247,8 +245,13 @@ JSON
       S = \sum_{i}^n C_{i}
     \end{equation}
 
+
   \section{Student Simulations}
-  TODO: DESCRIBE PAPERS ON SIMULATING STUDENTS.
+    There has been much research done predicting and analyzing student performance, the majority of which use statistical analysis or machine learning models \cite{7008697,6826206,goenner2004predicting}. Although less so, there has also been work done in this area using simulations with a variety of motivations. For example, Webster \cite{10.2307/3444955} describes a simulation model that takes into account student enrollment, teaching resources, and financial data to run simulation to aid financial decisions. Plotnicki and Garfinke \cite{RePEc:eee:soceps:v:20:y:1986:i:4:p:193-199} use simulations to determine the best possible schedule of courses that allow the greatest number of students to easily move through the curriculum and similar work by Schellekens et al \cite{10.2307/40540244} observed the effects of giving students more flexibility within a program via simulation.
+
+    While all of this work shares some similarity with the CAS framework, the work that it relates to the most was conducted at San Fransisco State University using simulations to observe how changes made to a curriculum affect student performance \cite{saltzman2012simulating}. Saltzman and Roeder modeled students flowing through SFSU's College of Business as a discrete event simulation using historical data to drive course-enrollment behavior and course pass-rates to determine whether or not students pass courses they're enrolled in. Using this model, they determined the effects of curriculum changes such as removing courses or prerequisites. This method influenced the design of the CAS framework, however there are some major differences. For example the CAS framework makes different assumptions made that influence how students are enrolled, lacks a new incoming class each term, tracks more student data (such as GPA) and can be extend to make pass/fail determinations based on more than just pass-rate data.
+
+    The largest is difference however, is implementation - not just in method, but philosophy. While Saltzman and Roeder's and the others' simulations were implemented using commercial software, the CAS framework is free and open source and does not build the curriculum into the simulation logic, but rather is flexible enough to perform simulations over any curriculum through a standard format. More than that the CAS framework extends beyond just simulation and provides a way to represent curriculum-related data in a programming environment that could be useful apart from simulations. The goal was not merely to provide simulations, but a useful toolkit to work with curricula and related data.
 
 %----------------------------------------------------------------------------------------
 % Simulation
@@ -260,9 +263,9 @@ JSON
 
   \begin{itemize}
   \item \textbf{Starting and Ending States} - The simulation will begin in a given state and will continue until it reaches another state that represents some pre-defined ending-condition or a point in time.
-  \item \textbf{Clock} - The simulation must keep track of the time that has ellapsed after it begins in any time unit relevant to the domain of the simulation. The clock does not run continuously as events occur instantaneously, but it does jump to certain times as events occur.
-  \item \textbf{List of Events} - The system maintains a list of events that can occur during the simulation. These events are placed in a que and are usually executed based on simulation time rather than the time they were queued.
-  \item \textbf{Statistics} - As the ending state is not the only result of interest when running simulations, the system keeps track of various statitics based on the events that have occured.
+  \item \textbf{Clock} - The simulation must keep track of the time that has elapsed after it begins in any time unit relevant to the domain of the simulation. The clock does not run continuously as events occur instantaneously, but it does jump to certain times as events occur.
+  \item \textbf{List of Events} - The system maintains a list of events that can occur during the simulation. These events are placed in a queue and are usually executed based on simulation time rather than the time they were queued.
+  \item \textbf{Statistics} - As the ending state is not the only result of interest when running simulations, the system keeps track of various statistics based on the events that have occurred.
   \end{itemize}
 
   Using these components, a simulation is constructed using the basic following logic:
@@ -343,18 +346,19 @@ JSON
 %----------------------------------------------------------------------------------------
 % Curricula Simulation Framework Design
 %----------------------------------------------------------------------------------------
-\chapter{Curricula Simulation Framework Design \& Implementation}
+\chapter{Framework Design \& Implementation}
 
   \section{Julia}
     The CAS framework is implemented in the open-source Julia programming language and made available as an open-source Julia package. Julia is described as a high-level, high-performance dynamic programming language for technical computing that "has the performance of a statically compiled language while providing interactive dynamic behavior and productivity like Python, LISP or Ruby" \cite{Julia}. It is built upon an LLVM-based just-in-time (JIT) compiler which allows it to reach performance close to that of C and, in many cases, speeds faster than that of R or MATLAB \cite{Julia}. Julia's defining feature is multiple dispatch but some other notable features are module support, a type system, parallelism and a built-in package manager. It also has a thriving community of developers contributing high-quality open source libraries spanning a range of applications such as machine-learning, statistical analysis, graph analysis, plotting, and data-handling.
 
     Each of these features contributed to choosing Julia as the language of implementation. Julia's type system, ease of use and dynamic nature made it simple to implement the framework's various components, methods logic. Working with data formats such as JSON and CSV were especially easier that a computation language such as MATLAB. However this ease of development did not come at the expense of performance as Julia is incredibly fast and it's support for parallelism allowed running many simulations much faster as they could be carried out in parallel. Topping it all off is it's built in package manager with a plethora of packages that will enable uses extend the framework and simulation capabilities with powerful machine learning and statistical models.
 
+
   \section{Architecture and Implementation Details}
     The framework is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the framework is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component of the framework are.\ modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The framework comes with one out of the box, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections describe each component in greater detail.
 
     \begin{figure}[h!]
-      \centerline{\includegraphics[scale=0.4]{./figures/component_diagram.jpg}}
+      \centerline{\includegraphics[scale=0.4]{./figures/components.png}}
       \caption{A component diagram of the CAS framework.} 
       \label{fig:component_diagram}
     \end{figure}
@@ -435,7 +439,7 @@ JSON
       \begin{description}
         \item [id] A unique integer identifier for the student. Before a simulation is run, these are set to ensure all student ids are unique integer values starting at one.
         \item [total\_credits] The total number of credit hours a student has earned during the simulation.
-        \item [total\_points] The total number of points a student has earned during the simulation. The number of points a student earns for a course is the product of the number of credit hours for the courses and the received grade's value. For example if a student earns a B+ in a three credit hour course, then they will receive (3.3*3) or 9.9points.
+        \item [total\_points] The total number of points a student has earned during the simulation. The number of points a student earns for a course is the product of the number of credit hours for the courses and the received grade's value. For example if a student earns a B+ in a three credit hour course, then they will receive (3.3*3) or 9.9 points.
         \item [gpa] The students grade point average, which is computed at the end of every term. It is derived by dividing the student's \textit{total\_points} by their \textit{total\_credits}.
         \item [termcredits] The number of credit hours the student registers for in a single term. At the end of every term it is reset to zero.
         \item [stopout] A boolean value that indicates whether a student has stopped out and is no longer enrolled.
@@ -686,9 +690,48 @@ JSON
       \label{fig:wbcompch}
     \end{figure}
 
+    \subsection{Evaluating Additional Complexity Measures}  
+      While it has been shown that both delay and blocking factors can affect students moving through a curriculum, they are far from the only way to describe the structural complexity of a curriculum. Any number of metrics for quantifying the complexity of a curriculum could be devised yet demonstrating that the underlying structural properties influence students could be difficult. Again, simulation provides a solution. Using linear regression methods like those previously described to fit proposed metrics with simulated completion rates could aid in determining what structural properties aid or hinder students. This method was used to conduct an experiment to evaluate three new proposed metrics and curriculum properties: course centrality, course reachability, and free courses.
 
-  \section{Evaluating Complexity Measures}  
-    TODO: Include evaluation of centrality and reachability with regression results.
+      When a student fails to pass a course, they are probably hindered from taking other courses. In cases like this students might be able to take a course that has no prerequisite (such as an elective) so that they can still make progress while retaking their failed course. Therefore the number of courses without any prerequisites in a curriculum might influence student progress. A course's reachability describes how difficult it is to get to. It is defined similarly to that of a course's blocking factor but instead of counting the number of courses that can be taken after completing the given course, it counts the number of courses that must be completed to reach the given course. A course's centrality attempted to measure how central a course is within a curriculum by counting the number of unique paths that a course appears on. Examples of these two measures can be seen in figures \ref{fig:Reachability} and \ref{fig:Centrality}.
+
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{./figures/Reachability.png}
+        \caption{Example of course reachability.}
+        \label{fig:Reachability}
+      \end{figure}
+      \vspace{0.5in}
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{./figures/Centrality.png}
+        \caption{Example of course centrality.}
+        \label{fig:Centrality}
+      \end{figure}
+
+      Instead of evaluating these new metrics individually, it makes more sense to do in addition to the delay and blocking factors already defined.  As seen in figure \ref{fig:web10} complexity alone does not explain why curricula with similar or the same complexity measures and perhaps structural properties explained by course centrality and reachability could explain why. These metrics don't attempt to replace delay and blocking, but rather compliment them in capturing structural qualities that they don't. Using the same simulation results as those seen in \ref{fig:web10}, linear regression was performed using complexity, reachability, centrality, credit hours, and free courses as independent variables. The results of the regression produced a R-squared value of 0.825 and can be seen in table \ref{tab:webAll} and \ref{fig:webAll}.
+
+      \begin{table}[!h]
+        \centering
+        \caption{Real-World curricula regression results using complexity, reachability, centrality, credit hours, and free courses as independent variables.}
+        \label{tab:webAll}
+        \begin{tabular}{l*{4}{c}}
+          Coefficient       & Estimate      & Std Error   & Z Value     & Pr(>|z|)  \\
+          \hline
+          (Intercept)       &     231.806   &   27.6088   &  8.39609    &   <1e-16  \\
+          complexity        &    0.175771   &  0.104419   &  1.68332    &   0.0923  \\
+          inverseBlocking   &   -0.375347   &  0.325843   & -1.15193    &   0.2494  \\
+          centrality        &  -0.0577261   & 0.0332347   & -1.73692    &   0.0824  \\
+          creditHours       &    -1.27575   &  0.214141   & -5.95753    &    <1e-8  \\
+          free              &   -0.082392   &  0.207935   & -0.39624    &   0.6919  \\
+        \end{tabular}
+      \end{table}
+
+      \begin{figure}[h!]
+        \centerline{\includegraphics[scale=0.25]{./figures/webAll.png}}
+        \caption{Regression analysis plot using complexity, reachability, centrality, credit hours, and free courses as independent variables.} 
+        \label{fig:webAll}
+      \end{figure}
 
 
   \section{Sensitivity Analysis of Instructional Complexity}
@@ -702,7 +745,7 @@ JSON
 
     This figure shows the completion rate of the Computer Engineering curriculum for a given pass-rate assigned to every course. As expected, the completion rates increase as course pass-rates increase and shows how the instructional complexity of a curriculum affects student success. One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the pass-rate of critical courses can increase student graduation rates. So then the question becomes which courses should receive the most attention?
 
-    This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates.
+    This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates. In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses.
 
     \begin{table}[!h]
     \tiny
@@ -764,19 +807,25 @@ JSON
     \label{tab:cpe_sensitivity}
     \end{table}
 
-    In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses. 
+  % \section{Simulation With Student Characteristics using Probit Model}
+  % TODO?
 
 %----------------------------------------------------------------------------------------
 %  Discussion
 %----------------------------------------------------------------------------------------
-\chapter{Discussion}
-TODO
+% \chapter{Discussion}
+% TODO
+
 
 %----------------------------------------------------------------------------------------
 %  Future Work
 %----------------------------------------------------------------------------------------
-\chapter{Future Work}
-TODO
+\chapter{Conclusion/Future Work}
+  The CAS framework described in this paper provides a good first step towards providing tools to perform analytics over curricula and student data though there is still plenty of work that can be done both on the features of the framework itself as well as the analysis enabled by it. First, the framework could be improved with polish such as better error-handling, generators for module extensions, and built in documentation. The feature set could also be expanded especially in terms of simulation customization. It has been explained that the simulation operates under several assumptions that were made intentionally, however some of these assumptions could be lifted. For example, courses can be set to only be offered only in certain terms, or they could have class-size limits. Furthermore, support could be added for more robust student-enrollment procedures. In this same vein, more out-of-the-box modules could be included to predict grades using a variety of machine-learning and statistical methods. These kinds of improvements of the simulation procedure enable more complex student behavior which could lead to making it a more powerful prediction tool.
+
+  In terms of the analytics work enabled by the framework, there is always room for improvement in the kinds of measures that can be devised to quantify the structural complexity of curricula. While a perfect measure, or set of measures that perfectly correlates to both simulated and real-world completion rates probably doesn't exist, there might still exist measures that capture structural complexities better than the ones described here. Furthermore there is also plenty of work to be done analyzing instructional complexity, or the difficulty of curricula as well. This work took a back seat to analysis of curricula complexity, but is a wide-open area of research. Using the framework to simply focus on individual courses, rather than a whole curricula, especially with regards to grade-depiction could yield valuing insights. Combining this with more configurable simulations could produce accurate predictions and what-if analysis.
+
+  In addition to this work, the CAS framework could also benefit from a GUI implementation. Given that there is already a community using the tools provided Curricular Dashboards and uses a near-identity format for representing curricula, it would be a good fit. Although it would be somewhat limited, providing an interface for performing simulations over curricula that has been uploaded would be powerful and provide a simple way for users, especially those without programming experience, to benefit from the framework and gain more insights into their curricula - with the hopes that this insight might prove useful in decision making that could positively impact student success.
 
 %----------------------------------------------------------------------------------------
 %  REFERENCE LIST

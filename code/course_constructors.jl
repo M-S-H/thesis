@@ -1,3 +1,6 @@
+# Import the framework
+using CASL
+
 # Math 162 course with no pre or corequisite.
 math162 = Course("Calculus I", 4, [], [])
 
