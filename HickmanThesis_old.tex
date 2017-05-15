@@ -126,13 +126,13 @@ stringstyle=\color{orange}}
 % Frontmatter
 \frontmatter
 
-\title{Student Flow Simulation with Applications in Curricular Analytics}
+\title{Development of a Curriculum Analysis and Simulation Library with Applications in Curricular Analytics}
 \author{Michael Hickman}
 \degreesubject{M.S., Computer Engineering}
 \degree{Master of Science\\Computer Engineering}
 \documenttype{Thesis}
 \previousdegrees{B.S., University of New Mexico 2014}
-\date{September, \thisyear}
+\date{May, \thisyear}
 
 \maketitle
 \makecopyright
@@ -155,7 +155,8 @@ stringstyle=\color{orange}}
 \maketitleabstract
 
 \begin{abstract}
-  Higher Education Institutions spend much of their resources in attempts to improve student success by adressing areas such as instruction quality, tutoring programs, and more. However, one area that tends to be overlooked is the structure of the curricula that are offered. One reason for this is that curricula are not seen as data and therefore there are no tools to analysize and evaluate how their structures can influence student success. This thesis describes a software library that was developed to address this issue by provinding the ability to represesent curricula in a programming environment as well as a set of tools to evalute the complexity of curricula and simulate students moving through them. Furthermore, the application of these tools are detailed, correlating a curriculum's structural properties to student success.
+  Higher education institutions spend much of their resources in attempts to improve student success by addressing improving instruction quality, implementing tutoring programs, and providing other services to help students. While these are all worthwhile, one area that tends to be overlooked is the structure of the curricula that are offered. When viewing curricula as data, or more specifically, a graph, it is intuitive to see how it's structure can influence a student's ability to move through it. However, there are currently no tools to analyze a curriculum's structural properties and how they might affect student success. This thesis describes a software library that was developed to address this issue by providing the ability to represent curricula in a programming environment as well as a set of tools to evaluate the complexity of curricula and simulate students moving through them. Furthermore, the application of these tools are shown through several experiments that demonstrate a negative correlation between a curriculum's complexity and student success.
+
   \clearpage
 \end{abstract}
 
@@ -167,8 +168,16 @@ stringstyle=\color{orange}}
 
 % Glossary
 \chapter{Glossary}
-Discrete-Event Simulation
-JSON
+  \textbf{Discrete-Event Simulation} \  \\
+  \textbf{JSON} \  \\
+  \textbf{Julia} \  \\
+  \textbf{Linear Regression} \  \\
+  \textbf{Probit Regression} \  \\
+  \textbf{Curricular Complexity} \  \\
+  \textbf{Structural Complexity} \  \\
+  \textbf{Instructional Complexity} \  \\
+
+
 \mainmatter
 
 
@@ -176,7 +185,7 @@ JSON
 % INTRODUCTION
 %----------------------------------------------------------------------------------------
 \chapter{Introduction}
-  The goal of every higher-education institution is to successfully educate students with the skills and knowledge needed to enter, and succeed in the workforce. This is done by offering courses with desired learning outcomes required for success in a given field of work. These courses are then structured into a curriculum in which knowledge can be acquired and built upon. Moving students through these curricula is means in which universities and institutions achieve the goal of producing a student body well equipped for success in their chosen fields. Even more, universities are not only interested in students completing a program, but doing so in a timely manner. Most students wish to complete a degree as quick as possible and part of their success is determined by efficiency of their time at a university. Likewise, universities are incentivized to produce high four, five, and six year graduation rates.
+  The goal of every higher-education institution is to successfully educate students with the skills and knowledge needed to enter, and succeed in the workforce. This is accomplished by offering courses with learning outcomes required for success in a given field of work. These courses are then structured into a curriculum in which knowledge can be acquired and built upon. Moving students through these curricula is means in which universities and institutions achieve the goal of producing a student body well equipped for success in their chosen fields. Even more, universities are not only interested in students completing a program, but doing so in a timely manner. Most students wish to complete a degree as quick as possible and part of their success is determined by efficiency of their time at a university. Likewise, universities are incentivized to produce high four, five, and six year graduation rates.
 
   It is no surprise then, that universities spend much time, money, and research with the goal of improving timely student success and the efficiency of their offered programs. Examples include tutoring programs, better advisement, intervention programs, financial support, improving instruction quality, experimenting with classroom structures (hybrid courses, flipped classrooms etc.) and many more \cite{o2015use,topping1996effectiveness,hunter2004could,king2002identifying,lewallen1993early}. While these are all worthy pursuits that address many aspects of a student's academic career, there is one area that many universities often overlook when it comes to improving a student's journey through a curriculum: the structure of the curriculum itself.
 
@@ -200,7 +209,7 @@ JSON
     \label{fig:comparison}
   \end{figure}
 
-  This thesis describes a software framework, the Curricular Analysis and Simulation (CAS) framework that allows for formal analytics over curricula to be done to help answer questions like the one previously posed. The framework described is an open-source Julia package that allows curricula to be represented in a programming environment, provides metrics for quantifying the complexity of a curriculum and, as it's name implies, simulates of students moving through curricula via discrete-event simulations. Though there are many statistical and machine-learning models for predicting the rate at which students might graduate, they fail to meaningfully represent the process from enrollment to graduation. This is where simulations can be a powerful tool for understanding not just how fast, but how students move through curricula and how curriculum characteristics play a role.
+  This thesis describes a software library, the Curricular Analysis and Simulation Library (CASL) that allows for formal analytics over curricula to be done to help answer questions like the one previously posed. The library described is an open-source Julia package that allows curricula to be represented in a programming environment, provides metrics for quantifying the complexity of a curriculum. The central feature of this library is, as it's name implies, the simulation of students moving through curricula via discrete-event simulations. Though there are many statistical and machine-learning models for predicting the rate at which students might graduate, they fail to meaningfully represent the process from enrollment to graduation. This is where simulations can be a powerful tool for understanding not just how fast, but how students move through curricula and how curriculum characteristics play a role. In addition an overview of this software library, this thesis details several experiments that make use of it to demonstrate the correlation between a curriculum's structure and student success.
 
 
 %----------------------------------------------------------------------------------------
@@ -208,7 +217,7 @@ JSON
 %----------------------------------------------------------------------------------------
 \chapter{Previous Work}
 
-  \section{Defining Structural Complexity}
+  \section{Defining A Curriculum's Structural Complexity}
     Before being able to determine the effects a curriculum's structure has on the ease in which students can move through it, it is necessary to quantify the structure, or rather the complexity of a curriculum's structure. A team of researches at the University of New Mexico have done just that by introducing two metrics that attempt to capture properties of a curriculum structure that pertain to a students progressing though it \cite{complexity}. As previously seen in figure \ref{fig:comparison}, a curriculum can be represented as a graph allowing it to be subject to graph theory and complex network analysis, which serves as the basic of UNM's work. Computing this metric, which is simply called the \textit{structural complexity} of a curriculum, begins by assigning each course a value, called its \textit{course cruciality}, which signifies how important the course is in the curriculum. This value is in turn comprised of two other measures: the course's \textit{blocking factor} and it's \textit{delay factor}.
 
     A course's delay factor is defined as the number of nodes (or courses) on the longest path that passes through the given course. An example can be seen in figure \ref{fig:delay_factor_example}. In this figure, course A has a delay factor of three as the longest path that passes through it contains three courses: A, B, and D, as opposed to the short path with length two that contains courses A and C. Course B and D share course A's delay factor of three, while course C only has a delay factor of two.
@@ -247,264 +256,270 @@ JSON
 
 
   \section{Student Simulations}
-    There has been much research done predicting and analyzing student performance, the majority of which use statistical analysis or machine learning models \cite{7008697,6826206,goenner2004predicting}. Although less so, there has also been work done in this area using simulations with a variety of motivations. For example, Webster \cite{10.2307/3444955} describes a simulation model that takes into account student enrollment, teaching resources, and financial data to run simulation to aid financial decisions. Plotnicki and Garfinke \cite{RePEc:eee:soceps:v:20:y:1986:i:4:p:193-199} use simulations to determine the best possible schedule of courses that allow the greatest number of students to easily move through the curriculum and similar work by Schellekens et al \cite{10.2307/40540244} observed the effects of giving students more flexibility within a program via simulation.
+    There has been much research done predicting and analyzing student performance, the majority of which use statistical analysis or machine learning models \cite{7008697,6826206,goenner2004predicting}. Although less so, there has also been work done in this area using simulations with a variety of motivations. For example, Webster \cite{10.2307/3444955} describes a simulation model that takes into account student enrollment, teaching resources, and financial data to run simulation to aid financial decisions. Plotnicki and Garfinke \cite{RePEc:eee:soceps:v:20:y:1986:i:4:p:193-199} use simulations to determine the best possible schedule of courses that allow the greatest number of students to easily move through the curriculum and similar work by Schellekens et al. \cite{10.2307/40540244} observed the effects of giving students more flexibility within a program via simulation.
 
-    While all of this work shares some similarity with the CAS framework, the work that it relates to the most was conducted at San Fransisco State University using simulations to observe how changes made to a curriculum affect student performance \cite{saltzman2012simulating}. Saltzman and Roeder modeled students flowing through SFSU's College of Business as a discrete event simulation using historical data to drive course-enrollment behavior and course pass-rates to determine whether or not students pass courses they're enrolled in. Using this model, they determined the effects of curriculum changes such as removing courses or prerequisites. This method influenced the design of the CAS framework, however there are some major differences. For example the CAS framework makes different assumptions made that influence how students are enrolled, lacks a new incoming class each term, tracks more student data (such as GPA) and can be extend to make pass/fail determinations based on more than just pass-rate data.
+    While all of this research shares some similarity with CASL simulations, the work that it relates to the most was conducted at San Fransisco State University using simulations to observe how changes made to a curriculum affect student performance \cite{saltzman2012simulating}. Saltzman and Roeder modeled students flowing through SFSU's College of Business as a discrete event simulation. In their implementation, every semester students would register for courses using the school's historic data to determine course demand. Students would then be enrolled in their desired courses given that they met all course requirements and there was room. Once enrolled, a student would either pass or fail based off the course's historic pass-rate. Using this model, they determined the effects of curriculum changes such as removing courses or prerequisites. 
 
-    The largest is difference however, is implementation - not just in method, but philosophy. While Saltzman and Roeder's and the others' simulations were implemented using commercial software, the CAS framework is free and open source and does not build the curriculum into the simulation logic, but rather is flexible enough to perform simulations over any curriculum through a standard format. More than that the CAS framework extends beyond just simulation and provides a way to represent curriculum-related data in a programming environment that could be useful apart from simulations. The goal was not merely to provide simulations, but a useful toolkit to work with curricula and related data.
+    While this method influenced the design of CASL's simulations there are some major differences. For example CASL makes different assumptions about student behavior. For example student course demand is not based on historic data. CASL also lacks a new incoming class each term, tracks more student data (such as GPA) and can be extend to make pass/fail determinations based on more than just pass-rate data and supports grade assignments. The largest is differences however, are implementation and motivation. While Saltzman and Roeder's and the others' simulations were implemented using commercial software, CASL is free and open source and does not build the curriculum into the simulation logic, but rather is flexible enough to perform simulations over any curriculum through a standard format. More than that, CASL extends beyond just simulation and provides a way to represent curriculum-related data in a programming environment that could be useful apart from simulations.
+
+%----------------------------------------------------------------------------------------
+% CASL Overview
+%----------------------------------------------------------------------------------------
+\chapter{Library Design \& Implementation}
+
+  \section{Julia}
+    CASL is implemented in the open-source Julia programming language and made available as an open-source Julia package. Julia is described as a high-level, high-performance dynamic programming language for technical computing that "has the performance of a statically compiled language while providing interactive dynamic behavior and productivity like Python, LISP or Ruby" \cite{Julia}. It is built upon an LLVM-based just-in-time (JIT) compiler which allows it to reach performance close to that of C and, in many cases, speeds faster than that of R or MATLAB \cite{Julia}. Julia's defining feature is multiple dispatch but some other notable features are module support, a type system, parallelism and a built-in package manager. It also has a thriving community of developers contributing high-quality open source libraries spanning a range of applications such as machine-learning, statistical analysis, graph analysis, plotting, and data-handling.
+
+    Each of these features contributed to choosing Julia as the language of implementation. Julia's type system, ease of use and dynamic nature made it simple to implement the library's various components, methods logic. Working with data formats such as JSON and CSV were especially easier that a computation language such as MATLAB. However this ease of development did not come at the expense of performance as Julia is incredibly fast and it's support for parallelism allowed running many simulations much faster as they could be carried out in parallel. Topping it all off is it's built in package manager with a plethora of packages that will enable uses extend the library and simulation capabilities with powerful machine learning and statistical models.
+
+  
+  \section{Architecture and Implementation Details}
+    CASL is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the library is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component are modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The library comes with one build-in module based on course pass rates, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections will describe each component in greater detail.
+
+    \begin{figure}[h!]
+      \centerline{\includegraphics[scale=0.4]{./figures/components.png}}
+      \caption{A component diagram of CASL's primary components.} 
+      \label{fig:component_diagram}
+    \end{figure}
+
+    \subsection{Library Data Types}
+      Custom Julia types serve as the foundation of the library allowing curricula and related entities to be defined a mutable objects allowing analysis and simulation to be performed. These data types are: curricula, terms, courses, students, and simulations. Due to Julia not being an OO language, these entities are not true objects, but are very similar to structures in C in that they do not have associated methods, but do have associated attributes. Each type's attributes describe the characteristics of the entity it represents as well as provides a place to record statistics regarding the entity after a simulation is performed.
+
+      \subsubsection{Course Type}
+        At the heart of every curriculum are courses and every course in a curriculum is represented by its own object. A course's attributes include it's credit hours, prerequisites, co-requisites, a minimum term requirement and various complexity values, such as delay and blocking factors along with others. In addition, it also has attributes that are used by the simulation to keep track of it's state (such as which students are enrolled) as well as statistics regarding the course during the simulation such as it's simulated pass-rate, how many students were enrolled each term, grade distributions, etc. A course also has an attribute, named \textit{model}, that has no type and can used to store any value or type for the purpose of storing a model to predict student grades. This will be explained in more detail later.
+
+        % These objects have the following attributes:
+
+        % \begin{description}
+        %   \item [name] A string that is used to identify the course. This can be anything, but the best options would a course code, such as 'MATH 162' or the course's title such as "Calculus I".
+        %   \item [id] A unique integer identification number for the course.
+        %   \item [credits] The number of credit hours the course is worth.
+        %   \item [delay] The course's delay factor.
+        %   \item [blocking] The course's blocking factor.
+        %   \item [cruciality] The course's cruciality.
+        %   \item [prereqs] An array of courses that are considered prerequisites.
+        %   \item [coreqs] An array of courses that are considered co-requisites.
+        %   \item [postreqs] An array of courses that the courses is a prerequisite or co-requisite to.
+        %   \item [termReq] A courses minimum term requirement. For example, if this value is 2, then the courese could not be taken until at least the second term.
+        %   \item [students] An array of students that are enrolled in the courses in a given term. The simulation populates this array each term, and then at the end of the term, empies it.
+        %   \item [passrate] The course's actual, real-world pass-rate. This is a percentage of students that pass the course represented as a floating point number between 0 and 1.0, where 1.0 is a 100\% pass-rate.
+        %   \item [failures] The number of simulated failures. Every time a student within the simulation fails the course, this value is incremented.
+        %   \item [grades] An array of all simulated grades made by students enrolled in the course.
+        %   \item [enrolled] The total number of students enrolled in the course over the course of the simulation.
+        %   \item [termenrollment] An array of the number of students enrolled in the course each term. For example an array of [20, 30, 25] indicates that 20 studets were enrolled in term one, 30 students in term two and 25 students in term three.
+        %   \item [termpassed] An array of the number of students who passed the course each term.
+        %   \item [model] A julia dictionary, which is an associative array, that is used to store any kind of data pertaining to the prediction model the user selects for making grade predictions for students enrolled in the course. A dictionary was chosen because it is extremely flexible in terms of the values it can store and therefore suitable when the types of stored information is unknown prior to runtime.
+        % \end{description}
+
+        Like all types in Julia, a course object is instantiated via a constructor method that has the same name as the type. Unlike other languages, Julia allows a type to have multiple constructors and in this case, the course type has four. Each constructor has the same name, \textit{Course()}, but the number and types are arguments differ. All constructors require a name, the number of credits the course is worth, an array of prerequisites and and array of co requisites with one of the constructors accepting only these arguments. The others constructors allow more information to be provided, specifically a pass-rate, a minimum term requirement, or both. Examples of the constructors can be seen below.
+
+        \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/course_constructors.jl}
+
+      \subsubsection{Term Type}
+        The term type essentially represents a collection of courses that, ideally, would be taken together in the same semester. In addition to a list of courses a term's attributes include the total number of students that are enrolled in each of it's courses, the total number of credit hours in that term, and the number of students which failed courses in the term. The term type only has a single constructor that accepts an array of courses:
+
+        % It has the following attributes:
+
+        % \begin{description}
+        %   \item [courses] An array of courses that make up the term. The order of the courses matters, as those that are at the beginning of the list will be registered for first.
+        %   \item [credits] The sum of the credit hour values of courses within the term.
+        %   \item [totalEnrolled] The total number of students enrolled in the courses that belong to the term.
+        %   \item [failures] The total number of failing grades made in the courses that belong to the term.
+        % \end{description}
+
+        % The term type only has a single constructor that accepts an array of courses:
+
+        \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/term_constructors.jl}
+
+      \subsubsection{Curriculum Type}
+        The curriculum type brings the term and course types together to define a complete academic program that contains a structured set of courses that students must progress through to obtain a degree. This is the type that the library uses to perform a simulation over a curriculum. Of course the curriculum contains an ordered set of terms but additional attributes include various structural complexity measures, and average pass-rate. Also, like the course type it too has an attribute, named \textit{stopoutModel}, that can hold any information for the purpose of storing a model to predict whether a student would stop out at the end of a term. Again, this will be explained in greater detail later.
+
+        % It has the following attributes:
+
+        % \begin{description}
+        %   \item [name] A string identifier for the curriculum.
+        %   \item [terms] An array of terms that make up the curriculum. The order should reflect the actual order of the terms.
+        %   \item [courses] An array of all the courses within the curriculum. This array is created from the array of terms and serves as a more convenient way to access the curriculum's courses rather than having to access them through the terms array.
+        %   \item [numCourses] The number of courses in the curriculum.
+        %   \item [complexity] The curriculum's complexity.
+        %   \item [delay] The sum of the courses' delay factors.
+        %   \item [blocking] The sum of the courses' blocking factors.
+        %   \item [passrate] The average of the curriculum's courses' real-world pass-rates. Can be used as a naive measure of difficulty.
+        %   \item [stoupoutModel] A dictionary that stores the model that predicts student stopouts.
+        % \end{description}
+
+        The curriculum has two constructors. The first takes a string that represents its name and an array of terms as arguments. The issue with this constructor, although it is completely usable, is that it requires the term objects, and therefore course objects to already be instantiated. This can be a tedious and time consuming and is not a very good way to store curricula in a extensible format. To address this problem, a JSON file format was developed as a straightforward way to define a curriculum that is easier to create, more portable, as well as easier for a computer to generate or read.
+
+        At the root of this definition is an object with two keys: \textit{terms} and \textit{courses}. The \textit{terms} key stores the number of terms in the curriculum. The \textit{course} key stores an array of objects that represent a course. These objects have the following keys: \textit{name}, \textit{credits}, \textit{passrate}, \textit{term} which is the term the course belongs to, \textit{prerequisites} which is an array of strings corresponding to the names of the course's prerequisites, and \textit{co-requisites} which is an array of strings corresponding to the names of course's co-requisites. An example can be seen below:
+
+        \lstinputlisting[language=JSON, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/sample_curriculum.json}
+
+        The second constructor method accepts a name and another string that is expected to be a path to one of these JSON files. The method will parse the file and create course and term objects automatically. This makes it much more convenient to create a curriculum object along with objects for its associated courses and terms. Below are examples of these constructors:
+
+        \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/curriculum_constructor.jl}
+
+      \subsubsection{Student Type}
+        Every student in the simulation is represented by its own student object. Therefore, the student type was designed to contain all the information needed to track a student's progress as well as represent the characteristics that define the student and aid in grade predictions. It was designed to be flexible allowing the user to determine what characteristics are needed rather than have a set of hard-coded attributes. This is possible due to a dictionary (an associative array) attribute, named \textit{attributes}. The student's object also stores statistics for simulations such as the total number of credit hours a student has earned, the term in which each course was completed, the student's GPA, grade's received, if/when the student graduated etc. The student type only has one constructor which simply takes a dictionary of student attributes as an argument. Below is an example:
+
+
+        % The attributes for the student type are:
+
+        % \begin{description}
+        %   \item [id] A unique integer identifier for the student. Before a simulation is run, these are set to ensure all student ids are unique integer values starting at one.
+        %   \item [total\_credits] The total number of credit hours a student has earned during the simulation.
+        %   \item [total\_points] The total number of points a student has earned during the simulation. The number of points a student earns for a course is the product of the number of credit hours for the courses and the received grade's value. For example if a student earns a B+ in a three credit hour course, then they will receive (3.3*3) or 9.9 points.
+        %   \item [gpa] The students grade point average, which is computed at the end of every term. It is derived by dividing the student's \textit{total\_points} by their \textit{total\_credits}.
+        %   \item [termcredits] The number of credit hours the student registers for in a single term. At the end of every term it is reset to zero.
+        %   \item [stopout] A boolean value that indicates whether a student has stopped out and is no longer enrolled.
+        %   \item [stopsem] The term in which a student stops out.
+        %   \item [graduated] A boolean value that indicates whether a student has graduated.
+        %   \item [gradsem] The term in which the student graduates.
+        %   \item [performance] A dictionary that keeps track of how students perform in the classes they enroll in. The key value pair consist of the course name and letter grade made, respectively.
+        %   \item [attributes] A dictionary that stores the student's characteristics. What the exact attributes are is up to the user to decide and is most likely based on the variables to predict or assign grades. For example if the grade prediction model uses high school GPAs and ACT scores as features, then these attributes will be stored here.
+        % \end{description}
+
+        % The student type only has one constructor which simply takes a dictionary of student attributes as an argument. Below is an example:
+
+        \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/student_constructor.jl}
+
+      % *** 
+
+      \subsubsection{Simulation Type}
+        A simulation object is used to store the results of a simulation, as well as tie all of the individual pieces together so they can be easily accessed through a single object. The curriculum, students, and results are all contained within this object. This makes it easy to keep track of all the data used in a simulation as well as compare multiple simulations. This object is not created manually, but instead it is returned when a simulation is performed. The simulation object's attributes include a copy of the curriculum that was simulated, all simulation parameters, the number of students, graduation and stop-out rates for each term, and arrays that contain enrolled, graduated and stopped-out students.
+
+        % This type has the following methods:
+
+        % \begin{description}
+        %   \item [curriculum] A curriculum object to be simulated.
+        %   \item [duration] The number of terms the simulation ran for.
+        %   \item [predictionModel] A Julia module that implements the model used for predicting student outcomes in each class.
+        %   \item [numStudents] The number of students that participate in the simulation.
+        %   \item [enrolledStudents] An array of students that are still enrolled when the simulation ends.
+        %   \item [graduatedStudents] An array of students that have graduated during the simulation.
+        %   \item [stopoutStudents] An array of students that stopped out during the simulation.
+        %   \item [studentProgress] A \textit{courses x students} matrix that is used keep track of which students have passed which classes. Each row is associated with a student and each column a course. The indices of each column and row match the id's of their associated student and course. A value of 1 in the matrix indicates that the row's associated student has passed the column's associated course, while a 0 indicates that the course has not been passed by the student.
+        %   \item [gradRate] The simulated graduation rate at the end of the simulation.
+        %   \item [termGradRate] An array that contains the simulated graduation rates at the end of each term.
+        %   \item [stopoutRate] The stopout rate at the end of the simulation.
+        %   \item [termStopoutRates] An array that contains the stopout rates at the end of each term.
+        % \end{description}
+
+        % Before any simulation, a simulation object is created that contains a curriculum and an optional Julia grade prediction module. If no module is passed in then a default is used. It has a single constructor shown below:
+
+        % \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/simulation_constructor.jl}
+  
+    \subsection{Performance Modules}
+      Performance modules are used to predict the grades that students make in their enrolled courses during a simulation. These modules give users the ability to specify exactly what kind of prediction model they would like to use, although they must implement it themselves. Given the number of open-source Julia regression and machine learning libraries available, a wide variety of techniques can be easily implemented. This makes simulations flexible and allows it to carry out a wide variety of simulations so that users can find the one that best fits their data. 
+
+      A performance module is simply a Julia module that contains three functions: \textit{train()}, \textit{predict\_grade()}, and \textit{predict\_stopout}. These methods are used during the simulation, and do not need to be called by the user manually, therefore it is important that they are implemented correctly. The \textit{train()} method is called before the simulation begins and performs any kind of training that might be necessary for predictions, accepting a single curriculum object as a parameter. This gives the user access to all of the courses, where some sort of prediction model will be trained for each one based on features that the user has selected and will be included in the student's attributes. Of course these trained models will need to be stored somewhere and that's why each course has a \textit{model} attribute. This attribute is a dictionary that can store any kind of data. The user can take advantage of this to store any information or objects relevant to the model for each course. Also, a model for predicting whether or not a student drops out must be trained. Like the course's \textit{model} attribute, the curriculum's \textit{stopoutModel} attribute will store any relevant information. Below is a template function:
+
+      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/train.jl}
+
+      The next function, \textit{predict\_grade()}, actually predicts a grade for a student. It takes in two arguments: a course object and a student object. Because the model for the passed in course object has already been trained, then the course's \textit{model} contains the necessary information to construct the model and the student's \textit{attributes} contain the features used in the model making it possible to predict a grade. As mentioned previously, grades are represented by floating point numbers that correspond to a letter grade, therefore a numeric value is expected to be returned. An example can be seen below:
+
+      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/predict_grade.jl}
+
+      The last function in the performance module, \textit{predict\_stopout()}, takes a student object, the current term, and the curriculum's \textit{stopoutModel} attribute as arguments and predicts whether or not a student will stop out. This process is similar to the grade prediction: the model is constructed and given the student's features a prediction will be made. This prediction should return either true, meaning the student drops out, or false indicating that the student remains enrolled. See example below:
+
+      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/predict_stopout.jl}
+
+      Once a user constructs one of these modules, they will specify that they would like to use when they create a simulation object. However, if no module is passed in a default module built into CASL will be used. This default model simply uses the pass-rate of a course as a probability of passing a course. This model doesn't so much predict a grade as a it does predict whether a student will pass a course by carrying out a single Bernoulli trial. A 'success' is interpreted as a student making an 'A' and a 'failure' results in the student receiving a 'F'. A Bernoulli trial is also used to determine stopouts, where the probability of stopping out is based on the current term and it's corresponding real-world retention value at UNM. Below is the code for this module:
+
+      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/PassRate.jl}
+  
+    \subsection{Simulation Method}
+      All of the components that have been described come together to simulate students flowing through a curriculum. This simulation is carried out through CASL's \textit{simulate()} method. This method requires two required arguments: a curriculum, and an array of students. It will also accept several optional arguments: \textit{max\_credits}, \textit{duration}, \textit{performance\_model}, and \textit{stopouts}. The first, \textit{max\_credits}, allows the user to specify the maximum number of credit hours that a student can take in a given term. If no value is specified then the simulation defaults the value to 18. To specify how long the simulation will run for, the \textit{duration} argument can be set. The simulation will run for the specified number of terms as long as there remains enrolled students. The default value is 8. To tell the simulation to use a custom performance module for grade predictions, then the defined module can be passed in as the \textit{performance\_model} argument. If no model is passed in, then the included pass-rate model is used. Finally, the \textit{stopouts} argument is a boolean value that tells the simulation whether to include stopout behavior. If false, then students will never stop out, while a true value will use the Performance Module's \textit{stopout()} method to un-enroll students at the end of every term. An example of how all these pieces come together to run a simulation is shown below:
+
+      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/sample_simulation.jl}
+
 
 %----------------------------------------------------------------------------------------
 % Simulation
 %----------------------------------------------------------------------------------------
-\chapter{Simulating Students in a Curriculum}
+\chapter{Simulation Details}
 
   \section{Discrete Event Simulations}
-  Students moving through a curriculum can be viewed as a fixed, chronological sequence of events. Students will enter the university, enroll in classes, complete or withdraw from classes, then graduate if all requirements have been met. This process repeats every semester. Discrete-event simulation models a system by emulating a sequence of events, where every event occurs independently of the others at a particular instance in time and are characterized by having the following components:
+    A discrete-event simulation models a system by emulating a sequence of events, where every event occurs independently of the others at a particular instance in time and are characterized by having the following components:
 
-  \begin{itemize}
-  \item \textbf{Starting and Ending States} - The simulation will begin in a given state and will continue until it reaches another state that represents some pre-defined ending-condition or a point in time.
-  \item \textbf{Clock} - The simulation must keep track of the time that has elapsed after it begins in any time unit relevant to the domain of the simulation. The clock does not run continuously as events occur instantaneously, but it does jump to certain times as events occur.
-  \item \textbf{List of Events} - The system maintains a list of events that can occur during the simulation. These events are placed in a queue and are usually executed based on simulation time rather than the time they were queued.
-  \item \textbf{Statistics} - As the ending state is not the only result of interest when running simulations, the system keeps track of various statistics based on the events that have occurred.
-  \end{itemize}
+    \begin{itemize}
+    \item \textbf{Starting and Ending States} - The simulation will begin in a given state and will continue until it reaches another state that represents some pre-defined ending-condition or a point in time.
+    \item \textbf{Clock} - The simulation must keep track of the time that has elapsed after it begins in any time unit relevant to the domain of the simulation. The clock does not run continuously as events occur instantaneously, but it does jump to certain times as events occur.
+    \item \textbf{List of Events} - The system maintains a list of events that can occur during the simulation. These events are placed in a queue and are usually executed based on simulation time rather than the time they were queued.
+    \item \textbf{Statistics} - As the ending state is not the only result of interest when running simulations, the system keeps track of various statistics based on the events that have occurred.
+    \end{itemize}
 
-  Using these components, a simulation is constructed using the basic following logic:
+    Using these components, a simulation is constructed using the basic following logic:
 
-  \begin{algorithmic}[1]
-  \STATE Initialize the system
-  \STATE Initialize the system clock
-  \STATE Schedule the initial event
-  \WHILE{ending condition is false} 
-    \STATE{Increment clock}
-    \STATE{Perform next event}
-    \STATE{Update system statistics}
-  \ENDWHILE
-  \STATE Output simulation results
-  \end{algorithmic}
+    \begin{algorithmic}[1]
+    \STATE Initialize the system
+    \STATE Initialize the system clock
+    \STATE Schedule the initial event
+    \WHILE{ending condition is false} 
+      \STATE{Increment clock}
+      \STATE{Perform next event}
+      \STATE{Update system statistics}
+    \ENDWHILE
+    \STATE Output simulation results
+    \end{algorithmic}
 
-  Given these characteristics and basic logic flow, this type of simulation lends itself well to the process of students flowing through a curriculum within an institution, much more so than continuous-time simulations and other analytical models; therefore, the student-flow simulation is modeled as a discrete-event simulation.
+    Given these characteristics and basic logic flow, this type of simulation lends itself well to the process of students flowing through a curriculum within an institution, much more so than continuous-time simulations and other analytical models. Students moving through a curriculum can be viewed as a fixed, chronological sequence of events. Students will enter the university, enroll in classes, complete or withdraw from classes, then graduate if all requirements have been met. Given the nature of this process, modeling students moving through a curriculum as a discrete-event simulation makes sense.
 
-  \section{Defining A Curricula}
-  A curriculum is the backbone of the simulation. As the goal of the simulation is to model students moving through a curriculum, the events of the simulation depend on the curriculum that is being simulated; therefore it is important to understand how they are defined. In order for a student to obtain a degree within a given academic program, a set of requirements must be met. The requirements, in most cases, are simply courses that must be passed. However a curriculum is more than a set of courses, but rather an arrangement of courses with constraints as to when they can be taken. This arrangement begins by placing courses within terms where, ideally, student would take and pass the entire set of courses in one semester. Next, relationships are created between courses in the form of prerequisite and co-requisite relationships. This structure of courses grouped in terms with defined relationships make up a curriculum. A visual, graph representation of a curriculum can be seen in Figure \ref{fig:curriculum_example}.
+  % \section{Defining A Curricula}
+  %   A curriculum is the backbone of the simulation. As the goal of the simulation is to model students moving through a curriculum, the events of the simulation depend on the curriculum that is being simulated; therefore it is important to understand how they are defined. In order for a student to obtain a degree within a given academic program, a set of requirements must be met. The requirements, in most cases, are simply courses that must be passed. However a curriculum is more than a set of courses, but rather an arrangement of courses with constraints as to when they can be taken. This arrangement begins by placing courses within terms where, ideally, student would take and pass the entire set of courses in one semester. Next, relationships are created between courses in the form of prerequisite and co-requisite relationships. This structure of courses grouped in terms with defined relationships make up a curriculum. A visual, graph representation of a curriculum can be seen in Figure \ref{fig:curriculum_example}.
 
-  \begin{figure}[h!]
-  \centerline{\includegraphics[scale=0.4]{./figures/curriculum_example.jpg}}
-  \caption{Visual representation of the electrical engineering curriculum at UNM.} 
-  \label{fig:curriculum_example}
-  \end{figure}
+  %   \begin{figure}[h!]
+  %   \centerline{\includegraphics[scale=0.4]{./figures/curriculum_example.jpg}}
+  %   \caption{Visual representation of the electrical engineering curriculum at UNM.} 
+  %   \label{fig:curriculum_example}
+  %   \end{figure}
 
+  \section{Simulation Assumptions}
+    A student's academic career within an institution can potentially be a very difficult thing to model. This is primarily because student behavior can be erratic and unpredictable even given a structured curriculum. Students might not register for the courses they should, take courses that don't count, drop classes, take a semester off, get an override to take a course that they normally wouldn't have been able to, and various other actions that would otherwise not be considered \'typical' behavior. There are a vast amount of factors that can influence student behavior, many of which are not academic and would therefore be very difficult to account for. Furthermore universities can impose various policies that would also have an effect on how students register for classes and affect other academic decisions. 
 
-  \section{Assumptions}
-  A student's academic career within an institution can potentially be a very difficult thing to model. This is primarily because student behavior can be erratic and unpredictable even given a structured curriculum. Students might not register for the courses they should, take courses that don't count, drop classes, take a semester off, get an override to take a course that they normally wouldn't have been able to, and various other actions that would otherwise not be considered \'typical' behavior. There are a vast amount of factors that can influence student behavior, many of which are not academic and would therefore be very difficult to account for. Furthermore universities can impose various policies that would also have an effect on how students register for classes and affect other academic decisions. 
+    Trying to realistically simulate all possible actions that a student can take would be impossible, therefore several assumptions and decisions are made to simplify student behavior down to the basics, making meaningful simulation feasible without needless complexity. The decision that was the most influential in making these assumptions made was to design the student flow simulation with the primary goal of performing analytics over curricula and observing the effects their properties have on students moving through it. This is in contrast to developing a system to provide realistic simulations of student behavior with the goal of predicting graduation rates and other statistics. The simulation is potentially capable of this; however it was not the goal. Thus the other decisions made were done so to put emphasis on how curricula influence outcomes relative to one another instead of how student behavior does so. Below is a list of the other assumptions and decisions:
 
-  Trying to realistically simulate all possible actions that a student can take would be impossible, therefore several assumptions and decisions are made to simplify student behavior down to the basics, making meaningful simulation feasible without needless complexity. The most influential decisions made, was to design the student flow simulation with the primary goal of performing analytics over curricula and observing the effects their properties have on students moving through it. This is in contrast to developing a system to provide realistic simulations of student behavior with the goal of predicting graduation rates and other statistics. The simulation is potentially capable of this; however it was not the goal. Thus the other decisions made were done so to put emphasis on how curricula influence outcomes relative to one another instead of how student behavior does so. Below is a list of the other assumptions and decisions:
+    \begin{itemize}
+      \item All students at the beginning of the simulation are treated as first-time, full-time students. Although in many cases actual freshman might have some college credit, either through AP-tests, taking college-classes while in high-school, or transfers, students in the simulation begin with a clean slate. They are also treated as full-time students with no notion of \'part-time' built in.
+      \item Given that all students are full-time, each semester all students will register for as many credits as they can. In reality, most students do not hit their institutions max credit-hour limit, but the simulation will register students in as many courses as they are allowed - which is set by the user.
+      \item The simulation only deals with a single class of admitted students. There is no continuous influx of freshman or transfer students each semester within the simulation.
+      \item Students who stop-out are dis-enrolled permanently. They do not re-enroll.
+      \item Students will only register for courses within the specified curriculum. The simulation is only aware of the courses specified in the curriculum, so while it is common for students to register for courses that might not count towards their major, this behavior is not part of the simulation.
+      \item The order of courses in which students enroll in depends on their ordering within the curriculum. Students will enroll is the earliest listed course within the curriculum and will roll in each course they can as until they hit the credit-hour limit. This process is described in greater detail later.
+      \item The minimum passing grade is universal among all courses. This grade can be set by the user, and defaults to a C-.
+      \item All course enrollment requirements are strictly enforced. While it is common for students to obtain permission and subsequent overrides to enroll in a class they have not met the requirements for, the system does not allow for this.
+      \item All courses within a curriculum are offered every semester.
+      \item Courses have no notion of capacity. Any number of students can be enrolled in any course in a given term.
+    \end{itemize}
 
-  \begin{itemize}
-    \item All students at the beginning of the simulation are treated as first-time, full-time students. Although in many cases actual freshman might have some college credit, either through AP-tests, taking college-classes while in high-school, or transfers, students in the simulation begin with a clean slate. They are also treated as full-time students with no notion of \'part-time' built in.
-    \item Given that all students are full-time, each semester all students will register for as many credits as they can. In reality, most students do not hit their institutions max credit-hour limit, but the simulation will register students in as many courses as they are allowed - which is set by the user.
-    \item The simulation only deals with a single class of admitted students. There is no continuous influx of freshman or transfer students each semester within the simulation.
-    \item Students who stop-out are dis-enrolled permanently. They do not re-enroll.
-    \item Students will only register for courses within the specified curriculum. The simulation is only aware of the courses specified in the curriculum, so while it is common for students to register for courses that might not count towards their major, this behavior is not part of the simulation.
-    \item The order of courses in which students enroll in depends on their ordering within the curriculum. Students will enroll is the earliest listed course within the curriculum and will roll in each course they can as until they hit the credit-hour limit. This process is described in greater detail later.
-    \item The minimum passing grade is universal among all courses. This grade can be set by the user, and defaults to a C-.
-    \item All course enrollment requirements are strictly enforced. While it is common for students to obtain permission and subsequent overrides to enroll in a class they have not met the requirements for, the system does not allow for this.
-    \item All courses within a curriculum are offered every semester.
-    \item Courses have no notion of capacity. Any number of students can be enrolled in any course in a given term.
-  \end{itemize}
-
-  These decisions might seem very restrictive, and in many ways that is intentional. The idea wasn't to simplify the simulation for the sake of simplicity, but rather to put more emphasis on the curriculum and its structural properties. By standardizing the way students behave, it is possible to compare curricula and how changes to their structure or difficulty effect outcomes which provides insight into how they might be improved.
+    These decisions might seem very restrictive, and in many ways that is intentional. The idea wasn't to simplify the simulation for the sake of simplicity, but rather to put more emphasis on the curriculum and its structural properties. By standardizing the way students behave, it is possible to compare curricula and how changes to their structure or difficulty effect outcomes which provides insight into how they might be improved.
 
   \section{Simulation Model Logic}
-  The student flow simulation uses the components and basic logic of DES previously described and adapts them to fit within the domain of students flowing through a curriculum. The components are defined as follows:
+    The student flow simulation uses the components and basic logic of DES previously described and adapts them to fit within the domain of students flowing through a curriculum. The components are defined as follows:
 
-  \textit{Clock}. The unit of time in which the simulation uses is a semester. All events occur within one semester, therefore the clock will on increment time by one semester.
+    \textit{Clock}. The unit of time in which the simulation uses is a semester. All events occur within one semester, therefore the clock will on increment time by one semester.
 
-  \textit{Starting State}. The simulation begins with a set of students which represent first-time full-time students just enrolled in a university. The clock is set to the first semester.
+    \textit{Starting State}. The simulation begins with a set of students which represent first-time full-time students just enrolled in a university. The clock is set to the first semester.
 
-  \textit{Events}. The primary events in the simulation emulate basic student behavior during their academic career:
-  \begin{itemize}
-    \item Students enroll in the university.
-    \item Student enrolls in the courses that they are able to take.
-    \item Student takes the classes they enrolled in and are assigned a grade, either passing or failing.
-    \item Student stopouts.
-    \item Student graduates.
-    \item Student remains enrolled.
-  \end{itemize}
+    \textit{Events}. The primary events in the simulation emulate basic student behavior during their academic career:
+    \begin{itemize}
+      \item Students enroll in the university.
+      \item Student enrolls in the courses that they are able to take.
+      \item Student takes the classes they enrolled in and are assigned a grade, either passing or failing.
+      \item Student stopouts.
+      \item Student graduates.
+      \item Student remains enrolled.
+    \end{itemize}
 
-  \textit{Ending Condition}. The simulation ends when there are no students enrolled. Therefore all students have either graduated or stopped out. The simulation could end before this however as it can also be run for a set amount of semesters.
+    \textit{Ending Condition}. The simulation ends when there are no students enrolled. Therefore all students have either graduated or stopped out. The simulation could end before this however as it can also be run for a set amount of semesters.
 
-  \textit{Statistics}.
+    % \textit{Statistics}.
 
-  \subsection{Control Flow}
-  The simulation begins at its starting state - a set of students with no previous academic experience and a clock set to semester one. Each student is initiated with defined attributes. All enrolled students then begin registering for classes using a systematic approach governed by the way the curriculum is defined. The order of the courses in the curricula governs the order in which students register. Students will always register for the earliest courses listed within the curricula and continue registering for courses until there are no more courses that they can take or they cannot register for more courses due to the given term credit hour restriction. For example, if the first term within a curriculum consists of courses A, B, and C, the student will register for those courses in that order. If the students fails course B, then the following term, this will be the first course the student enrolls in. In order for a student to register for a course, they must meet the course's enrollment requirements. These requirements can be prerequisites, co-requisites, a term restriction meaning that the course cannot be taken until the clock reaches a specified term, and that the student has not already taken and passed the course. In addition to these requirements, a student can only register for so many courses in a given term based on a given maximum credit hour limit which is set by the user. If a student can register for a course then they are added to that course's list of enrolled students and their term credit hour count is incremented by that courses credit hour value. 
+    \subsection{Control Flow}
+    The simulation begins at its starting state - a set of students with no previous academic experience and a clock set to semester one. Each student is initiated with defined attributes. All enrolled students then begin registering for classes using a systematic approach governed by the way the curriculum is defined. The order of the courses in the curricula governs the order in which students register. Students will always register for the earliest courses listed within the curricula and continue registering for courses until there are no more courses that they can take or they cannot register for more courses due to the given term credit hour restriction. For example, if the first term within a curriculum consists of courses A, B, and C, the student will register for those courses in that order. If the students fails course B, then the following term, this will be the first course the student enrolls in. In order for a student to register for a course, they must meet the course's enrollment requirements. These requirements can be prerequisites, co-requisites, a term restriction meaning that the course cannot be taken until the clock reaches a specified term, and that the student has not already taken and passed the course. In addition to these requirements, a student can only register for so many courses in a given term based on a given maximum credit hour limit which is set by the user. If a student can register for a course then they are added to that course's list of enrolled students and their term credit hour count is incremented by that courses credit hour value. 
 
-  Once all students have completed the registration process, every student is assigned a grade for the courses they are enrolled in. The method for doing so depends on the user and will be covered later. The simulation uses the following grades: A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F, and W. The system also assigns numeric values to each grade which are 4.33, 4.0, 3.77, 3.33, 3.0, 2.77, 2.33, 2.0, 1.77, 1.33, 1.0, 0.77, 0 and 0, respectively. These values are used for GPA computations, point calculations, and can possibly be used to determine grades in other courses. The passing grade can be set by the user, but defaults to a C (2.33). If a student obtains this grade then their completion of the course is recorded.
+    Once all students have completed the registration process, every student is assigned a grade for the courses they are enrolled in. The method for doing so depends on the user and will be covered later. The simulation uses the following grades: A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F, and W. The system also assigns numeric values to each grade which are 4.33, 4.0, 3.77, 3.33, 3.0, 2.77, 2.33, 2.0, 1.77, 1.33, 1.0, 0.77, 0 and 0, respectively. These values are used for GPA computations, point calculations, and can possibly be used to determine grades in other courses. The passing grade can be set by the user, but defaults to a C (2.33). If a student obtains this grade then their completion of the course is recorded.
 
-  Once all students have received their grades for all courses, the students GPA's are computed and then the simulation will check to see if each student has completed all requirements in the curriculum. If they have, then they are removed from the pool of enrolled students and added to the list of graduated students. They system will then simulate students stopping out. Again, the user can determine the method used for doing this which will be explained later. If the student is chosen as a stopout, then they are removed from the pool of enrolled students and added to a list of stopped out students. The clock is then incremented by one semester and the registration process begins for the next semester. These events are then repeated until there are no students enrolled, or the simulation clock reaches a time set by the user.
-
-
-%----------------------------------------------------------------------------------------
-% Curricula Simulation Framework Design
-%----------------------------------------------------------------------------------------
-\chapter{Framework Design \& Implementation}
-
-  \section{Julia}
-    The CAS framework is implemented in the open-source Julia programming language and made available as an open-source Julia package. Julia is described as a high-level, high-performance dynamic programming language for technical computing that "has the performance of a statically compiled language while providing interactive dynamic behavior and productivity like Python, LISP or Ruby" \cite{Julia}. It is built upon an LLVM-based just-in-time (JIT) compiler which allows it to reach performance close to that of C and, in many cases, speeds faster than that of R or MATLAB \cite{Julia}. Julia's defining feature is multiple dispatch but some other notable features are module support, a type system, parallelism and a built-in package manager. It also has a thriving community of developers contributing high-quality open source libraries spanning a range of applications such as machine-learning, statistical analysis, graph analysis, plotting, and data-handling.
-
-    Each of these features contributed to choosing Julia as the language of implementation. Julia's type system, ease of use and dynamic nature made it simple to implement the framework's various components, methods logic. Working with data formats such as JSON and CSV were especially easier that a computation language such as MATLAB. However this ease of development did not come at the expense of performance as Julia is incredibly fast and it's support for parallelism allowed running many simulations much faster as they could be carried out in parallel. Topping it all off is it's built in package manager with a plethora of packages that will enable uses extend the framework and simulation capabilities with powerful machine learning and statistical models.
-
-
-  \section{Architecture and Implementation Details}
-    The framework is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the framework is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component of the framework are.\ modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The framework comes with one out of the box, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections describe each component in greater detail.
-
-    \begin{figure}[h!]
-      \centerline{\includegraphics[scale=0.4]{./figures/components.png}}
-      \caption{A component diagram of the CAS framework.} 
-      \label{fig:component_diagram}
-    \end{figure}
-
-    \subsection{Framework Data Types}
-      Custom Julia types serve as the foundation of the framework allowing curricula and related entities to be defined a mutable objects allowing analysis and simulation to be performed. These data types are: curricula, terms, courses, students, and simulations. Due to Julia not being an OO language, these entities are not true objects, but are very similar to structures in C in that they do not have associated methods, but do have associated attributes. Each type's attributes describe the characteristics of the entity it represents as well as provides a place to record statistics regarding the entity after a simulation is performed.
-
-    \subsubsection{Course Type}
-      At the heart of every curriculum are courses and every course in a curriculum is represented by its own object. These objects have the following attributes:
-
-      \begin{description}
-        \item [name] A string that is used to identify the course. This can be anything, but the best options would a course code, such as 'MATH 162' or the course's title such as "Calculus I".
-        \item [id] A unique integer identification number for the course.
-        \item [credits] The number of credit hours the course is worth.
-        \item [delay] The course's delay factor.
-        \item [blocking] The course's blocking factor.
-        \item [cruciality] The course's cruciality.
-        \item [prereqs] An array of courses that are considered prerequisites.
-        \item [coreqs] An array of courses that are considered co-requisites.
-        \item [postreqs] An array of courses that the courses is a prerequisite or co-requisite to.
-        \item [termReq] A courses minimum term requirement. For example, if this value is 2, then the courese could not be taken until at least the second term.
-        \item [students] An array of students that are enrolled in the courses in a given term. The simulation populates this array each term, and then at the end of the term, empies it.
-        \item [passrate] The course's actual, real-world pass-rate. This is a percentage of students that pass the course represented as a floating point number between 0 and 1.0, where 1.0 is a 100\% pass-rate.
-        \item [failures] The number of simulated failures. Every time a student within the simulation fails the course, this value is incremented.
-        \item [grades] An array of all simulated grades made by students enrolled in the course.
-        \item [enrolled] The total number of students enrolled in the course over the course of the simulation.
-        \item [termenrollment] An array of the number of students enrolled in the course each term. For example an array of [20, 30, 25] indicates that 20 studets were enrolled in term one, 30 students in term two and 25 students in term three.
-        \item [termpassed] An array of the number of students who passed the course each term.
-        \item [model] A julia dictionary, which is an associative array, that is used to store any kind of data pertaining to the prediction model the user selects for making grade predictions for students enrolled in the course. A dictionary was chosen because it is extremely flexible in terms of the values it can store and therefore suitable when the types of stored information is unknown prior to runtime.
-      \end{description}
-
-      Like all types in Julia, a course object is instantiated via a constructor method that has the same name as the type. Unlike other languages, Julia allows a type to have multiple constructors and in this case, the course type has four. Each constructor has the same name, \textit{Course()}, but the number and types are arguments differ. All constructors require a name, the number of credits the course is worth, an array of prerequisites and and array of co requisites with one of the constructors accepting only these arguments. The others constructors allow more information to be provided, specifically a pass-rate, a termReq, or both. Examples of the constructors can be seen below.
-
-      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/course_constructors.jl}
-
-    \subsubsection{Term Type}
-      The term type essentially represents a collection of courses that, ideally, would be taken together in the same semester. It has the following attributes:
-
-      \begin{description}
-        \item [courses] An array of courses that make up the term. The order of the courses matters, as those that are at the beginning of the list will be registered for first.
-        \item [credits] The sum of the credit hour values of courses within the term.
-        \item [totalEnrolled] The total number of students enrolled in the courses that belong to the term.
-        \item [failures] The total number of failing grades made in the courses that belong to the term.
-      \end{description}
-
-      The term type only has a single constructor that accepts an array of courses:
-
-      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/term_constructors.jl}
-
-    \subsubsection{Curriculum Type}
-      The curriculum type brings the term and course types together to define a complete academic program that contains a structured set of courses that students must progress through to obtain a degree. This is the type that the framework uses to perform a simulation over a curriculum. It has the following attributes:
-
-      \begin{description}
-        \item [name] A string identifier for the curriculum.
-        \item [terms] An array of terms that make up the curriculum. The order should reflect the actual order of the terms.
-        \item [courses] An array of all the courses within the curriculum. This array is created from the array of terms and serves as a more convenient way to access the curriculum's courses rather than having to access them through the terms array.
-        \item [numCourses] The number of courses in the curriculum.
-        \item [complexity] The curriculum's complexity.
-        \item [delay] The sum of the courses' delay factors.
-        \item [blocking] The sum of the courses' blocking factors.
-        \item [passrate] The average of the curriculum's courses' real-world pass-rates. Can be used as a naive measure of difficulty.
-        \item [stoupoutModel] A dictionary that stores the model that predicts student stopouts.
-      \end{description}
-
-      The curriculum has two constructors. The first takes a string that represents its name and an array of terms as arguments. The issue with this constructor, although it is completely usable, is that it requires the term objects, and therefore course objects to already be instantiated. This can be a tedious and time consuming and is not a very good way to store curricula in a extensible format. To address this problem, a JSON file format was developed as a straightforward way to define a curriculum that is easier to create, more portable, as well as easier for a computer to generate or read.
-
-      At the root of this definition is an object with two keys: \textit{terms} and \textit{courses}. The \textit{terms} key stores the number of terms in the curriculum. The \textit{course} key stores an array of objects that represent a course. These objects have the following keys: \textit{name}, \textit{credits}, \textit{passrate}, \textit{term} which is the term the course belongs to, \textit{prerequisites} which is an array of strings corresponding to the names of the course's prerequisites, and \textit{co-requisites} which is an array of strings corresponding to the names of course's co-requisites. An example can be seen below:
-
-      \lstinputlisting[language=JSON, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/sample_curriculum.json}
-
-      The second constructor method accepts a name and another string that is expected to be a path to one of these JSON files. The method will parse the file and create course and term objects automatically. This makes it much more convenient to create a curriculum object along with objects for its associated courses and terms. Below are examples of these constructors:
-
-      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/curriculum_constructor.jl}
-
-    \subsubsection{Student Type}
-      Every student in the simulation is represented by its own student object. Therefore, the student type was designed to contain all the information needed to track a student's progress as well as represent the characteristics that define the student and aid in grade predictions. It was designed to be flexible allowing the user to determine what characteristics are needed rather than have a set of hard-coded attributes. The attributes for the student type are:
-
-      \begin{description}
-        \item [id] A unique integer identifier for the student. Before a simulation is run, these are set to ensure all student ids are unique integer values starting at one.
-        \item [total\_credits] The total number of credit hours a student has earned during the simulation.
-        \item [total\_points] The total number of points a student has earned during the simulation. The number of points a student earns for a course is the product of the number of credit hours for the courses and the received grade's value. For example if a student earns a B+ in a three credit hour course, then they will receive (3.3*3) or 9.9 points.
-        \item [gpa] The students grade point average, which is computed at the end of every term. It is derived by dividing the student's \textit{total\_points} by their \textit{total\_credits}.
-        \item [termcredits] The number of credit hours the student registers for in a single term. At the end of every term it is reset to zero.
-        \item [stopout] A boolean value that indicates whether a student has stopped out and is no longer enrolled.
-        \item [stopsem] The term in which a student stops out.
-        \item [graduated] A boolean value that indicates whether a student has graduated.
-        \item [gradsem] The term in which the student graduates.
-        \item [performance] A dictionary that keeps track of how students perform in the classes they enroll in. The key value pair consist of the course name and letter grade made, respectively.
-        \item [attributes] A dictionary that stores the student's characteristics. What the exact attributes are is up to the user to decide and is most likely based on the variables to predict or assign grades. For example if the grade prediction model uses high school GPAs and ACT scores as features, then these attributes will be stored here.
-      \end{description}
-
-      The student type only has one constructor which simply takes a dictionary of student attributes as an argument. Below is an example:
-
-      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/student_constructor.jl}
-
-    % *** 
-
-    \subsubsection{Simulation Type}
-      A simulation object is used to store the results of a simulation, as well as tie all of the individual pieces together so they can be easily accessed through a single object. The curriculum, students, and results are all contained within this object. This makes it easy to keep track of all the data used in a simulation as well as compare multiple simulations. This type has the following methods:
-
-      \begin{description}
-        \item [curriculum] A curriculum object to be simulated.
-        \item [duration] The number of terms the simulation ran for.
-        \item [predictionModel] A Julia module that implements the model used for predicting student outcomes in each class.
-        \item [numStudents] The number of students that participate in the simulation.
-        \item [enrolledStudents] An array of students that are still enrolled when the simulation ends.
-        \item [graduatedStudents] An array of students that have graduated during the simulation.
-        \item [stopoutStudents] An array of students that stopped out during the simulation.
-        \item [studentProgress] A \textit{courses x students} matrix that is used keep track of which students have passed which classes. Each row is associated with a student and each column a course. The indices of each column and row match the id's of their associated student and course. A value of 1 in the matrix indicates that the row's associated student has passed the column's associated course, while a 0 indicates that the course has not been passed by the student.
-        \item [gradRate] The simulated graduation rate at the end of the simulation.
-        \item [termGradRate] An array that contains the simulated graduation rates at the end of each term.
-        \item [stopoutRate] The stopout rate at the end of the simulation.
-        \item [termStopoutRates] An array that contains the stopout rates at the end of each term.
-      \end{description}
-
-      Before any simulation, a simulation object is created that contains a curriculum and an optional Julia grade prediction module. If no module is passed in then a default is used. It has a single constructor shown below:
-
-      \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/simulation_constructor.jl}
-
-  %----------------------------------------------------------------------------------------
-  
-  \subsection{Performance Modules}
-    Performance modules are used to predict the grades that students make in their enrolled courses. These modules give users the ability to specify exactly what kind of prediction model they would like to use, although they must implement it themselves. Given the number of open-source Julia regression and machine learning libraries available, a wide variety of techniques can be easily implemented. This makes the simulation framework flexible and allows it to cary out a wide variety of simulations so that users can find the one that best fits their data. 
-
-    A performance module is simply a Julia module that contains three functions: \textit{train()}, \textit{predict\_grade()}, and \textit{predict\_stopout}. These methods are used during the simulation, and do not need to be called by the user manually, therefore it is important that they are implemented correctly. The \textit{train()} method is called before the simulation begins and performs any kind of training that might be necessary for predictions, accepting a single curriculum object as a parameter. This gives the user access to all of the courses, where some sort of prediction model will be trained for each one based on features that the user has selected and will be included in the student's attributes. Of course these trained models will need to be stored somewhere and that's why each course has a \textit{model} attribute. This attribute is a dictionary that can store any kind of data. The user can take advantage of this to store any information or objects relevant to the model for each course. Also, a model for predicting whether or not a student drops out must be trained. Like the course's \textit{model} attribute, the curriculum's \textit{stopoutModel} attribute will store any relevant information. Below is a template function:
-
-    \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/train.jl}
-
-    The next function, \textit{predict\_grade()}, actually predicts a grade for a student. It takes in two arguments: a course object and a student object. Because the model for the passed in course object has already been trained, then the course's \textit{model} contains the necessary information to construct the model and the student's \textit{attributes} contain the features used in the model making it possible to predict a grade. As mentioned previously, grades are represented by floating point numbers that correspond to a letter grade, therefore a numeric value is expected to be returned. An example can be seen below:
-
-    \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/predict_grade.jl}
-
-    The last function in the performance module, \textit{predict\_stopout()}, takes a student object, the current term, and the curriculum's \textit{stopoutModel} attribute as arguments and predicts whether or not a student will stop out. This process is similar to the grade prediction: the model is constructed and given the student's features a prediction will be made. This prediction should return either true, meaning the student drops out, or false indicating that the student remains enrolled. See example below:
-
-    \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/predict_stopout.jl}
-
-    Once a user constructs one of these modules, they will specify that they would like to use when they create a simulation object. However, if no module is passed in a default module built into the framework will be used. This default model simply uses the pass-rate of a course as a probability of passing a course. This model doesn't so much predict a grade as a it does predict whether a student will pass a course by carrying out a single Bernoulli trial. A 'success' is interpreted as a student making an 'A' and a 'failure' results in the student receiving a 'F'. A Bernoulli trial is also used to determine stopouts, where the probability of stopping out is based on the current term and it's corresponding real-world retention value at UNM. Below is the code for this module:
-
-    \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/PassRate.jl}
-
-  %----------------------------------------------------------------------------------------
-  
-  \subsection{Simulation Method}
-    All of the components that have been described come together to perform what the Curriculum Flow framework was designed to do - simulate students flowing through a curriculum. This simulation is carried out through the framework's \textit{simulate()} method. This method requires two arguments: a simulation object, and an array of students. It will also accept three optional arguments: \textit{max\_credits}, \textit{duration}, and \textit{stopouts}. The first, \textit{max\_credits}, allows the user to specify the maximum number of credit hours that a student can take in a given term. If no value is specified then the simulation defaults the value to 18. To specify how long the simulation will run for, the \textit{duration} argument can be set. The simulation will run for the specified number of terms as long as there remails enrolled students. The default value is 8. The \textit{stopouts} argument is a boolean value that tells the simulation whether to include stopout students. If false, then no students will ever stop out, while a true value will use the Performance Module's \textit{stopout()} method to unenroll students at the end of every term. An example of how all these pieces come together to run a simulation is shown below:
-
-    \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/sample_simulation.jl}
+    Once all students have received their grades for all courses, the students GPA's are computed and then the simulation will check to see if each student has completed all requirements in the curriculum. If they have, then they are removed from the pool of enrolled students and added to the list of graduated students. They system will then simulate students stopping out. Again, the user can determine the method used for doing this which will be explained later. If the student is chosen as a stopout, then they are removed from the pool of enrolled students and added to a list of stopped out students. The clock is then incremented by one semester and the registration process begins for the next semester. These events are then repeated until there are no students enrolled, or the simulation clock reaches a time set by the user.
 
 
 %----------------------------------------------------------------------------------------
@@ -513,7 +528,7 @@ JSON
 \chapter{Application in Curricular Analytics}
 
   \section{Correlating Complexity with Completion Rates}
-    One of the primary motivations for the development of the CAS framework was to attempt to demonstrate a correlation between the structure of a curriculum and the ease in which students can move through it. Given a formal metric to characterize the structural complexity of curricula and the means to simulate students this assumed correlation can be tested. Simulating students using the CAS framework's default simulation module (students are randomly determined to pass a course based on it's pass-rate) provides 'best-case' completion rates which can be compared against a curriculum's computed structural complexity using UNM's definition to determine if such a correlation exists.
+    One of the primary motivations for the development of CASL was to attempt to demonstrate a correlation between the structure of a curriculum and the ease in which students can move through it. Given a formal metric to characterize the structural complexity of curricula and the means to simulate students this assumed correlation can be tested. Simulating students using CASL's default pass-rate module (students are randomly determined to pass a course based on it's pass-rate) provides 'best-case' completion rates which can be compared against a curriculum's computed structural complexity using UNM's definition to determine if such a correlation exists.
 
     % While it is far from the only factor for student success, it is intuitive to see that a curriculum's structural complexity can impact the time in which it takes students to move through a program. Students that fail a course with a high blocking factor will be unable to take needed courses the following semester potentially delaying them and curricula with high blocking factors present many opportunities for being delayed. Curricula with long paths, and therefore high delay factors, can also delay students and even impose minimum term completion limits. For example, a curricula with a long path of eight requires at least four years to complete and if a course on that path is failed, the student will be delayed at least one semester.
 
@@ -735,7 +750,7 @@ JSON
 
 
   \section{Sensitivity Analysis of Instructional Complexity}
-    Another metric that is useful when working with curricula is the instructional complexity of a curriculum. This can be thought of as the difficulty of the curriculum, which in term will be defined by the difficulty of the courses that make it up. Defining how difficulty a course is not straightforward and can be done in many ways, but in the experiments described here, the naive definition of the course's pass-rate is used. Another use of the curriculum flow simulation framework is to observe the effects that instructional complexity has, as it is intuitive to believe that the difficulty of a curriculum's courses would greatly affect student performance. Although not a realistic scenario, Figure \ref{fig:instructional} illustrates this point.
+    Another metric that is useful when working with curricula is the instructional complexity of a curriculum. This can be thought of as the difficulty of the curriculum, which in term will be defined by the difficulty of the courses that make it up. Defining how difficulty a course is not straightforward and can be done in many ways, but in the experiments described here, the naive definition of the course's pass-rate is used. Another use of CASL is to observe the effects that instructional complexity has, as it is intuitive to believe that the difficulty of a curriculum's courses would greatly affect student performance. Although not a realistic scenario, Figure \ref{fig:instructional} illustrates this point.
 
     \begin{figure}[h!]
       \centerline{\includegraphics[scale=0.2]{./figures/instructional.png}}
@@ -807,8 +822,8 @@ JSON
     \label{tab:cpe_sensitivity}
     \end{table}
 
-  % \section{Simulation With Student Characteristics using Probit Model}
-  % TODO?
+  \section{Proof of Concept: Simulation Using Student Characteristics and Probit Regression Model}
+    TODO
 
 %----------------------------------------------------------------------------------------
 %  Discussion
@@ -821,11 +836,11 @@ JSON
 %  Future Work
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion/Future Work}
-  The CAS framework described in this paper provides a good first step towards providing tools to perform analytics over curricula and student data though there is still plenty of work that can be done both on the features of the framework itself as well as the analysis enabled by it. First, the framework could be improved with polish such as better error-handling, generators for module extensions, and built in documentation. The feature set could also be expanded especially in terms of simulation customization. It has been explained that the simulation operates under several assumptions that were made intentionally, however some of these assumptions could be lifted. For example, courses can be set to only be offered only in certain terms, or they could have class-size limits. Furthermore, support could be added for more robust student-enrollment procedures. In this same vein, more out-of-the-box modules could be included to predict grades using a variety of machine-learning and statistical methods. These kinds of improvements of the simulation procedure enable more complex student behavior which could lead to making it a more powerful prediction tool.
+  The software library described in this paper provides a good first step towards providing tools to perform analytics over curricula and student data though there is still plenty of work that can be done both on the features of the library itself as well as the analysis enabled by it. First, the library could be improved with polish such as better error-handling, generators for module extensions, and built in documentation. The feature set could also be expanded especially in terms of simulation customization. It has been explained that the simulation operates under several assumptions that were made intentionally, however some of these assumptions could be lifted. For example, courses can be set to only be offered only in certain terms, or they could have class-size limits. Furthermore, support could be added for more robust student-enrollment procedures. In this same vein, more out-of-the-box modules could be included to predict grades using a variety of machine-learning and statistical methods. These kinds of improvements of the simulation procedure enable more complex student behavior which could lead to making it a more powerful prediction tool.
 
-  In terms of the analytics work enabled by the framework, there is always room for improvement in the kinds of measures that can be devised to quantify the structural complexity of curricula. While a perfect measure, or set of measures that perfectly correlates to both simulated and real-world completion rates probably doesn't exist, there might still exist measures that capture structural complexities better than the ones described here. Furthermore there is also plenty of work to be done analyzing instructional complexity, or the difficulty of curricula as well. This work took a back seat to analysis of curricula complexity, but is a wide-open area of research. Using the framework to simply focus on individual courses, rather than a whole curricula, especially with regards to grade-depiction could yield valuing insights. Combining this with more configurable simulations could produce accurate predictions and what-if analysis.
+  In terms of the analytics work enabled by the library, there is always room for improvement in the kinds of measures that can be devised to quantify the structural complexity of curricula. While a perfect measure, or set of measures that perfectly correlates to both simulated and real-world completion rates probably doesn't exist, there might still exist measures that capture structural complexities better than the ones described here. Furthermore there is also plenty of work to be done analyzing instructional complexity, or the difficulty of curricula as well. This work took a back seat to analysis of curricula complexity, but is a wide-open area of research. Using the library to simply focus on individual courses, rather than a whole curricula, especially with regards to grade-depiction could yield valuing insights. Combining this with more configurable simulations could produce accurate predictions and what-if analysis.
 
-  In addition to this work, the CAS framework could also benefit from a GUI implementation. Given that there is already a community using the tools provided Curricular Dashboards and uses a near-identity format for representing curricula, it would be a good fit. Although it would be somewhat limited, providing an interface for performing simulations over curricula that has been uploaded would be powerful and provide a simple way for users, especially those without programming experience, to benefit from the framework and gain more insights into their curricula - with the hopes that this insight might prove useful in decision making that could positively impact student success.
+  In addition to this work, CASL could also benefit from a GUI implementation. Given that there is already a community using the tools provided Curricular Dashboards and uses a near-identity format for representing curricula, it would be a good fit. Although it would be somewhat limited, providing an interface for performing simulations over curricula that has been uploaded would be powerful and provide a simple way for users, especially those without programming experience, to benefit from the library and gain more insights into their curricula - with the hopes that this insight might prove useful in decision making that could positively impact student success.
 
 %----------------------------------------------------------------------------------------
 %  REFERENCE LIST

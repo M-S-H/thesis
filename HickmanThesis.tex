@@ -126,13 +126,13 @@ stringstyle=\color{orange}}
 % Frontmatter
 \frontmatter
 
-\title{Student Flow Simulation with Applications in Curricular Analytics}
+\title{Development of a Curriculum Analysis and Simulation Library with Applications in Curricular Analytics}
 \author{Michael Hickman}
 \degreesubject{M.S., Computer Engineering}
 \degree{Master of Science\\Computer Engineering}
 \documenttype{Thesis}
 \previousdegrees{B.S., University of New Mexico 2014}
-\date{September, \thisyear}
+\date{May, \thisyear}
 
 \maketitle
 \makecopyright
@@ -147,7 +147,7 @@ stringstyle=\color{orange}}
 % Acknowledgements
 \begin{acknowledgments}
   \vspace{1.1in}
-  I would like to thank ...
+  I would like to thank my committee, Professor Greg Heileman, Doctor Chaouki Abdallah, Doctor Ahmad Slim, and Doctor Terry Babbitt. I would especially like to thank Professor Heileman for all of his support and guidance throughout my academic career.
 \end{acknowledgments}
 
 
@@ -155,7 +155,8 @@ stringstyle=\color{orange}}
 \maketitleabstract
 
 \begin{abstract}
-  Higher Education Institutions spend much of their resources in attempts to improve student success by addressing areas such as instruction quality, tutoring programs, and more. However, one area that tends to be overlooked is the structure of the curricula that are offered. One reason for this is that curricula are not seen as data and therefore there are no tools to analyze and evaluate how their structures can influence student success. This thesis describes a software library that was developed to address this issue by providing the ability to represent curricula in a programming environment as well as a set of tools to evaluate the complexity of curricula and simulate students moving through them. Furthermore, the application of these tools are detailed, correlating a curriculum's structural properties to student success.
+  Higher education institutions spend much of their resources in attempts to improve student success by addressing improving instruction quality, implementing tutoring programs, and providing other services to help students. While these are all worthwhile, one area that tends to be overlooked is the structure of the curricula that are offered. When viewing curricula as data, or more specifically, a graph, it is intuitive to see how it's structure can influence a student's ability to move through it. However, there are currently no tools to analyze a curriculum's structural properties and how they might affect student success. This thesis describes a software library that was developed to address this issue by providing the ability to represent curricula in a programming environment as well as a set of tools to evaluate the complexity of curricula and simulate students moving through them. Furthermore, the application of these tools are shown through several experiments that demonstrate a negative correlation between a curriculum's complexity and student success.
+
   \clearpage
 \end{abstract}
 
@@ -167,14 +168,15 @@ stringstyle=\color{orange}}
 
 % Glossary
 \chapter{Glossary}
-  \textbf{Discrete-Event Simulation} \  \\
-  \textbf{JSON} \  \\
-  \textbf{Julia} \  \\
-  \textbf{Linear Regression} \  \\
-  \textbf{Probit Regression} \  \\
-  \textbf{Curricular Complexity} \  \\
-  \textbf{Structural Complexity} \  \\
-  \textbf{Instructional Complexity} \  \\
+  \textbf{CASL (Curricular Analysis and Simulation Library)} \ A software library designed to capture and analyze curricula as well as simulate students moving through a curriculum. \\
+  \textbf{Discrete-Event Simulation} \ A simulation model in which sequences of events occur in discrete time. \\
+  \textbf{JSON (JavaScript Object Notation)} \ A common data-exchange format. \\
+  \textbf{Julia} \ A programming language designed for both general purpose and scientific computing. \\
+  % \textbf{Linear Regression} \  \\
+  % \textbf{Probit Regression} \  \\
+  \textbf{Structural Complexity} \ A measure of a curriculum's complexity based solely on it's structural properties. \\
+  \textbf{Instructional Complexity} \ A measure of a curriculum's difficulty. \\
+  \textbf{Curriculum Complexity} \ A curriculum's overall complexity based on some function of it's structural and instructional complexity. \\
 
 
 \mainmatter
@@ -192,14 +194,14 @@ stringstyle=\color{orange}}
 
   \begin{figure}
     \centering
-    \begin{subfigure}[h!]{.6\linewidth}
+    \begin{subfigure}[h!]{.8\linewidth}
       \includegraphics[width=\linewidth]{./figures/UH.jpg}
       \caption{University of Houston}\label{fig:UH}
     \end{subfigure}
 
     \vspace{1cm}
 
-    \begin{subfigure}[h!]{.6\linewidth}
+    \begin{subfigure}[h!]{.8\linewidth}
       \includegraphics[width=\linewidth]{./figures/MU.jpg}
       \caption{Michigan University}\label{fig:MU}
     \end{subfigure}
@@ -259,10 +261,10 @@ stringstyle=\color{orange}}
 
     While all of this research shares some similarity with CASL simulations, the work that it relates to the most was conducted at San Fransisco State University using simulations to observe how changes made to a curriculum affect student performance \cite{saltzman2012simulating}. Saltzman and Roeder modeled students flowing through SFSU's College of Business as a discrete event simulation. In their implementation, every semester students would register for courses using the school's historic data to determine course demand. Students would then be enrolled in their desired courses given that they met all course requirements and there was room. Once enrolled, a student would either pass or fail based off the course's historic pass-rate. Using this model, they determined the effects of curriculum changes such as removing courses or prerequisites. 
 
-    While this method influenced the design of the CASL's simulations there are some major differences. For example CASL makes different assumptions about student behavior. For example student course demand is not based on historic data. CASL also lacks a new incoming class each term, tracks more student data (such as GPA) and can be extend to make pass/fail determinations based on more than just pass-rate data and supports grade assignments. The largest is differences however, are implementation and motivation. While Saltzman and Roeder's and the others' simulations were implemented using commercial software, the CAS framework is free and open source and does not build the curriculum into the simulation logic, but rather is flexible enough to perform simulations over any curriculum through a standard format. More than that the CAS framework extends beyond just simulation and provides a way to represent curriculum-related data in a programming environment that could be useful apart from simulations.
+    While this method influenced the design of CASL's simulations there are some major differences. For example CASL makes different assumptions about student behavior. For example student course demand is not based on historic data. CASL also lacks a new incoming class each term, tracks more student data (such as GPA) and can be extend to make pass/fail determinations based on more than just pass-rate data and supports grade assignments. The largest is differences however, are implementation and motivation. While Saltzman and Roeder's and the others' simulations were implemented using commercial software, CASL is free and open source and does not build the curriculum into the simulation logic, but rather is flexible enough to perform simulations over any curriculum through a standard format. More than that, CASL extends beyond just simulation and provides a way to represent curriculum-related data in a programming environment that could be useful apart from simulations.
 
 %----------------------------------------------------------------------------------------
-% Curricula Simulation Framework Design
+% CASL Overview
 %----------------------------------------------------------------------------------------
 \chapter{Library Design \& Implementation}
 
@@ -273,11 +275,11 @@ stringstyle=\color{orange}}
 
   
   \section{Architecture and Implementation Details}
-    CASL is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the framework is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component are modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The framework comes with one build-in module based on course pass rates, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections will describe each component in greater detail.
+    CASL is comprised of three main components: (1) custom data types, (2) the simulation method, and (3) course performance prediction modules. The first component, a set of custom data types, represent all the necessary components (curricula, students, etc.) over which analysis and simulations can be performed. The second component of the library is a method that carries out a simulation using a defined curriculum and a set of students taking into account various simulation parameters that can be set by the user. The third and final component are modules which are passed into the simulation method that determine how the virtual students 'perform' in each course. The library comes with one build-in module based on course pass rates, but users can develop their own to conduct simulations that suite their needs. A system diagram can be seen in figure \ref{fig:component_diagram}. The next several sections will describe each component in greater detail.
 
     \begin{figure}[h!]
       \centerline{\includegraphics[scale=0.4]{./figures/components.png}}
-      \caption{A component diagram of the CAS framework.} 
+      \caption{A component diagram of CASL's primary components.} 
       \label{fig:component_diagram}
     \end{figure}
 
@@ -331,7 +333,7 @@ stringstyle=\color{orange}}
         \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/term_constructors.jl}
 
       \subsubsection{Curriculum Type}
-        The curriculum type brings the term and course types together to define a complete academic program that contains a structured set of courses that students must progress through to obtain a degree. This is the type that the framework uses to perform a simulation over a curriculum. Of course the curriculum contains an ordered set of terms but additional attributes include various structural complexity measures, and average pass-rate. Also, like the course type it too has an attribute, named \textit{stopoutModel}, that can hold any information for the purpose of storing a model to predict whether a student would stop out at the end of a term. Again, this will be explained in greater detail later.
+        The curriculum type brings the term and course types together to define a complete academic program that contains a structured set of courses that students must progress through to obtain a degree. This is the type that the library uses to perform a simulation over a curriculum. Of course the curriculum contains an ordered set of terms but additional attributes include various structural complexity measures, and average pass-rate. Also, like the course type it too has an attribute, named \textit{stopoutModel}, that can hold any information for the purpose of storing a model to predict whether a student would stop out at the end of a term. Again, this will be explained in greater detail later.
 
         % It has the following attributes:
 
@@ -427,7 +429,7 @@ stringstyle=\color{orange}}
       \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/PassRate.jl}
   
     \subsection{Simulation Method}
-      All of the components that have been described come together to simulate students flowing through a curriculum. This simulation is carried out through the CASL's \textit{simulate()} method. This method requires two required arguments: a curriculum, and an array of students. It will also accept several optional arguments: \textit{max\_credits}, \textit{duration}, \textit{performance\_model}, and \textit{stopouts}. The first, \textit{max\_credits}, allows the user to specify the maximum number of credit hours that a student can take in a given term. If no value is specified then the simulation defaults the value to 18. To specify how long the simulation will run for, the \textit{duration} argument can be set. The simulation will run for the specified number of terms as long as there remains enrolled students. The default value is 8. To tell the simulation to use a custom performance module for grade predictions, then the defined module can be passed in as the \textit{performance\_model} argument. If no model is passed in, then the included pass-rate model is used. Finally, the \textit{stopouts} argument is a boolean value that tells the simulation whether to include stopout behavior. If false, then students will never stop out, while a true value will use the Performance Module's \textit{stopout()} method to un-enroll students at the end of every term. An example of how all these pieces come together to run a simulation is shown below:
+      All of the components that have been described come together to simulate students flowing through a curriculum. This simulation is carried out through CASL's \textit{simulate()} method. This method requires two required arguments: a curriculum, and an array of students. It will also accept several optional arguments: \textit{max\_credits}, \textit{duration}, \textit{performance\_model}, and \textit{stopouts}. The first, \textit{max\_credits}, allows the user to specify the maximum number of credit hours that a student can take in a given term. If no value is specified then the simulation defaults the value to 18. To specify how long the simulation will run for, the \textit{duration} argument can be set. The simulation will run for the specified number of terms as long as there remains enrolled students. The default value is 8. To tell the simulation to use a custom performance module for grade predictions, then the defined module can be passed in as the \textit{performance\_model} argument. If no model is passed in, then the included pass-rate model is used. Finally, the \textit{stopouts} argument is a boolean value that tells the simulation whether to include stopout behavior. If false, then students will never stop out, while a true value will use the Performance Module's \textit{stopout()} method to un-enroll students at the end of every term. An example of how all these pieces come together to run a simulation is shown below:
 
       \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/sample_simulation.jl}
 
@@ -526,38 +528,76 @@ stringstyle=\color{orange}}
 %----------------------------------------------------------------------------------------
 \chapter{Application in Curricular Analytics}
 
-  \section{Correlating Complexity with Completion Rates}
-    One of the primary motivations for the development of the CASL was to attempt to demonstrate a correlation between the structure of a curriculum and the ease in which students can move through it. Given a formal metric to characterize the structural complexity of curricula and the means to simulate students this assumed correlation can be tested. Simulating students using the CASL's default pass-rate module (students are randomly determined to pass a course based on it's pass-rate) provides 'best-case' completion rates which can be compared against a curriculum's computed structural complexity using UNM's definition to determine if such a correlation exists.
+  \section{Charactering Curriculum Complexity}
+    Before describing the contribution the set of tools given by CASL makes to curricular analysis, it would help to have a more formal definition of curricula complexity. Consider a curriculum $C$. The complexity of $C$, denoted $\Psi_C$ can be characterized as some function of two components: structural complexity and instructional complexity, denoted by $\alpha_C$ and $\gamma_C$, respectively:
+    \[
+      \Psi_C = f(\alpha_C, \gamma_C)
+    \]
+    A curriculum's structural complexity, $\alpha_C$, is determined solely from the a curriculum's structural properties and is therefore also a function of it's graph, $G_C$:
+    \[
+      \alpha_C = g(G_C)
+    \]
+    A curriculum's instructional complexity, $\gamma_C$, quantifies the difficulty of the curriculum and can therefore be represented as a function, $h()$, of each course's inherent difficulty:
+    \[
+      \gamma_C = h(\mbox{\rm course difficulties})
+    \]
+    Given these definitions, curriculum $C$'s complexity can be expressed as:
+    \[
+      \Psi_C = f(g(G_C), h(\mbox{\rm course difficulties}))
+    \]
+
+    There are many factors that might contribute to a curriculum's difficulty, most of which might be impossible to quantify therefore making it impossible to perfectly characterize $\gamma_C$. Likewise, it can also be difficulty to perfectly quantify $\alpha_C$. Even though the structure of a curriculum lends itself to being quantified more easily than instructional complexity, it is unknown what structural properties to take into consideration, making $g()$ difficulty to characterize.
+
+    This is where CASL can be very useful. It can aid in better quantifying $\alpha_C$ by providing several measures of structural properties and, through simulation, see which ones correlate more with success. Similarly, it can also approximate $h()$ through models that can predict success in a course based off student characteristics. Finally, through simulations, a connection between a curriculum's complexity and student success can be observed without knowing $\Psi_C$ exactly.
+
+
+  \section{Structural Complexity and Student Success}
+    One of the primary motivations for the development of CASL demonstrate a relationship between the structure of a curriculum and the ease in which students can move through it. More specifically, that there exists a negative correlation between, $\Psi_C$ and student success. Several experiments were designed to test this hypothesis by simulating students moving though a curriculum using the CASL's default pass-rate module (students are randomly determined to pass a course based on it's pass-rate). This provides 'best-case' completion rates which can be compared against a curriculum's computed structural complexity to determine if such a correlation exists. Here the following assumptions are made: (1) Student success will be quantified as simulated completion rates, (2) $\alpha_C$ will be quantified as the sum of a curriculum's delay and blocking factors, and (3) $h()$ is approximated as the average passrate of a curriculum's courses. Therefore, a curriculum's complexity can be expressed as:
+
+    \[
+      \Psi_C = f( C_{delay} + C_{blocking}, \mbox{average passrate})
+    \]
+
+    % Given a formal metric to characterize the structural complexity of curricula and the means to simulate students this assumed correlation can be tested. Simulating students using the CASL's default pass-rate module (students are randomly determined to pass a course based on it's pass-rate) provides 'best-case' completion rates which can be compared against a curriculum's computed structural complexity to determine if such a correlation exists.
 
     % While it is far from the only factor for student success, it is intuitive to see that a curriculum's structural complexity can impact the time in which it takes students to move through a program. Students that fail a course with a high blocking factor will be unable to take needed courses the following semester potentially delaying them and curricula with high blocking factors present many opportunities for being delayed. Curricula with long paths, and therefore high delay factors, can also delay students and even impose minimum term completion limits. For example, a curricula with a long path of eight requires at least four years to complete and if a course on that path is failed, the student will be delayed at least one semester.
 
-    As a start, the correlation between student completion rates and structural complexity is examined in very simple curricula which can be seen in figure \ref{fig:simple}. These curricula, consisting of two terms with two courses each make up common patterns that can be found in actual curricula and span of range of complexities making them good candidates to begin to understand how structure affects students moving through a curriculum.
+    As a start, the correlation between student completion rates and $\Psi_C$ is examined in very simple curricula which can be seen in figure \ref{fig:simple}. These curricula, consisting of two terms with two courses each make up fundamental patterns that can be found in actual curricula and span of range of complexities making them good candidates to begin to understand how structure affects students moving through a curriculum.
 
     \begin{figure}
       \centering
-      \begin{subfigure}[h!]{.3\linewidth}
+      \captionsetup{justification=centering}
+      \begin{subfigure}[h!]{.20\linewidth}
         \includegraphics[width=\linewidth]{./figures/Simple4.png}
-        \caption{Curriculum One}\label{fig:simple4}
+        \caption{Curriculum \\ One}\label{fig:simple4}
       \end{subfigure}
-      \begin{subfigure}[h!]{.3\linewidth}
+      \begin{subfigure}[h!]{.20\linewidth}
         \includegraphics[width=\linewidth]{./figures/Simple7.png}
-        \caption{Curriculum Two}\label{fig:simple7}
+        \caption{Curriculum \\ Two}\label{fig:simple7}
       \end{subfigure}
-      \begin{subfigure}[h!]{.3\linewidth}
+      \begin{subfigure}[h!]{.20\linewidth}
         \includegraphics[width=\linewidth]{./figures/Simple9-1.png}
-        \caption{Curriculum Three}\label{fig:simple91}
+        \caption{Curriculum \\ Three}\label{fig:simple91}
       \end{subfigure}
-
-      \begin{subfigure}[h!]{.3\linewidth}
+      \begin{subfigure}[h!]{.20\linewidth}
         \includegraphics[width=\linewidth]{./figures/Simple9-2.png}
-        \caption{Curriculum Four}\label{fig:simple92}
-      \end{subfigure}
-      \begin{subfigure}[h!]{.3\linewidth}
-        \includegraphics[width=\linewidth]{./figures/Simple10.png}
-        \caption{Curriculum Five}\label{fig:simple10}
+        \caption{Curriculum \\ Four}\label{fig:simple92}
       \end{subfigure}
 
-      \caption{Basic Curricula}
+      \begin{subfigure}[h!]{.20\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple10.png}
+        \caption{Curriculum \\ Five}\label{fig:simple10}
+      \end{subfigure}
+      \begin{subfigure}[h!]{.20\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple11.png}
+        \caption{Curriculum \\ Six}\label{fig:simple11}
+      \end{subfigure}
+      \begin{subfigure}[h!]{.20\linewidth}
+        \includegraphics[width=\linewidth]{./figures/Simple12.png}
+        \caption{Curriculum \\ Seven}\label{fig:simple12}
+      \end{subfigure}
+
+      \caption{Fundamental Curricula Structures}
       \label{fig:simple}
     \end{figure}
 
@@ -647,21 +687,55 @@ stringstyle=\color{orange}}
             \hline
             Completion \\ Rate & 0.0   & 6.07  & 24.5  & 46.93 \\
           \end{tabular}
+      \end{subtable}
+      \hfill
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum Six}
+          \label{tab:simple11}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A  & 49.92 & 74.86 & 87.8  & 93.74 \\
+            B  & 50.63 & 75.91 & 88.05 & 93.85 \\
+            C  & 0.0   & 24.45 & 50.1  & 68.89 \\
+            D  & 0.0   & 12.22 & 34.83 & 56.31 \\
+            \hline
+            Completion \\ Rate & 0.0   & 5.92  & 23.77 & 45.39 \\
+          \end{tabular}
+      \end{subtable} 
+      \label{tab:simpleResults}
+
+      \vspace*{1cm}
+      \begin{subtable}{0.45\linewidth}
+        \centering
+          \caption{Curriculum Seven}
+          \label{tab:simple12}
+          \begin{tabular}{l*{4}{c}}
+            Course  & Term 1 & Term 2 & Term 3 & Term 4 \\
+            \hline
+            A  & 50.31 & 75.53 & 88.12 & 93.91 \\
+            B  & 50.82 & 75.56 & 87.55 & 93.83 \\
+            C  & 0.0   & 12.6  & 34.16 & 55.65 \\
+            D  & 0.0   & 12.89 & 35.47 & 56.29 \\
+            \hline
+            Completion \\ Rate & 0.0   & 6.61  & 22.15 & 42.24 \\
+          \end{tabular}
       \end{subtable} 
       \label{tab:simpleResults}
     \end{table}
 
     These tables give insights into how students progress through a curriculum by showing the percentage of students that have passed each course at the end of each semester. For example, looking at table \ref{tab:simple4}, 75.2\% of students have passed Course A after the second term. The row at the bottom shows the percentage of students that have completed all courses (ie graduated) at the end of each term. As expected, the least complex curriculum had the highest completion rate after four terms, while the most complexity curricula had the lowest completion rate. It is also interesting, though not surprising, that the two curricula with the same complexity had roughly the same fourth term completion rate even though their structures were different.
 
-    To expand upon the previous experiment similar simulations were conducted over slightly more complex curricula with an additional term consisting of two courses for a total of 6 courses. Even with the addition of only two courses, the number of structures greatly increases providing a much larger curricula set with a wider range of complexities. In total 256 curricula systematically generated with the three terms, six courses specification. For each generated curricula, simulations similar to those done with the simple curricula were carried with slightly different parameters: (1) Every courses had a 80\% pass-rate. (2) Each student can take up to three courses a term. (3) A duration of five terms. The results of these simulation can be seen in figure \ref{fig:gen6results}.
+    To expand upon the previous experiment similar simulations were conducted over slightly more complex curricula with an additional term consisting of two courses for a total of 6 courses. Even with the addition of only two courses, the number of structures greatly increases providing a much larger curricula set with a wider range of complexities. In total, 256 curricula were systematically generated with the three terms, six courses specification. For each generated curricula, simulations similar to those done with the simple curricula were carried with slightly different parameters: (1) Every courses had a 80\% pass-rate. (2) Each student can take up to three courses a term. (3) A duration of five terms. The results of these simulation can be seen in figure \ref{fig:gen6results}.
 
     \begin{figure}[h!]
-      \centerline{\includegraphics[scale=0.25]{./figures/gradRate5_v_Complexity.png}}
+      \centerline{\includegraphics[scale=0.25]{./figures/gradRate5_v_complexity_80.png}}
       \caption{A plot of complexity vs 5th term graduation rates for six course curricula.} 
       \label{fig:gen6results}
     \end{figure}
 
-    Again, the results imply a correlation between structure and completion rates. To more formally characterize this correlation, linear regression was performed over the data, the details of which can be seen in table \ref{tab:gen6reg} and is visualized by the red line in figure \ref{fig:gen6results}. The R-Squared value is a 95.8\%. Based on this regression, for every point of complexity added, the fith-term completion rate will decrease by 2\%, which is fairly significant. While these results are good, they are not perfect. Unlike the results from the four-course curricula where the two with the same complexity resulted in the same completion rates, introducing two more courses also introduces more variance between completion rates of same-complexity curricula.
+    Again, the results imply a correlation between structure and completion rates. To more formally characterize this correlation, linear regression was performed over the data, the details of which can be seen in table \ref{tab:gen6reg} and is visualized by the red line in figure \ref{fig:gen6results}. The R-Squared value is a 94\%. Based on this regression, for every point of complexity added, the fith-term completion rate will decrease by 0.7\%, which is fairly significant. While these results are good and do indicate a negative correlation, they are not perfect. Unlike the results from the four-course curricula where the two with the same complexity resulted in the same completion rates, introducing two more courses also introduces more variance between completion rates of same-complexity curricula.
 
     \begin{table}[!h]
       \centering
@@ -670,20 +744,20 @@ stringstyle=\color{orange}}
       \begin{tabular}{l*{4}{c}}
         Coefficient & Estimate  & Std Error & Z Value & Pr(>|z|) \\
         \hline
-        (Intercept) & 77.66     & 0.57      & 137.04  & <1e-99 \\
-        Complexity  & -2.09     & 0.027     & -76.73  & <1e-99 \\
+        (Intercept) & 105.995   & 0.235982  & 449.166 & <1e-99 \\
+        Complexity  & -0.715459 & 0.0113234 & -63.1844 &  <1e-99  \\
       \end{tabular}
     \end{table}
 
-    The final set of experiments were conducted over real-world curricula pulled from \href{http://curricula.academicdashboards.org}{curricula.academicdashboards.org}, a web service that stores, visualizes and computes the complexity of curricula. It hosts overs 120 curricula from Universities around that country, and pulling those that have at least eight terms and between 100 and 150 credit hours results in a set of thirty eight curricula. These curricula are then simulated 50 times each with 1000 students using the parameters: (1) Every courses had a 80\% pass-rate. (2) Each student can take up to eighteen credit hours a term. (3) A duration of ten terms. A plot of the results can be seen in figure \ref{fig:web10}. 
+    The final set of experiments were conducted over real-world curricula pulled from \href{http://curricula.academicdashboards.org}{curricula.academicdashboards.org}, a web service that stores, visualizes and computes the complexity of curricula. It hosts overs 120 curricula from Universities around that country, and pulling those that have at least eight terms and between 100 and 150 credit hours results in a set of thirty eight curricula. These curricula are then simulated 50 times each with 1000 students using the parameters: (1) Every courses had a 80\% pass-rate. (2) Each student can take up to eighteen credit hours a term. (3) A duration of ten terms. A plot of the results can be seen in figure \ref{fig:web10}.
 
     \begin{figure}[h!]
-      \centerline{\includegraphics[scale=0.25]{./figures/gradRate10_v_complexity.png}}
-      \caption{Simulation results of thirty eight real-world curricula.} 
+      \centerline{\includegraphics[scale=0.25]{./figures/gradRate10_v_complexity_80.png}}
+      \caption{Simulation results of thirty two real-world curricula.} 
       \label{fig:web10}
     \end{figure}
 
-    Like the two experiments before, an inverse relationship exists between complexity and completion rates, however here there is much more variance. Again linear regression was employed, indicated by the red line, and it is easy to see that there is not as tight of a fit to the results as there was with the six-course curriculum. This is indicated in the resulting R-Squared value of 0.438. This is fairly unsurprising given the more varied nature of the real-world curricula, however there might be other issues that affect this relationship. For example, the previous two experiments used sets of curricula that had the same number of courses and therefore the same number of credit hours. This is not the case with the real-world curricula which span a range of 100 to 150 credit hours. To try and account for this, another regression was performed with credit hours being a independent variable. The results of this regression can be seen in table \ref{tab:webCH} and is visualized in figure \ref{fig:wbcompch}. It is easy to see that this change produces a much tighter, though not perfect, fit with a R-Squared value of 0.703.
+    Like the two experiments before, an inverse relationship exists between complexity and completion rates, however here there is much more variance. Again linear regression was employed, indicated by the red line, and it is easy to see that there is not as tight of a fit to the results as there was with the six-course curriculum. This is indicated in the resulting R-Squared value of 0.435. This is fairly unsurprising given the more varied nature of the real-world curricula, however there might be other issues that affect this relationship. For example, the previous two experiments used sets of curricula that had the same number of courses and therefore the same number of credit hours. This is not the case with the real-world curricula which span a range of 100 to 150 credit hours. To try and account for this, another regression was performed with credit hours being a independent variable. The results of this regression can be seen in table \ref{tab:webCH} and is visualized in figure \ref{fig:wbcompch}. It is easy to see that this change produces a much tighter, though not perfect, fit with a R-Squared value of 0.703.
 
     \begin{table}[!h]
       \centering
@@ -692,64 +766,102 @@ stringstyle=\color{orange}}
       \begin{tabular}{l*{4}{c}}
         Coefficient   & Estimate    & Std Error & Z Value   & Pr(>|z|)  \\
         \hline
-        (Intercept)   & 255.169     & 29.748    & 8.57771   & <1e-17    \\
-        complexity    & -0.0882544  & 0.0154001 & -5.73077  & <1e-8     \\
-        credit hours  & -1.38057    & 0.24707   & -5.58778  & <1e-7     \\
+        (Intercept)   & 255.169     & 29.748      & 8.57771   & <1e-17    \\
+        complexity    & -0.0884049  &  0.0156087  & -5.66382  & <1e-7     \\
+        credit hours  & -1.38212    &  0.250417   & -5.51927  & <1e-7     \\
       \end{tabular}
     \end{table}
 
     \begin{figure}[h!]
-      \centerline{\includegraphics[scale=0.25]{./figures/comp_ch_plot.png}}
+      \centerline{\includegraphics[scale=0.25]{./figures/gradRate10_v_complexity_credits_80.png}}
       \caption{Real-World curricula regression analysis using complexity and credit hours as variables.} 
       \label{fig:wbcompch}
     \end{figure}
 
-    \subsection{Evaluating Additional Complexity Measures}  
-      While it has been shown that both delay and blocking factors can affect students moving through a curriculum, they are far from the only way to describe the structural complexity of a curriculum. Any number of metrics for quantifying the complexity of a curriculum could be devised yet demonstrating that the underlying structural properties influence students could be difficult. Again, simulation provides a solution. Using linear regression methods like those previously described to fit proposed metrics with simulated completion rates could aid in determining what structural properties aid or hinder students. This method was used to conduct an experiment to evaluate three new proposed metrics and curriculum properties: course centrality, course reachability, and free courses.
+    \subsection{Evaluating Additional Complexity Measures}
+      While it has been shown that both delay and blocking factors can affect students moving through a curriculum, they are far from the only way to describe the structural complexity of a curriculum, and there might in fact be better measures. This is evident by looking at figures \ref{fig:gen6results} and \ref{fig:web10} and noticing that curricula with the same for similar complexities produce very different completion rate results and better characterizing $\alpha_C$ might allow for tighter correlation. As a start to exploring other structural complexity measures, three new course complexity metrics are proposed: course centrality, course reachability, free courses, and the number of prerequisite relationships which are all built into CASL.
 
       When a student fails to pass a course, they are probably hindered from taking other courses. In cases like this students might be able to take a course that has no prerequisite (such as an elective) so that they can still make progress while retaking their failed course. Therefore the number of courses without any prerequisites in a curriculum might influence student progress. A course's reachability describes how difficult it is to get to. It is defined similarly to that of a course's blocking factor but instead of counting the number of courses that can be taken after completing the given course, it counts the number of courses that must be completed to reach the given course. A course's centrality attempted to measure how central a course is within a curriculum by counting the number of unique paths that a course appears on. Examples of these two measures can be seen in figures \ref{fig:Reachability} and \ref{fig:Centrality}.
 
       \begin{figure}
         \centering
-        \includegraphics[width=0.5\linewidth]{./figures/Reachability.png}
+        \includegraphics[width=0.4\linewidth]{./figures/Reachability.png}
         \caption{Example of course reachability.}
         \label{fig:Reachability}
       \end{figure}
       \vspace{0.5in}
+
       \begin{figure}
         \centering
-        \includegraphics[width=0.5\linewidth]{./figures/Centrality.png}
+        \includegraphics[width=0.4\linewidth]{./figures/Centrality.png}
         \caption{Example of course centrality.}
         \label{fig:Centrality}
       \end{figure}
 
-      Instead of evaluating these new metrics individually, it makes more sense to do in addition to the delay and blocking factors already defined.  As seen in figure \ref{fig:web10} complexity alone does not explain why curricula with similar or the same complexity measures and perhaps structural properties explained by course centrality and reachability could explain why. These metrics don't attempt to replace delay and blocking, but rather compliment them in capturing structural qualities that they don't. Using the same simulation results as those seen in \ref{fig:web10}, linear regression was performed using complexity, reachability, centrality, credit hours, and free courses as independent variables. The results of the regression produced a R-squared value of 0.825 and can be seen in table \ref{tab:webAll} and \ref{fig:webAll}.
+      Given these measures the question becomes which of them or combination of them should be used to best characterize $\alpha_C$. Again, simulation provides a solution. The experiments so far have tried to show how complexity influences completion rates by performing linear regression over the results, however this process can be reversed. It is possible to use regression to allow completion rates to influence the right characterization of structural complexity. A good way to determine the best way to define structural complexity would be to find the combination of structural measures that correlates the best with simulated graduation rates. To do this, linear regression was performed for every possible combination of structural measures as the independent variables and then find the combination that provides the highest $R^2$ value.
 
-      \begin{table}[!h]
-        \centering
-        \caption{Real-World curricula regression results using complexity, reachability, centrality, credit hours, and free courses as independent variables.}
-        \label{tab:webAll}
-        \begin{tabular}{l*{4}{c}}
-          Coefficient       & Estimate      & Std Error   & Z Value     & Pr(>|z|)  \\
-          \hline
-          (Intercept)       &     231.806   &   27.6088   &  8.39609    &   <1e-16  \\
-          complexity        &    0.175771   &  0.104419   &  1.68332    &   0.0923  \\
-          inverseBlocking   &   -0.375347   &  0.325843   & -1.15193    &   0.2494  \\
-          centrality        &  -0.0577261   & 0.0332347   & -1.73692    &   0.0824  \\
-          creditHours       &    -1.27575   &  0.214141   & -5.95753    &    <1e-8  \\
-          free              &   -0.082392   &  0.207935   & -0.39624    &   0.6919  \\
-        \end{tabular}
-      \end{table}
+      Unsurprisingly, the more features that were used produced better correlations. The combination that produced the best result was credit hours, delay+blocking, centrality, reachability, and the number of prereq relationships which resulted in an $R^2$ value of 84\%. More specifically, based off the results, the optimal structural complexity can be defined as such:
+
+      \begin{tiny}
+      \[
+        \alpha_C = 1.3credits_C - 0.26(delay_C+blocking_C) \\ + 0.03centrality_C + 0.72reachability_C - 0.44prereqs_C
+      \]
+      \end{tiny}
+
+      Figure \ref{fig:bestfit} visualizes these results.
 
       \begin{figure}[h!]
-        \centerline{\includegraphics[scale=0.25]{./figures/webAll.png}}
-        \caption{Regression analysis plot using complexity, reachability, centrality, credit hours, and free courses as independent variables.} 
-        \label{fig:webAll}
+        \centerline{\includegraphics[scale=0.25]{./figures/complexity_optimal.png}}
+        \caption{Regression analysis plot using complexity, reachability, centrality, credit hours, and number of prereqs as independent variables.} 
+        \label{fig:bestfit}
       \end{figure}
 
 
-  \section{Sensitivity Analysis of Instructional Complexity}
-    Another metric that is useful when working with curricula is the instructional complexity of a curriculum. This can be thought of as the difficulty of the curriculum, which in term will be defined by the difficulty of the courses that make it up. Defining how difficulty a course is not straightforward and can be done in many ways, but in the experiments described here, the naive definition of the course's pass-rate is used. Another use of the curriculum flow simulation framework is to observe the effects that instructional complexity has, as it is intuitive to believe that the difficulty of a curriculum's courses would greatly affect student performance. Although not a realistic scenario, Figure \ref{fig:instructional} illustrates this point.
+      
+
+
+      % By performing linear regression using every possible combination of complexity measures, the set that provides the best fit can be determined.
+
+      % Instead of evaluating these new metrics individually, it makes more sense to do in addition to the delay and blocking factors already defined.  As seen in figure \ref{fig:web10} complexity alone does not explain why curricula with similar or the same complexity measures and perhaps structural properties explained by course centrality and reachability could explain why. These metrics don't attempt to replace delay and blocking, but rather compliment them in capturing structural qualities that they don't. Using the same simulation results as those seen in \ref{fig:web10}, linear regression was performed using complexity, reachability, centrality, credit hours, and free courses as independent variables. The results of the regression produced a R-squared value of 0.825 and can be seen in table \ref{tab:webAll} and \ref{fig:webAll}.
+
+      % \begin{table}[!h]
+      %   \centering
+      %   \caption{Real-World curricula regression results using complexity, reachability, centrality, credit hours, and free courses as independent variables.}
+      %   \label{tab:webAll}
+      %   \begin{tabular}{l*{4}{c}}
+      %     Coefficient       & Estimate      & Std Error   & Z Value     & Pr(>|z|)  \\
+      %     \hline
+      %     (Intercept)       &     231.806   &   27.6088   &  8.39609    &   <1e-16  \\
+      %     complexity        &    0.175771   &  0.104419   &  1.68332    &   0.0923  \\
+      %     inverseBlocking   &   -0.375347   &  0.325843   & -1.15193    &   0.2494  \\
+      %     centrality        &  -0.0577261   & 0.0332347   & -1.73692    &   0.0824  \\
+      %     creditHours       &    -1.27575   &  0.214141   & -5.95753    &    <1e-8  \\
+      %     free              &   -0.082392   &  0.207935   & -0.39624    &   0.6919  \\
+      %   \end{tabular}
+      % \end{table}
+
+      % \begin{figure}[h!]
+      %   \centerline{\includegraphics[scale=0.25]{./figures/webAll.png}}
+      %   \caption{Regression analysis plot using complexity, reachability, centrality, credit hours, and free courses as independent variables.} 
+      %   \label{fig:webAll}
+      % \end{figure}
+
+
+
+  % \section{Using Simulation to Characterize Structural Complexity}
+
+  \section{Instructional Complexity and Student Success}
+    The previous experiments have all focused on the affects of structural complexity, but instructional complexity, $\gamma_C$, is also important in defining the overall complexity of a curriculum. In fact, not only does a curriculum's instructional complexity influence student success, but it also has effect on how structural complexity influences success. To demonstrate this, simulations using real-world curricula were performed with each curricula having the same passrate over a range of passrates from 0\% to 90\%. For the results at each pass-rate value, linear regression was used to determine the correlation between each structural complexity measure and completion rates. The results are plotted in figure \ref{fig:coef}.
+
+    \begin{figure}[h!]
+      \centerline{\includegraphics[scale=0.2]{./figures/coef_gradRate10.png}}
+      \caption{Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with respect to course pass-rates.} 
+      \label{fig:coef}
+    \end{figure}
+
+    In this figure, it is evident that the structural complexity measures correlate differently for different curriculum average-passrates. This makes sense as the structural of a curriculum that is impossibly difficulty doesn't matter if students cant pass any of it's courses and likewise also doesn't matter if students always pass their courses. Therefore, instructional complexity determines how important a curriculum's structure is.
+
+    While it is obvious that a curriculum's difficulty largely affects how students progress through it, simulations can show the exact nature of this relationship by simulating the same curriculum (UNM's Computer Engineering program) several times while varying the curriculum's course difficulty. While there is a linear relationship between structure and success, the influence of instructional complexity looks very different which can be seen in figure \ref{fig:instructional}.
 
     \begin{figure}[h!]
       \centerline{\includegraphics[scale=0.2]{./figures/instructional.png}}
@@ -757,72 +869,73 @@ stringstyle=\color{orange}}
       \label{fig:instructional}
     \end{figure}
 
-    This figure shows the completion rate of the Computer Engineering curriculum for a given pass-rate assigned to every course. As expected, the completion rates increase as course pass-rates increase and shows how the instructional complexity of a curriculum affects student success. One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the pass-rate of critical courses can increase student graduation rates. So then the question becomes which courses should receive the most attention?
+    \section{Course Difficulty Sensitivity Analysis}
+      One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the pass-rate of critical courses can increase student graduation rates. So then the question becomes which courses should receive the most attention?
 
-    This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates. In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses.
+      This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates. In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses.
 
-    \begin{table}[!h]
-    \tiny
-    \begin{tabular}{l*{4}{c}}
-    Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
-    \hline
-    Elective & 0.9 & 1 & 1 & 0.0836 \\
-    MATH 180 & 0.7397 & 0.9616 & 4 & 0.0282 \\
-    MGMT 202 & 0.8038 & 1 & 12 & 0.028 \\
-    MATH 121 & 0.7389 & 0.9606 & 10 & 0.0274 \\
-    ECON 105 & 0.7904 & 1 & 1 & 0.0227 \\
-    ECON 106 & 0.7984 & 1 & 8 & 0.0224 \\
-    MGMT 340 & 0.8943 & 1 & 6 & 0.0154 \\
-    MGMT 326 & 0.8605 & 1 & 3 & 0.0147 \\
-    Foreign Language & 0.9 & 1 & 1 & 0.0142 \\
-    Physical \& Natural Science & 0.9 & 1 & 1 & 0.0139 \\
-    \end{tabular}
-    \caption{Accounting Sensitivity Analysis} 
-    \label{tab:accounting_sensitivity}
-    \end{table}
+      \begin{table}[!h]
+      \tiny
+      \begin{tabular}{l*{4}{c}}
+      Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
+      \hline
+      Elective & 0.9 & 1 & 1 & 0.0836 \\
+      MATH 180 & 0.7397 & 0.9616 & 4 & 0.0282 \\
+      MGMT 202 & 0.8038 & 1 & 12 & 0.028 \\
+      MATH 121 & 0.7389 & 0.9606 & 10 & 0.0274 \\
+      ECON 105 & 0.7904 & 1 & 1 & 0.0227 \\
+      ECON 106 & 0.7984 & 1 & 8 & 0.0224 \\
+      MGMT 340 & 0.8943 & 1 & 6 & 0.0154 \\
+      MGMT 326 & 0.8605 & 1 & 3 & 0.0147 \\
+      Foreign Language & 0.9 & 1 & 1 & 0.0142 \\
+      Physical \& Natural Science & 0.9 & 1 & 1 & 0.0139 \\
+      \end{tabular}
+      \caption{Accounting Sensitivity Analysis} 
+      \label{tab:accounting_sensitivity}
+      \end{table}
 
-    \begin{table}[!h]
-    \tiny
-    \begin{tabular}{l*{4}{c}}
-    Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
-    \hline
-    MATH 162 & 0.7585 & 0.9861 & 29 & 0.0407 \\
-    MATH 163 & 0.7502 & 0.9753 & 26 & 0.0404 \\
-    MATH 264 & 0.8399 & 1 & 16 & 0.0265 \\
-    PHYC 160 & 0.7926 & 1 & 25 & 0.0212 \\
-    ECON 105 & 0.7904 & 1 & 1 & 0.0206 \\
-    Tech Elective & 0.9 & 1 & 1 & 0.0195 \\
-    Tech Elective & 0.9 & 1 & 1 & 0.0163 \\
-    CHEM 121 & 0.8049 & 1 & 13 & 0.0158 \\
-    Tech Elective & 0.9 & 1 & 1 & 0.0143 \\
-    MATH 316 & 0.8633 & 1 & 18 & 0.0108 \\
-    \end{tabular}
-    \caption{Mechanical Engineering Sensitivity Analysis}
-    \label{tab:me_sensitivity}
-    \end{table}
+      \begin{table}[!h]
+      \tiny
+      \begin{tabular}{l*{4}{c}}
+      Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
+      \hline
+      MATH 162 & 0.7585 & 0.9861 & 29 & 0.0407 \\
+      MATH 163 & 0.7502 & 0.9753 & 26 & 0.0404 \\
+      MATH 264 & 0.8399 & 1 & 16 & 0.0265 \\
+      PHYC 160 & 0.7926 & 1 & 25 & 0.0212 \\
+      ECON 105 & 0.7904 & 1 & 1 & 0.0206 \\
+      Tech Elective & 0.9 & 1 & 1 & 0.0195 \\
+      Tech Elective & 0.9 & 1 & 1 & 0.0163 \\
+      CHEM 121 & 0.8049 & 1 & 13 & 0.0158 \\
+      Tech Elective & 0.9 & 1 & 1 & 0.0143 \\
+      MATH 316 & 0.8633 & 1 & 18 & 0.0108 \\
+      \end{tabular}
+      \caption{Mechanical Engineering Sensitivity Analysis}
+      \label{tab:me_sensitivity}
+      \end{table}
 
-    \begin{table}[!h]
-    \tiny
-    \begin{tabular}{l*{4}{c}}
-    Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
-    \hline
-    Humanities & 0.9 & 1 & 1 & 0.0661 \\
-    MATH 162 & 0.7585 & 0.9861 & 19 & 0.0609 \\
-    MATH 163 & 0.7502 & 0.9753 & 18 & 0.0554 \\
-    Fine Arts & 0.9 & 1 & 1 & 0.0474 \\
-    Tech Elective & 0.9 & 1 & 1 & 0.0396 \\
-    PHYC 160 & 0.7926 & 1 & 14 & 0.0287 \\
-    MATH 264 & 0.8399 & 1 & 5 & 0.0251 \\
-    ECON 105 & 0.7904 & 1 & 1 & 0.0239 \\
-    ECE 344L & 0.9026 & 1 & 6 & 0.0237 \\
-    ECE 131 & 0.8571 & 1 & 13 & 0.0218 \\
-    \end{tabular}
-    \caption{Computer Engineering Sensitivity Analysis}
-    \label{tab:cpe_sensitivity}
-    \end{table}
+      \begin{table}[!h]
+      \tiny
+      \begin{tabular}{l*{4}{c}}
+      Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
+      \hline
+      Humanities & 0.9 & 1 & 1 & 0.0661 \\
+      MATH 162 & 0.7585 & 0.9861 & 19 & 0.0609 \\
+      MATH 163 & 0.7502 & 0.9753 & 18 & 0.0554 \\
+      Fine Arts & 0.9 & 1 & 1 & 0.0474 \\
+      Tech Elective & 0.9 & 1 & 1 & 0.0396 \\
+      PHYC 160 & 0.7926 & 1 & 14 & 0.0287 \\
+      MATH 264 & 0.8399 & 1 & 5 & 0.0251 \\
+      ECON 105 & 0.7904 & 1 & 1 & 0.0239 \\
+      ECE 344L & 0.9026 & 1 & 6 & 0.0237 \\
+      ECE 131 & 0.8571 & 1 & 13 & 0.0218 \\
+      \end{tabular}
+      \caption{Computer Engineering Sensitivity Analysis}
+      \label{tab:cpe_sensitivity}
+      \end{table}
 
-  \section{Proof of Concept: Simulation With Student Characteristics using Probit Model}
-    TODO
+  % \section{Proof of Concept: Simulation Using Student Characteristics and Probit Regression Model}
+  %   TODO
 
 %----------------------------------------------------------------------------------------
 %  Discussion
@@ -835,11 +948,11 @@ stringstyle=\color{orange}}
 %  Future Work
 %----------------------------------------------------------------------------------------
 \chapter{Conclusion/Future Work}
-  The software library described in this paper provides a good first step towards providing tools to perform analytics over curricula and student data though there is still plenty of work that can be done both on the features of the framework itself as well as the analysis enabled by it. First, the framework could be improved with polish such as better error-handling, generators for module extensions, and built in documentation. The feature set could also be expanded especially in terms of simulation customization. It has been explained that the simulation operates under several assumptions that were made intentionally, however some of these assumptions could be lifted. For example, courses can be set to only be offered only in certain terms, or they could have class-size limits. Furthermore, support could be added for more robust student-enrollment procedures. In this same vein, more out-of-the-box modules could be included to predict grades using a variety of machine-learning and statistical methods. These kinds of improvements of the simulation procedure enable more complex student behavior which could lead to making it a more powerful prediction tool.
+  The software library described in this paper provides a good first step towards providing tools to perform analytics over curricula and student data though there is still plenty of work that can be done both on the features of the library itself as well as the analysis enabled by it. First, the library could be improved with polish such as better error-handling, generators for module extensions, and built in documentation. The feature set could also be expanded especially in terms of simulation customization. It has been explained that the simulation operates under several assumptions that were made intentionally, however some of these assumptions could be lifted. For example, courses can be set to only be offered only in certain terms, or they could have class-size limits. Furthermore, support could be added for more robust student-enrollment procedures. In this same vein, more out-of-the-box modules could be included to predict grades using a variety of machine-learning and statistical methods. These kinds of improvements of the simulation procedure enable more complex student behavior which could lead to making it a more powerful prediction tool.
 
-  In terms of the analytics work enabled by the framework, there is always room for improvement in the kinds of measures that can be devised to quantify the structural complexity of curricula. While a perfect measure, or set of measures that perfectly correlates to both simulated and real-world completion rates probably doesn't exist, there might still exist measures that capture structural complexities better than the ones described here. Furthermore there is also plenty of work to be done analyzing instructional complexity, or the difficulty of curricula as well. This work took a back seat to analysis of curricula complexity, but is a wide-open area of research. Using the framework to simply focus on individual courses, rather than a whole curricula, especially with regards to grade-depiction could yield valuing insights. Combining this with more configurable simulations could produce accurate predictions and what-if analysis.
+  In terms of the analytics work enabled by the library, there is always room for improvement in the kinds of measures that can be devised to quantify the structural complexity of curricula. While a perfect measure, or set of measures that perfectly correlates to both simulated and real-world completion rates probably doesn't exist, there might still exist measures that capture structural complexities better than the ones described here. Furthermore there is also plenty of work to be done analyzing instructional complexity, or the difficulty of curricula as well. This work took a back seat to analysis of curricula complexity, but is a wide-open area of research. Using the library to simply focus on individual courses, rather than a whole curricula, especially with regards to grade-depiction could yield valuing insights. Combining this with more configurable simulations could produce accurate predictions and what-if analysis.
 
-  In addition to this work, CASL could also benefit from a GUI implementation. Given that there is already a community using the tools provided Curricular Dashboards and uses a near-identity format for representing curricula, it would be a good fit. Although it would be somewhat limited, providing an interface for performing simulations over curricula that has been uploaded would be powerful and provide a simple way for users, especially those without programming experience, to benefit from the framework and gain more insights into their curricula - with the hopes that this insight might prove useful in decision making that could positively impact student success.
+  In addition to this work, CASL could also benefit from a GUI implementation. Given that there is already a community using the tools provided Curricular Dashboards and uses a near-identity format for representing curricula, it would be a good fit. Although it would be somewhat limited, providing an interface for performing simulations over curricula that has been uploaded would be powerful and provide a simple way for users, especially those without programming experience, to benefit from the library and gain more insights into their curricula - with the hopes that this insight might prove useful in decision making that could positively impact student success.
 
 %----------------------------------------------------------------------------------------
 %  REFERENCE LIST
