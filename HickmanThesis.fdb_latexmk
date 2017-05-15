@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex HickmanThesis"] 1494803358 "HickmanThesis.aux" "HickmanThesis.bbl" "HickmanThesis" 1494803362
+["bibtex HickmanThesis"] 1494803358 "HickmanThesis.aux" "HickmanThesis.bbl" "HickmanThesis" 1494825662
   "/usr/local/texlive/2016/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "HickmanThesis.aux" 1494803361 14117 91fec7fdbe966b5ce506c7a83dd9be57 ""
+  "HickmanThesis.aux" 1494825661 14117 91fec7fdbe966b5ce506c7a83dd9be57 ""
   "HickmanThesis.bcf" 0 -1 0 ""
   "thesis.bib" 1491889124 6789 735a9b18a868be7f9a6af496761710f5 ""
   (generated)
   "HickmanThesis.bbl"
   "HickmanThesis.blg"
-["pdflatex"] 1494803359 "HickmanThesis.tex" "HickmanThesis.pdf" "HickmanThesis" 1494803362
-  "/dev/null" 1494803362 0 d41d8cd98f00b204e9800998ecf8427e ""
+["pdflatex"] 1494825658 "HickmanThesis.tex" "HickmanThesis.pdf" "HickmanThesis" 1494825662
+  "/dev/null" 1494825658 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -122,12 +122,12 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1471908748 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1463979169 3873397 413fbfbbedb8e719ddc392043a7add02 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "HickmanThesis.aux" 1494803361 14117 91fec7fdbe966b5ce506c7a83dd9be57 ""
+  "HickmanThesis.aux" 1494825661 14117 91fec7fdbe966b5ce506c7a83dd9be57 ""
   "HickmanThesis.bbl" 1494803358 3445 159f3466936787ecbd4e499461fd4f7b "bibtex HickmanThesis"
-  "HickmanThesis.lof" 1494803361 2085 e390a139e37ceb5e5c59c2c2d76fb49e ""
-  "HickmanThesis.out" 1494803361 1715 f2be21bc3ae4f2e4ae9c1155b3c8e76d ""
-  "HickmanThesis.tex" 1494803351 88869 05cdccaafa122c37f32aab0407be8ec8 ""
-  "HickmanThesis.toc" 1494803361 2377 4bdd0f5fa9c32b2156446e1f837a6fa3 ""
+  "HickmanThesis.lof" 1494825661 2085 e390a139e37ceb5e5c59c2c2d76fb49e ""
+  "HickmanThesis.out" 1494825661 1715 f2be21bc3ae4f2e4ae9c1155b3c8e76d ""
+  "HickmanThesis.tex" 1494825658 90625 9563f3d5053e9c993e3c0cfffade92d4 ""
+  "HickmanThesis.toc" 1494825661 2377 4bdd0f5fa9c32b2156446e1f837a6fa3 ""
   "code/PassRate.jl" 1477412521 906 eea4c9792fbe60ea66cbd03cf6540d00 ""
   "code/course_constructors.jl" 1494393585 352 0d4b8c7fc170c6f3dd01400fb2f5a038 ""
   "code/curriculum_constructor.jl" 1475680323 210 ff7826b10ec70d871c1abf258c758aff ""
@@ -161,9 +161,9 @@
   "unm12.clo" 1471911383 8323 7a00dde2cf5db03e5ca0ee7d014e27a7 ""
   "unmeethesis.cls" 1471910806 38110 f6157e61b35a2a456bdc3c518b6f24b1 ""
   (generated)
-  "HickmanThesis.toc"
+  "HickmanThesis.lof"
   "HickmanThesis.aux"
+  "HickmanThesis.toc"
+  "HickmanThesis.out"
   "HickmanThesis.log"
   "HickmanThesis.pdf"
-  "HickmanThesis.out"
-  "HickmanThesis.lof"

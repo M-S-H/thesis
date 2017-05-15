@@ -412,7 +412,7 @@ stringstyle=\color{orange}}
     \subsection{Performance Modules}
       Performance modules are used to predict the grades that students make in their enrolled courses during a simulation. These modules give users the ability to specify exactly what kind of prediction model they would like to use, although they must implement it themselves. Given the number of open-source Julia regression and machine learning libraries available, a wide variety of techniques can be easily implemented. This makes simulations flexible and allows it to carry out a wide variety of simulations so that users can find the one that best fits their data. 
 
-      A performance module is simply a Julia module that contains three functions: \textit{train()}, \textit{predict\_grade()}, and \textit{predict\_stopout}. These methods are used during the simulation, and do not need to be called by the user manually, therefore it is important that they are implemented correctly. The \textit{train()} method is called before the simulation begins and performs any kind of training that might be necessary for predictions, accepting a single curriculum object as a parameter. This gives the user access to all of the courses, where some sort of prediction model will be trained for each one based on features that the user has selected and will be included in the student's attributes. Of course these trained models will need to be stored somewhere and that's why each course has a \textit{model} attribute. This attribute is a dictionary that can store any kind of data. The user can take advantage of this to store any information or objects relevant to the model for each course. Also, a model for predicting whether or not a student drops out must be trained. Like the course's \textit{model} attribute, the curriculum's \textit{stopoutModel} attribute will store any relevant information. Below is a template function:
+      A performance module is simply a Julia module that contains three functions: \textit{train()}, \textit{predict\_grade()}, and \textit{predict\_stopout()}. These methods are used during the simulation, and do not need to be called by the user manually, therefore it is important that they are implemented correctly. The \textit{train()} method is called before the simulation begins and performs any kind of training that might be necessary for predictions, accepting a single curriculum object as a parameter. This gives the user access to all of the courses, where some sort of prediction model will be trained for each one based on features that the user has selected and will be included in the student's attributes. Of course these trained models will need to be stored somewhere and that's why each course has a \textit{model} attribute. This attribute is a dictionary that can store any kind of data. The user can take advantage of this to store any information or objects relevant to the model for each course. Also, a model for predicting whether or not a student drops out must be trained. Like the course's \textit{model} attribute, the curriculum's \textit{stopoutModel} attribute will store any relevant information. Below is a template function:
 
       \lstinputlisting[language=Julia, basicstyle=\tiny, numberstyle=\tiny, xleftmargin=0.65cm, xrightmargin=0.55cm]{code/train.jl}
 
@@ -779,7 +779,7 @@ stringstyle=\color{orange}}
     \end{figure}
 
     \subsection{Evaluating Additional Complexity Measures}
-      While it has been shown that both delay and blocking factors can affect students moving through a curriculum, they are far from the only way to describe the structural complexity of a curriculum, and there might in fact be better measures. This is evident by looking at figures \ref{fig:gen6results} and \ref{fig:web10} and noticing that curricula with the same for similar complexities produce very different completion rate results and better characterizing $\alpha_C$ might allow for tighter correlation. As a start to exploring other structural complexity measures, three new course complexity metrics are proposed: course centrality, course reachability, free courses, and the number of prerequisite relationships which are all built into CASL.
+      While it has been shown that both delay and blocking factors can affect students moving through a curriculum, they are far from the only way to describe the structural complexity of a curriculum, and there might in fact be better measures. This is evident by looking at figures \ref{fig:gen6results} and \ref{fig:web10} and noticing that curricula with the same for similar complexities produce very different completion rate results and better characterizing $\alpha_C$ might allow for tighter correlation. As a start to exploring other structural complexity measures, four new course complexity metrics are proposed: course centrality, course reachability, free courses, and the number of prerequisite relationships which are all built into CASL.
 
       When a student fails to pass a course, they are probably hindered from taking other courses. In cases like this students might be able to take a course that has no prerequisite (such as an elective) so that they can still make progress while retaking their failed course. Therefore the number of courses without any prerequisites in a curriculum might influence student progress. A course's reachability describes how difficult it is to get to. It is defined similarly to that of a course's blocking factor but instead of counting the number of courses that can be taken after completing the given course, it counts the number of courses that must be completed to reach the given course. A course's centrality attempted to measure how central a course is within a curriculum by counting the number of unique paths that a course appears on. Examples of these two measures can be seen in figures \ref{fig:Reachability} and \ref{fig:Centrality}.
 
@@ -872,23 +872,78 @@ stringstyle=\color{orange}}
     \section{Course Difficulty Sensitivity Analysis}
       One of the most common methods for increasing student success is to increase student success in individual courses. Regardless of the method used, increasing the pass-rate of critical courses can increase student graduation rates. So then the question becomes which courses should receive the most attention?
 
-      This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top 10 courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates. In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses.
+      This question can be answered by performing sensitivity analysis over course pass-rates via simulation. This analysis is done by performing a baseline simulation and then increasing a course's pass-rate and then measuring the difference. This experiment was carried out over three UNM curricula, Computer Engineering, Accounting, and Mechanical Engineering, where pass-rates of every were computed using UNM data over the last ten years. To get a baseline completion rate, a simulation over 1000 students was carried out 20 times and then the eighth term completion rates were averaged. Then, one at a time, each course's pass-rate is increased up to thirty percent and then an identical simulation was carried out. Figures \ref{tab:accounting_sensitivity}, \ref{tab:me_sensitivity}, and \ref{tab:cpe_sensitivity} show the results of this analysis - specifically the top five courses in which an increase in pass-rate had the greatest affect on eighth-term completion rates. In each curricula, the courses with the highest cruciality had some of the greatest increases in completion rates with an increase in their pass-rates. This makes sense as these are courses are on long-paths and block other crucial courses.
+
+      % \begin{table}[!h]
+      % \tiny
+      % \begin{tabular}{l*{4}{c}}
+      % Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
+      % \hline
+      % Elective & 0.9 & 1 & 1 & 0.0836 \\
+      % MATH 180 & 0.7397 & 0.9616 & 4 & 0.0282 \\
+      % MGMT 202 & 0.8038 & 1 & 12 & 0.028 \\
+      % MATH 121 & 0.7389 & 0.9606 & 10 & 0.0274 \\
+      % ECON 105 & 0.7904 & 1 & 1 & 0.0227 \\
+      % ECON 106 & 0.7984 & 1 & 8 & 0.0224 \\
+      % MGMT 340 & 0.8943 & 1 & 6 & 0.0154 \\
+      % MGMT 326 & 0.8605 & 1 & 3 & 0.0147 \\
+      % Foreign Language & 0.9 & 1 & 1 & 0.0142 \\
+      % Physical \& Natural Science & 0.9 & 1 & 1 & 0.0139 \\
+      % \end{tabular}
+      % \caption{Accounting Sensitivity Analysis} 
+      % \label{tab:accounting_sensitivity}
+      % \end{table}
+
+      % \begin{table}[!h]
+      % \tiny
+      % \begin{tabular}{l*{4}{c}}
+      % Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
+      % \hline
+      % MATH 162 & 0.7585 & 0.9861 & 29 & 0.0407 \\
+      % MATH 163 & 0.7502 & 0.9753 & 26 & 0.0404 \\
+      % MATH 264 & 0.8399 & 1 & 16 & 0.0265 \\
+      % PHYC 160 & 0.7926 & 1 & 25 & 0.0212 \\
+      % ECON 105 & 0.7904 & 1 & 1 & 0.0206 \\
+      % Tech Elective & 0.9 & 1 & 1 & 0.0195 \\
+      % Tech Elective & 0.9 & 1 & 1 & 0.0163 \\
+      % CHEM 121 & 0.8049 & 1 & 13 & 0.0158 \\
+      % Tech Elective & 0.9 & 1 & 1 & 0.0143 \\
+      % MATH 316 & 0.8633 & 1 & 18 & 0.0108 \\
+      % \end{tabular}
+      % \caption{Mechanical Engineering Sensitivity Analysis}
+      % \label{tab:me_sensitivity}
+      % \end{table}
+
+      % \begin{table}[!h]
+      % \tiny
+      % \begin{tabular}{l*{4}{c}}
+      % Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
+      % \hline
+      % Humanities & 0.9 & 1 & 1 & 0.0661 \\
+      % MATH 162 & 0.7585 & 0.9861 & 19 & 0.0609 \\
+      % MATH 163 & 0.7502 & 0.9753 & 18 & 0.0554 \\
+      % Fine Arts & 0.9 & 1 & 1 & 0.0474 \\
+      % Tech Elective & 0.9 & 1 & 1 & 0.0396 \\
+      % PHYC 160 & 0.7926 & 1 & 14 & 0.0287 \\
+      % MATH 264 & 0.8399 & 1 & 5 & 0.0251 \\
+      % ECON 105 & 0.7904 & 1 & 1 & 0.0239 \\
+      % ECE 344L & 0.9026 & 1 & 6 & 0.0237 \\
+      % ECE 131 & 0.8571 & 1 & 13 & 0.0218 \\
+      % \end{tabular}
+      % \caption{Computer Engineering Sensitivity Analysis}
+      % \label{tab:cpe_sensitivity}
+      % \end{table}
 
       \begin{table}[!h]
       \tiny
       \begin{tabular}{l*{4}{c}}
       Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
       \hline
-      Elective & 0.9 & 1 & 1 & 0.0836 \\
       MATH 180 & 0.7397 & 0.9616 & 4 & 0.0282 \\
       MGMT 202 & 0.8038 & 1 & 12 & 0.028 \\
       MATH 121 & 0.7389 & 0.9606 & 10 & 0.0274 \\
       ECON 105 & 0.7904 & 1 & 1 & 0.0227 \\
       ECON 106 & 0.7984 & 1 & 8 & 0.0224 \\
-      MGMT 340 & 0.8943 & 1 & 6 & 0.0154 \\
-      MGMT 326 & 0.8605 & 1 & 3 & 0.0147 \\
-      Foreign Language & 0.9 & 1 & 1 & 0.0142 \\
-      Physical \& Natural Science & 0.9 & 1 & 1 & 0.0139 \\
       \end{tabular}
       \caption{Accounting Sensitivity Analysis} 
       \label{tab:accounting_sensitivity}
@@ -904,11 +959,6 @@ stringstyle=\color{orange}}
       MATH 264 & 0.8399 & 1 & 16 & 0.0265 \\
       PHYC 160 & 0.7926 & 1 & 25 & 0.0212 \\
       ECON 105 & 0.7904 & 1 & 1 & 0.0206 \\
-      Tech Elective & 0.9 & 1 & 1 & 0.0195 \\
-      Tech Elective & 0.9 & 1 & 1 & 0.0163 \\
-      CHEM 121 & 0.8049 & 1 & 13 & 0.0158 \\
-      Tech Elective & 0.9 & 1 & 1 & 0.0143 \\
-      MATH 316 & 0.8633 & 1 & 18 & 0.0108 \\
       \end{tabular}
       \caption{Mechanical Engineering Sensitivity Analysis}
       \label{tab:me_sensitivity}
@@ -919,16 +969,11 @@ stringstyle=\color{orange}}
       \begin{tabular}{l*{4}{c}}
       Course & Original Pass-rate & Increased Pass-rate & Cruciality & Increase in Completion Rate \\
       \hline
-      Humanities & 0.9 & 1 & 1 & 0.0661 \\
       MATH 162 & 0.7585 & 0.9861 & 19 & 0.0609 \\
       MATH 163 & 0.7502 & 0.9753 & 18 & 0.0554 \\
-      Fine Arts & 0.9 & 1 & 1 & 0.0474 \\
-      Tech Elective & 0.9 & 1 & 1 & 0.0396 \\
       PHYC 160 & 0.7926 & 1 & 14 & 0.0287 \\
       MATH 264 & 0.8399 & 1 & 5 & 0.0251 \\
       ECON 105 & 0.7904 & 1 & 1 & 0.0239 \\
-      ECE 344L & 0.9026 & 1 & 6 & 0.0237 \\
-      ECE 131 & 0.8571 & 1 & 13 & 0.0218 \\
       \end{tabular}
       \caption{Computer Engineering Sensitivity Analysis}
       \label{tab:cpe_sensitivity}
