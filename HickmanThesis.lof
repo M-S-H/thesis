@@ -11,10 +11,10 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Fundamental Curricula Structures\relax }}{31}{figure.5.1}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces A plot of complexity vs 5th term graduation rates for six course curricula.\relax }}{33}{figure.5.2}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Simulation results of thirty two real-world curricula.\relax }}{34}{figure.5.3}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Real-World curricula regression analysis using complexity and credit hours as variables.\relax }}{35}{figure.5.4}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Residual plot resulting from simulation results of real world curricula with delay+blocking as the independent variable.\relax }}{35}{figure.5.4}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Example of course reachability.\relax }}{36}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Example of course centrality.\relax }}{37}{figure.5.6}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Regression analysis plot using complexity, reachability, centrality, credit hours, and number of prereqs as independent variables.\relax }}{38}{figure.5.7}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Example of course centrality.\relax }}{36}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Residual plot resulting from simulation results of real world curricula with credit hours, delay+blocking, centrality, reachability, and the number of prerequisites as the independent variables.\relax }}{37}{figure.5.7}
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with respect to course pass-rates.\relax }}{39}{figure.5.8}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with respect to course pass-rates.\relax }}{40}{figure.5.9}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Graph showing how the completion rate of the Computer Engineering curriculum at UNM changes with respect to course pass-rates.\relax }}{39}{figure.5.9}
 \addvspace {10\p@ }
